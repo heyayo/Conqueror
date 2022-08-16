@@ -7,6 +7,7 @@ class TestScene : public Scene
 {
 public:
     TestScene();
+    ~TestScene();
 
     void SceneRun();
     void Collision();

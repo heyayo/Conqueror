@@ -1,17 +1,22 @@
 #include "TestScene.hpp"
 #include "Player.hpp"
-#include "StaticBody.hpp"
+#include "Wall.hpp"
 
 TestScene::TestScene()
 {
     Image ptemp = GenImageColor(128,128,BLUE);
-    Player* playerCharacter = new Player(ptemp);
+    Player* playerCharacter = new Player();
     Image temp = GenImageColor(128,128,RED);
-    StaticBody* Wall = new StaticBody(temp);
-    UnloadImage(temp);
+    Wall* wall = new Wall();
+
+    playerCharacter->Init(ptemp);
+    wall->Init(temp);
+
     AddEntity(playerCharacter);
-    AddEntity(Wall);
+    AddEntity(wall);
     SetBGColor(GRAY);
+    UnloadImage(temp);
+    UnloadImage(ptemp);
 }
 
 void TestScene::SceneRun()
@@ -26,6 +31,9 @@ void TestScene::Collision()
     if (CalculateCollisionsBetween(PlayerPtr, GetPhysicsByIndex(1)))
     {
         PlayerPtr->Move(-PlayerPtr->GetVelocity());
-        std::cout << "COLLIDED" << std::endl;
     }
+}
+
+TestScene::~TestScene()
+{
 }

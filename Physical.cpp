@@ -1,32 +1,10 @@
 #include "Physical.hpp"
 
 
-Physical::Physical(const char *imgSrc)
+Physical::Physical()
 {
-    tex = LoadTexture(imgSrc);
-    texW = tex.width;
-    texH = tex.height;
-}
-
-Physical::Physical(Image &imgSrc)
-{
-    tex = LoadTextureFromImage(imgSrc);
-    texW = tex.width;
-    texH = tex.height;
-    xCol = texW/2;
-    yCol = texH/2;
-}
-
-Physical::Physical(const char *imgSrc, int resizeX, int resizeY)
-{
-    Image img = LoadImage(imgSrc);
-    texW = resizeX;
-    texH = resizeY;
-    ImageResize(&img, texW, texH);
-    tex = LoadTextureFromImage(img);
-    UnloadImage(img);
-    xCol = texW/2;
-    yCol = texH/2;
+    xCol = 0;
+    yCol = 0;
 }
 
 V2 Physical::GetColSize()
@@ -34,10 +12,10 @@ V2 Physical::GetColSize()
     return V2(xCol,yCol);
 }
 
-void Physical::SetCollisionSize(int xC, int yC)
+void Physical::SetCollisionSize(int size)
 {
-    xCol = xC;
-    yCol = yC;
+    xCol = size;
+    yCol = size;
 }
 
 void Physical::SetCollisionSize(V2 size)
@@ -54,4 +32,10 @@ int Physical::GetColX()
 int Physical::GetColY()
 {
     return yCol;
+}
+
+void Physical::AutoCollider()
+{
+    xCol = texW/2;
+    yCol = texH/2;
 }

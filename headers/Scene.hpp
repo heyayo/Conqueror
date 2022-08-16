@@ -19,6 +19,7 @@ public:
     Scene();
 
     void SetBGColor(Color bgc);
+
     void SceneDraw();
     bool CalculateCollisionsBetween(Physical *bodyone, Physical *bodytwo);
 

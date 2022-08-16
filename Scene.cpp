@@ -27,9 +27,8 @@ void Scene::SceneDraw()
     for (int i = 0; i < Entities.size(); i++)
     {
         Entity* temp = Entities[i];
-        temp->Draw();
         temp->Update();
-
+        temp->Draw();
     }
 }
 

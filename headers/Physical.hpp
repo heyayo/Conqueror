@@ -8,15 +8,14 @@ class Physical : public Entity
     int xCol, yCol;
 
 public:
-    Physical(const char* imgSrc);
-    Physical(Image &imgSrc);
-    Physical(const char* imgSrc, int resizeX, int resizeY);
+    Physical();
 
     int GetColX();
     int GetColY();
     V2 GetColSize();
 
-    void SetCollisionSize(int xC, int yC);
+    void AutoCollider();
+    void SetCollisionSize(int size);
     void SetCollisionSize(V2 size);
 };
 

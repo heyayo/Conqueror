@@ -1,14 +1,19 @@
 #include "Player.hpp"
 
-Player::Player(const char *imgSrc) : Physical(imgSrc){ Start(); }
-Player::Player(Image &imgSrc) : Physical(imgSrc){ Start(); }
-Player::Player(const char *imgSrc, int resizeX, int resizeY) : Physical(imgSrc, resizeX, resizeY){ Start(); }
+Player::Player()
+{
+    Image img = GenImageColor(128,128,RED);
+    Init(img);
+    UnloadImage(img);
+    Start();
+}
 
 void Player::Start()
 {
     x = 500;
     y = 500;
-    SetCollisionSize(V2(128,128));
+    angle = 0;
+    SetCollisionSize(128);
     velocity = V2();
 }
 
@@ -24,6 +29,7 @@ void Player::InputHandler()
 {
     velocity.x = IsKeyDown(KEY_D) - IsKeyDown(KEY_A);
     velocity.y = IsKeyDown(KEY_S) - IsKeyDown(KEY_W);
+    angle += IsKeyDown(KEY_E) - IsKeyDown(KEY_Q);
 }
 
 V2 Player::GetVelocity()

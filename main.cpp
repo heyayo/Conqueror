@@ -18,7 +18,7 @@ int main()
     {
         BeginDrawing();
         testScene.SceneRun();
-        DrawText("TEST TEXT",cwidth,cheight,18,BLACK);
+        DrawText("MASSIVE TEXT",cwidth,cheight,45,BLACK);
         EndDrawing();
     }
     CloseWindow();

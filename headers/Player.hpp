@@ -6,10 +6,9 @@
 class Player : public Physical
 {
     V2 velocity;
+
 public:
-    Player(const char* imgSrc);
-    Player(Image &imgSrc);
-    Player(const char* imgSrc, int resizeX, int resizeY);
+    Player();
 
     V2 GetVelocity();
 
