@@ -11,9 +11,16 @@ add_executable(Prototype
         main.cpp
         func.cpp
         Entity.cpp
-        Maths.cpp)
+        Maths.cpp
+        Character.cpp
+        Player.cpp
+        Scene.cpp
+        UiElement.cpp
+        TextBox.cpp
+        Scenes/TestScene.cpp)
 
 target_include_directories(Prototype PUBLIC headers)
+target_include_directories(Prototype PUBLIC Scenes)
 if (UNIX)
     target_link_libraries(Prototype ${CMAKE_SOURCE_DIR}/lib/libraylib.a)
 endif(UNIX)

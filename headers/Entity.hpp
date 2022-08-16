@@ -9,14 +9,13 @@ protected:
     Texture2D tex;
     int x,y;
 public:
-    Entity(const char*);
-    Entity(Image);
-    Entity(const char*, int,int);
-    ~Entity();
+    virtual ~Entity();
 
     void Draw();
     void Move(int,int);
     void Move(Vector2);
+    virtual void Update() = 0;
+    virtual void Start() = 0;
 };
 
 
