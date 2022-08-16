@@ -9,6 +9,7 @@ public:
     TestScene();
 
     void SceneRun();
+    void Collision();
 };
 
 

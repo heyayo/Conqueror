@@ -1,4 +1,5 @@
 #include "Scene.hpp"
+#include "Physical.hpp"
 
 std::vector<Entity *> *Scene::GetEntities()
 {
@@ -30,4 +31,30 @@ void Scene::SceneDraw()
         temp->Update();
 
     }
+}
+
+bool Scene::CalculateCollisionsBetween(Physical *bodyone, Physical *bodytwo)
+{
+    V2 aPos = bodyone->GetPosition();
+    V2 bPos = bodytwo->GetPosition();
+    V2 aDist = bodyone->GetColSize();
+    V2 bDist = bodytwo->GetColSize();
+
+    int xDist = aDist.x + bDist.x;
+    int yDist = aDist.y + bDist.y;
+    int trueXDist = abs(aPos.x - bPos.x);
+    int trueYDist = abs(aPos.y - bPos.y);
+
+    return
+    (xDist >= trueXDist && yDist >= trueYDist);
+}
+
+Entity* Scene::GetEntityByIndex(unsigned int index)
+{
+    return Entities[index];
+}
+
+Physical *Scene::GetPhysicsByIndex(unsigned int index)
+{
+    return static_cast<Physical*>(Entities[index]);
 }

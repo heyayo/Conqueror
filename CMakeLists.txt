@@ -12,12 +12,15 @@ add_executable(Prototype
         func.cpp
         Entity.cpp
         Maths.cpp
+        Physical.cpp
         Character.cpp
         Player.cpp
         Scene.cpp
         UiElement.cpp
         TextBox.cpp
-        Scenes/TestScene.cpp)
+        Scenes/TestScene.cpp
+        V2.cpp
+        StaticBody.cpp)
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)

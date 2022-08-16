@@ -10,6 +10,8 @@ namespace Maths
     int min(int a, int b);
     float max(float a, float b);
     float min(float a, float b);
+
+    double Root(double num);
 }
 
 #endif

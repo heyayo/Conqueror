@@ -282,11 +282,11 @@ typedef struct NPatchInfo {
 
 // GlyphInfo, font characters glyphs info
 typedef struct GlyphInfo {
-    int value;              // Character value (Unicode)
-    int offsetX;            // Character offset X when drawing
-    int offsetY;            // Character offset Y when drawing
-    int advanceX;           // Character advance position X
-    Image image;            // Character image data
+    int value;              // Physical value (Unicode)
+    int offsetX;            // Physical offset X when drawing
+    int offsetY;            // Physical offset Y when drawing
+    int advanceX;           // Physical advance position X
+    Image image;            // Physical image data
 } GlyphInfo;
 
 // Font, font texture and GlyphInfo array data
