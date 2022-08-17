@@ -7,12 +7,12 @@
 class Entity
 {
 protected:
-    Rectangle rect;
     Texture2D tex;
-    float texW,texH;
     float x,y;
-    float angle;
+    float angle = 0;
     Entity* parent;
+    std::string name;
+    unsigned groupID;
 
 public:
     virtual ~Entity();
@@ -25,13 +25,17 @@ public:
     void Move(int,int);
     void Move(V2);
 
+    unsigned GetID();
     float GetX();
     float GetY();
+    float GetRotation();
     V2 GetPosition();
     Entity* GetParent();
+    std::string GetName();
 
     void SetPosition(int xPos, int yPos);
     void SetPosition(V2 newPos);
+    void SetRotation(float angl);
     void SetParent(Entity* newParent);
 
     virtual void Update() = 0;

@@ -17,6 +17,9 @@ public:
     void AutoCollider();
     void SetCollisionSize(int size);
     void SetCollisionSize(V2 size);
+
+    void Update();
+    void Start();
 };
 
 

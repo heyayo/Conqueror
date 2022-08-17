@@ -25,3 +25,13 @@ double Maths::Root(double num)
     }
     return toRoot;
 }
+
+float Maths::DTR(float Degree)
+{
+    return (Degree * (PI/180));
+}
+
+float Maths::RTD(float Radian)
+{
+    return (Radian * (180/PI));
+}

@@ -4,22 +4,16 @@
 
 TestScene::TestScene()
 {
-    Image ptemp = GenImageColor(128,128,BLUE);
     Player* playerCharacter = new Player();
-    Image temp = GenImageColor(128,128,RED);
     Wall* wall = new Wall();
 
-    playerCharacter->Init(ptemp);
-    wall->Init(temp);
 
     AddEntity(playerCharacter);
     AddEntity(wall);
-    SetBGColor(GRAY);
-    UnloadImage(temp);
-    UnloadImage(ptemp);
+    SetBG(Color{75,75,75,255});
 }
 
-void TestScene::SceneRun()
+void TestScene::SceneUpdate()
 {
     SceneDraw();
     Collision();
@@ -28,12 +22,14 @@ void TestScene::SceneRun()
 void TestScene::Collision()
 {
     Player* PlayerPtr = static_cast<Player*>(GetPhysicsByIndex(0));
-    if (CalculateCollisionsBetween(PlayerPtr, GetPhysicsByIndex(1)))
+    if (CalculateCollisionsBetween(PlayerPtr, GetPhysicsByIndex(1)) || CalculateCollisionBorder(PlayerPtr))
     {
         PlayerPtr->Move(-PlayerPtr->GetVelocity());
     }
-}
-
-TestScene::~TestScene()
-{
+    std::vector<Entity*> temp = GetPhysicsByGroup("PROJECTILE");
+    for (int i = 0; i < temp.size(); i++)
+    {
+        if (CalculateCollisionBorder(static_cast<Physical*>(temp[i])))
+            Kill(temp[i]);
+    }
 }

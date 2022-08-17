@@ -5,7 +5,6 @@
 
 class Arrow : public Physical
 {
-    float angle = 0;
     float speed = 5;
 
 public:

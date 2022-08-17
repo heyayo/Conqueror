@@ -1,5 +1,6 @@
 #include "Scene.hpp"
 #include "Physical.hpp"
+#include "Game.hpp"
 
 std::vector<Entity *> *Scene::GetEntities()
 {
@@ -8,22 +9,37 @@ std::vector<Entity *> *Scene::GetEntities()
 
 Scene::Scene()
 {
-    bgColor = WHITE;
+    Image img = GenImageColor(GetScreenWidth(),GetScreenHeight(),WHITE);
+    bgTex = LoadTextureFromImage(img);
+    UnloadImage(img);
 }
 
-void Scene::SetBGColor(Color bgc)
+void Scene::SetBG(Texture2D bgimg)
 {
-    bgColor = bgc;
+    UnloadTexture(bgTex);
+    bgTex = bgimg;
+}
+
+void Scene::SetBG(const char *bgimgsrc)
+{
+    UnloadTexture(bgTex);
+    LoadTexture(bgimgsrc);
 }
 
 void Scene::AddEntity(Entity *add)
 {
     Entities.push_back(add);
+    add->Start();
 }
 
 void Scene::SceneDraw()
 {
-    ClearBackground(bgColor);
+    DrawTexturePro(bgTex,
+                   bg,
+                   {0,0,(float)GetScreenWidth(),(float)GetScreenHeight()},
+                    {0,0},
+                    0,
+                    WHITE);
     for (int i = 0; i < Entities.size(); i++)
     {
         Entity* temp = Entities[i];
@@ -48,6 +64,19 @@ bool Scene::CalculateCollisionsBetween(Physical *bodyone, Physical *bodytwo)
     (xDist >= trueXDist && yDist >= trueYDist);
 }
 
+bool Scene::CalculateCollisionBorder(Physical *body)
+{
+    V2 bPos = body->GetPosition();
+    V2 bSize = body->GetColSize();
+
+
+    return
+    ((bPos.x + bSize.x >= GetScreenWidth()) ||
+    (bPos.x - bSize.x <= 0) ||
+    (bPos.y + bSize.y >= GetScreenHeight()) ||
+    (bPos.y - bSize.y <= 0));
+}
+
 Entity* Scene::GetEntityByIndex(unsigned int index)
 {
     return Entities[index];
@@ -56,4 +85,62 @@ Entity* Scene::GetEntityByIndex(unsigned int index)
 Physical *Scene::GetPhysicsByIndex(unsigned int index)
 {
     return static_cast<Physical*>(Entities[index]);
+}
+
+Scene::~Scene()
+{
+    for (int i = 0; i < Entities.size(); i++)
+        if (Entities[i] != nullptr)
+            delete Entities[i];
+    Entities.clear();
+}
+
+bool Scene::Kill(Entity *object)
+{
+    for (int i = 0; i < Entities.size(); i++)
+    {
+        if (Entities[i] == object)
+        {
+            delete object;
+            Entities.erase(Entities.begin()+i);
+            return true;
+        }
+    }
+    return false;
+}
+
+void Scene::KillByIndex(unsigned int index)
+{
+    delete Entities[index];
+    Entities.erase(Entities.begin()+index);
+}
+
+std::vector<Entity*> Scene::GetPhysicsByGroupID(unsigned int ID)
+{
+    std::vector<Entity*> list;
+    for (int i = 0; i < Entities.size(); i++)
+    {
+        if (Entities[i]->GetID() == ID)
+            list.push_back(Entities[i]);
+    }
+    return list;
+}
+
+std::vector<Entity*> Scene::GetPhysicsByGroup(const char *name)
+{
+    std::vector<Entity*> list;
+    for (int i = 0; i < Entities.size(); i++)
+    {
+        if (Entities[i]->GetName() == name)
+            list.push_back(Entities[i]);
+    }
+    return list;
+}
+
+void Scene::SetBG(Color color)
+{
+    UnloadTexture(bgTex);
+    Image img = GenImageColor(GetScreenWidth(),GetScreenHeight(),color);
+    bgTex = LoadTextureFromImage(img);
+    UnloadImage(img);
 }

@@ -7,10 +7,9 @@ class TestScene : public Scene
 {
 public:
     TestScene();
-    ~TestScene();
 
-    void SceneRun();
-    void Collision();
+    void SceneUpdate() override;
+    void Collision() override;
 };
 
 

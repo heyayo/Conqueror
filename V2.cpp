@@ -47,3 +47,9 @@ V2 V2::operator-(void) const
 {
     return V2(-x,-y);
 }
+
+std::ostream &operator<<(std::ostream& os, const V2 &v)
+{
+    os << "[ " << v.x << " , " << v.y << " ]";
+    return os;
+}

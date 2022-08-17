@@ -1,11 +1,15 @@
 #include "Physical.hpp"
 
-
 Physical::Physical()
 {
     xCol = 0;
     yCol = 0;
+    groupID = 0;
+    name = "ALL";
 }
+
+void Physical::Update(){}
+void Physical::Start(){}
 
 V2 Physical::GetColSize()
 {
@@ -36,6 +40,6 @@ int Physical::GetColY()
 
 void Physical::AutoCollider()
 {
-    xCol = texW/2;
-    yCol = texH/2;
+    xCol = tex.width/2;
+    yCol = tex.height/2;
 }

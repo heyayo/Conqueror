@@ -9,7 +9,6 @@ set(CMAKE_GENERATOR_PLATFORM x64)
 
 add_executable(Prototype
         main.cpp
-        func.cpp
         Entity.cpp
         Maths.cpp
         Physical.cpp
@@ -21,7 +20,8 @@ add_executable(Prototype
         V2.cpp
         StaticBody.cpp
         Wall.cpp
-        Arrow.cpp)
+        Arrow.cpp
+        Game.cpp)
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)

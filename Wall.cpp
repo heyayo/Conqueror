@@ -11,6 +11,7 @@ Wall::Wall()
 void Wall::Start()
 {
     SetPosition({800,800});
+    AutoCollider();
 }
 
 void Wall::Update()
