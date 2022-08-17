@@ -21,7 +21,7 @@ add_executable(Prototype
         StaticBody.cpp
         Wall.cpp
         Arrow.cpp
-        Game.cpp)
+        Game.cpp "headers/Slime.hpp" "Slime.cpp")
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)
