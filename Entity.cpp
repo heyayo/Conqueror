@@ -7,8 +7,8 @@ Entity::~Entity()
 
 void Entity::Draw()
 {
-    DrawTextureEx(tex,{x,y},angle,1,WHITE);
-    //DrawTexturePro(tex,rect,Rectangle{x,y,texW,texH},{texW/2,texH/2},angle,WHITE);
+    //DrawTextureEx(tex,{x,y},angle,1,WHITE);
+    DrawTexturePro(tex,Rectangle{0,0,(float)tex.width,(float)tex.height},Rectangle{x,y,(float)tex.width,(float)tex.height},{(float)tex.width/2,(float)tex.height/2},angle,WHITE);
 }
 
 void Entity::Move(int nx, int ny)

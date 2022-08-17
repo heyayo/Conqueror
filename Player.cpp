@@ -34,12 +34,10 @@ void Player::InputHandler()
     {
         std::cout << "SHOOTING" << std::endl;
         Arrow* temp = new Arrow();
-        Image img = GenImageColor(16,16,GREEN);
-        temp->Init(img);
+        temp->Init("sprites/arrow.png", V2(32,96));
         temp->SetParent(this);
         temp->SetRotation(angle);
         GetCurrentScene()->AddEntity(temp);
-        UnloadImage(img);
     }
 }
 
