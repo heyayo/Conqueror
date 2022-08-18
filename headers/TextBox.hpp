@@ -5,12 +5,37 @@
 
 class TextBox : public UIElement
 {
-    char* text;
 public:
-    TextBox(int xSize, int ySize, Color color);
-    TextBox(Vector2 size, Color color);
+    enum Alignment
+    {
+        UNALIGNED,
+        CENTER,
+        CUSTOM
+    };
 
-    void SetText(char* newText);
+private:
+    const char* text;
+    Font font = LoadFont("fonts/regina.ttf");
+    unsigned fontSize;
+    Color textColor;
+    Alignment alignment = UNALIGNED;
+    Vector2 TextPosition;
+
+public:
+    TextBox(const char* nText, Color nColor, unsigned nFontSize);
+    ~TextBox();
+
+    void SetText(const char* newText);
+    void SetFont(Font newFont);
+    void SetFontSize(unsigned newFontSize);
+    void SetTextColor(Color color);
+    void SetAlignment(Alignment align);
+    void SetTextPosition(Vector2 vecPos);
+
+    Vector2 CenterPos();
+
+    void Start();
+    void Update();
 };
 
 

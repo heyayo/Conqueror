@@ -2,10 +2,8 @@
 #include "Physical.hpp"
 #include "Game.hpp"
 
-std::vector<Entity *> *Scene::GetEntities()
-{
-    return &Entities;
-}
+std::vector<Entity *> *Scene::GetEntities(){return &Entities;}
+std::vector<UIElement *> *Scene::GetUIElements(){return &UICollection;}
 
 Scene::Scene()
 {
@@ -43,8 +41,14 @@ void Scene::SceneDraw()
     for (int i = 0; i < Entities.size(); i++)
     {
         Entity* temp = Entities[i];
-        temp->Update();
         temp->Draw();
+        temp->Update();
+    }
+    for (int i = 0; i < UICollection.size(); i++)
+    {
+        UIElement* temp = UICollection[i];
+        temp->Draw();
+        temp->Update();
     }
 }
 
@@ -93,6 +97,10 @@ Scene::~Scene()
         if (Entities[i] != nullptr)
             delete Entities[i];
     Entities.clear();
+    for (int i = 0; i < UICollection.size(); i++)
+        if (UICollection[i] != nullptr)
+            delete UICollection[i];
+    UICollection.clear();
 }
 
 bool Scene::Kill(Entity *object)
@@ -143,4 +151,10 @@ void Scene::SetBG(Color color)
     Image img = GenImageColor(GetScreenWidth(),GetScreenHeight(),color);
     bgTex = LoadTextureFromImage(img);
     UnloadImage(img);
+}
+
+void Scene::AddUI(UIElement *add)
+{
+    UICollection.push_back(add);
+    add->Start();
 }

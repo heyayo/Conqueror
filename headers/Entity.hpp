@@ -20,6 +20,7 @@ public:
     void Init(const char* imgSrc);
     void Init(Image &imgSrc);
     void Init(const char* imgSrc, V2 resize);
+    void Init(Color color, V2 size);
 
     void Draw();
     void Move(int,int);
@@ -30,6 +31,7 @@ public:
     float GetY();
     float GetRotation();
     V2 GetPosition();
+    V2 GetSize();
     Entity* GetParent();
     std::string GetName();
 

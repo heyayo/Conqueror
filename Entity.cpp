@@ -7,7 +7,6 @@ Entity::~Entity()
 
 void Entity::Draw()
 {
-    //DrawTextureEx(tex,{x,y},angle,1,WHITE);
     DrawTexturePro(tex,Rectangle{0,0,(float)tex.width,(float)tex.height},Rectangle{x,y,(float)tex.width,(float)tex.height},{(float)tex.width/2,(float)tex.height/2},angle,WHITE);
 }
 
@@ -96,4 +95,16 @@ void Entity::Init(const char *imgSrc, V2 resize)
     ImageResize(&temp, resize.x, resize.y);
     tex = LoadTextureFromImage( temp);
     UnloadImage(temp);
+}
+
+void Entity::Init(Color color, V2 size)
+{
+    Image temp = GenImageColor(size.x,size.y,color);
+    tex = LoadTextureFromImage(temp);
+    UnloadImage(temp);
+}
+
+V2 Entity::GetSize()
+{
+    return V2(tex.width,tex.height);
 }

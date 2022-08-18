@@ -1,15 +1,22 @@
 #include "TestScene.hpp"
 #include "Player.hpp"
 #include "Wall.hpp"
+#include "TextBox.hpp"
 
 TestScene::TestScene()
 {
     Player* playerCharacter = new Player();
     Wall* wall = new Wall();
 
-
     AddEntity(playerCharacter);
     AddEntity(wall);
+
+    TextBox* testBox = new TextBox("TEST MESSAGE IN BOX", WHITE,18);
+    testBox->Init(GREEN,V2(500,500));
+    testBox->SetPosition(1000,500);
+    testBox->SetAlignment(TextBox::CENTER);
+    AddUI(testBox);
+
     SetBG(Color{75,75,75,255});
 }
 

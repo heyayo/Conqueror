@@ -5,12 +5,8 @@
 
 class UIElement : public Entity
 {
-protected:
-    Color color;
-
 public:
-    UIElement(int xSize, int ySize, Color color);
-    UIElement(Vector2 size, Color color);
+    UIElement();
 };
 
 

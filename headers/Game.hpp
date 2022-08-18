@@ -9,4 +9,6 @@ void LoadScene(Scene* next);
 void RunScene();
 void Close();
 
+Vector2 ConvertTorlVector2(V2 toConvert);
+
 #endif
