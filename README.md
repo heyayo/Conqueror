@@ -27,8 +27,11 @@ VS Should Proceed to Compile the Program.
 
 ### Entity Class
 Almost everything Inherits from this Class, it contains a texture data, position and rotation.
+
 It includes Getter and Setter Functions for needed values
+
 Is an Abstract Class.
+
 Has Parenting System, using
 ```
 SetParent();
@@ -53,24 +56,26 @@ Init(string imagelink, V2 resize); // Initializes using an image link and resize
 
 ### Physical - Child to Entity
 A basic Entity but with Collision Ability.
-Set a collision size using these functions:
+
+Set a collision boxSize using these functions:
 ```
 // Automatically Sets the Collision Hitbox based off the Size of the Provided Texture
 // Use this if you don't need to change hitbox sizes
 AutoCollider();
 ```
 ```
-// Sets a square hitbox of provided size, the size is should be measured from the center
-// E.G. Texture of 128x128 should have a hitbox size of 64
-SetCollisionSize(int size);
+// Sets a square hitbox of provided boxSize, the boxSize is should be measured from the center
+// E.G. Texture of 128x128 should have a hitbox boxSize of 64
+SetCollisionSize(int boxSize);
 ```
 ```
 // Sets a rectangular hitbox using the Vector2 Size
 // Proportions are the same as above
-SetCollisionSize(V2 size);
+SetCollisionSize(V2 boxSize);
 ```
 
 --- IMPORTANT ---
+
 To use a child class of Physical, they must have these two Functions
 ```
 // Runs once right before the object spawns
@@ -98,9 +103,41 @@ It spawns at the position of the parent class and travels forwards based on Pare
 WORK IN PROGRESS
 This is the parent class to all UI Elements
 
+Class Functions:
+```
+CalculateMouseCollision(); // Calculates if the mouse is hover the object
+```
+
 ### TextBox - Child to UIElement
-WORK IN PROGRESS
 This is a class for easily creating a textbox
+
+To Create a TextBox
+```
+TextBox [name] = new TextBox("INSERT TEXT HERE");
+```
+
+TextBox Functions
+```
+ADAPTIVE vs NON ADAPTIVE
+ADAPTIVE means that you can change it mid scene
+NON ADAPTIVE means that its set once and most likely cannot be changed
+
+SetTextColor(Color color); // Sets the Text Color, ADAPTIVE
+SetBoxColor(Color color); // Sets the Box Color, NON ADAPTIVE
+SetPadding(V2 padding); // Sets the padding around the text
+SetText(const char* text); // Sets Text in the TextBox
+SetFont(Font font); // Sets the font of the text
+SetFontSize(float fontSize); // Sets the font size
+SetTextPosition(V2 pos); // Sets the Text Position, ONLY WORKS IF ALIGNMENT IS SET TO CUSTOm
+SetAlignment(Alignment align); // Sets the Alignment of the Text
+
+ALIGNMENT OPTIONS
+TOPLEFT - aka unaligned
+CENTER
+CUSTOM
+```
+
+Using the UIElement Mouse Checking Function, it can be made into a button
 
 ### Scene
 This is the base Scene Class containing required Scene Functions

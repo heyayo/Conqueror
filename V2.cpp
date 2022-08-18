@@ -33,7 +33,7 @@ V2 V2::operator-(V2 &rhs) const
     return V2(x - rhs.x, y - rhs.y);
 }
 
-V2 V2::operator+(V2 &rhs)
+V2 V2::operator+(V2 &rhs) const
 {
     return V2(x+rhs.x,y-rhs.y);
 }
@@ -52,4 +52,9 @@ std::ostream &operator<<(std::ostream& os, const V2 &v)
 {
     os << "[ " << v.x << " , " << v.y << " ]";
     return os;
+}
+
+V2 V2::operator/(V2 &rhs) const
+{
+    return V2(x/rhs.x,y/rhs.x);
 }

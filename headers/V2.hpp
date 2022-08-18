@@ -15,7 +15,8 @@ public:
     V2& operator+=(V2&rhs);
     V2& operator-=(V2&rhs);
     V2 operator-(V2&rhs) const;
-    V2 operator+(V2&rhs);
+    V2 operator+(V2&rhs) const;
+    V2 operator/(V2&rhs) const;
     V2 operator-(void) const;
     bool operator!=(V2&rhs);
     bool operator==(V2&rhs);

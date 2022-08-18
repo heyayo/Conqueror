@@ -16,9 +16,10 @@ TestScene::TestScene()
     AddEntity(wall);
     AddEntity(EnemySlime);
 
-    TextBox* testBox = new TextBox("TEST MESSAGE IN BOX", WHITE, GREEN, 18, V2(50,50));
+    TextBox* testBox = new TextBox("TEST MESSAGE IN BOX");
     testBox->SetPosition(1000,500);
     testBox->SetAlignment(TextBox::CENTER);
+    testBox->SetPadding(V2(200,200));
     AddUI(testBox);
     textBox = testBox;
     SetBG(Color{75,75,75,255});

@@ -7,6 +7,7 @@ class UIElement : public Entity
 {
 public:
     UIElement();
+    bool CalculateMouseCollision();
 };
 
 

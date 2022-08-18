@@ -1,5 +1,4 @@
-#include "Group.hpp"
-#include "headers\Slime.hpp"
+#include "Slime.hpp"
 
 Slime::Slime()
 {
