@@ -118,17 +118,13 @@ TextBox [name] = new TextBox("INSERT TEXT HERE");
 
 TextBox Functions
 ```
-ADAPTIVE vs NON ADAPTIVE
-ADAPTIVE means that you can change it mid scene
-NON ADAPTIVE means that its set once and most likely cannot be changed
-
-SetTextColor(Color color); // Sets the Text Color, ADAPTIVE
-SetBoxColor(Color color); // Sets the Box Color, NON ADAPTIVE
+SetTextColor(Color color); // Sets the Text Color
+SetBoxColor(Color color); // Sets the Box Color
 SetPadding(V2 padding); // Sets the padding around the text
 SetText(const char* text); // Sets Text in the TextBox
 SetFont(Font font); // Sets the font of the text
 SetFontSize(float fontSize); // Sets the font size
-SetTextPosition(V2 pos); // Sets the Text Position, ONLY WORKS IF ALIGNMENT IS SET TO CUSTOm
+SetTextPosition(V2 pos); // Sets the Text Position, ONLY WORKS IF ALIGNMENT IS SET TO CUSTOM
 SetAlignment(Alignment align); // Sets the Alignment of the Text
 
 ALIGNMENT OPTIONS
