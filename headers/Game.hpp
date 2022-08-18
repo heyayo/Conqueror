@@ -10,5 +10,6 @@ void RunScene();
 void Close();
 
 Vector2 ConvertTorlVector2(V2 toConvert);
+V2 ConvertToV2(Vector2 toConvert);
 
 #endif

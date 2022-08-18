@@ -108,3 +108,13 @@ V2 Entity::GetSize()
 {
     return V2(tex.width,tex.height);
 }
+
+void Entity::SetName(std::string newName)
+{
+    name = newName;
+}
+
+void Entity::SetID(unsigned int newID)
+{
+    groupID = newID;
+}

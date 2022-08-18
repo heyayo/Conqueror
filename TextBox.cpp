@@ -1,8 +1,11 @@
 #include "TextBox.hpp"
 #include "Game.hpp"
 
-TextBox::TextBox(const char *nText, Color nColor, unsigned int nFontSize)
-: text(nText), textColor(nColor), fontSize(nFontSize) {}
+TextBox::TextBox(const char *nText, Color nColor, Color nBoxColor, unsigned int nFontSize, V2 newPadding)
+: text(nText), textColor(nColor), boxColor(nBoxColor), fontSize(nFontSize)
+{
+    padding = V2(newPadding.x,-newPadding.y);
+}
 
 void TextBox::SetText(const char* newText){text = newText;}
 void TextBox::SetFont(Font newFont){font = newFont;}
@@ -11,13 +14,17 @@ void TextBox::SetFontSize(unsigned int newFontSize){fontSize = newFontSize;}
 
 void TextBox::Start()
 {
+    Init(boxColor, GetBoxSize());
     switch (alignment)
     {
-        case UNALIGNED:
-            TextPosition = {x,y};
+        case TOPLEFT:
+            textOffset = {tex.width/2.f,tex.height/2.f};
             break;
         case CENTER:
-            TextPosition = CenterPos();
+        {
+            V2 temp = GetTextSize();
+            textOffset = {(temp.x)/2.f,(temp.y)/2.f};
+        }
             break;
         case CUSTOM:
             break;
@@ -26,18 +33,13 @@ void TextBox::Start()
 
 void TextBox::Update()
 {
-    DrawTextPro(font,text, TextPosition,{tex.width/2.f,tex.height/2.f},0,fontSize,0,textColor);
+    V2 temp = GetTextSize();
+    DrawTextPro(font, text, ConvertTorlVector2(GetPosition()), textOffset, angle, fontSize, 0, textColor);
 }
 
 TextBox::~TextBox()
 {
     UnloadFont(font);
-}
-
-Vector2 TextBox::CenterPos()
-{
-    Vector2 textSize = MeasureTextEx(font,text,fontSize,0);
-    return Vector2{x+(tex.width/2)-(textSize.x/2),y+(tex.height/2)-(textSize.y/2)};
 }
 
 void TextBox::SetAlignment(TextBox::Alignment align)
@@ -47,6 +49,16 @@ void TextBox::SetAlignment(TextBox::Alignment align)
 
 void TextBox::SetTextPosition(Vector2 vecPos)
 {
-    TextPosition = vecPos;
+    textOffset = vecPos;
+}
+
+V2 TextBox::GetBoxSize()
+{
+    return ConvertToV2(MeasureTextEx(font,text,fontSize,0)) + padding;
+}
+
+V2 TextBox::GetTextSize()
+{
+    return ConvertToV2(MeasureTextEx(font,text,fontSize,0));
 }
 

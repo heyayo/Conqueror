@@ -8,7 +8,7 @@ class TextBox : public UIElement
 public:
     enum Alignment
     {
-        UNALIGNED,
+        TOPLEFT,
         CENTER,
         CUSTOM
     };
@@ -18,11 +18,13 @@ private:
     Font font = LoadFont("fonts/regina.ttf");
     unsigned fontSize;
     Color textColor;
-    Alignment alignment = UNALIGNED;
-    Vector2 TextPosition;
+    Color boxColor;
+    Alignment alignment = TOPLEFT;
+    Vector2 textOffset;
+    V2 padding;
 
 public:
-    TextBox(const char* nText, Color nColor, unsigned nFontSize);
+    TextBox(const char *nText, Color nColor, Color nBoxColor, unsigned int nFontSize, V2 newPadding);
     ~TextBox();
 
     void SetText(const char* newText);
@@ -32,7 +34,8 @@ public:
     void SetAlignment(Alignment align);
     void SetTextPosition(Vector2 vecPos);
 
-    Vector2 CenterPos();
+    V2 GetBoxSize();
+    V2 GetTextSize();
 
     void Start();
     void Update();

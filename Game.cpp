@@ -27,3 +27,8 @@ Vector2 ConvertTorlVector2(V2 toConvert)
     return Vector2{(float)toConvert.x,(float)toConvert.y};
 }
 
+V2 ConvertToV2(Vector2 toConvert)
+{
+    return V2(toConvert.x,toConvert.y);
+}
+

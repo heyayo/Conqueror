@@ -39,6 +39,8 @@ public:
     void SetPosition(V2 newPos);
     void SetRotation(float angl);
     void SetParent(Entity* newParent);
+    void SetName(std::string newName);
+    void SetID(unsigned newID);
 
     virtual void Update() = 0;
     virtual void Start() = 0;

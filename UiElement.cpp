@@ -1,3 +1,3 @@
 #include "UiElement.hpp"
 
-UIElement::UIElement(){}
+UIElement::UIElement(){ groupID = 99; name = "UIELEMENT"; }

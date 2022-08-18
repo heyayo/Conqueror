@@ -3,6 +3,8 @@
 #include "Wall.hpp"
 #include "TextBox.hpp"
 
+UIElement* textBox;
+
 TestScene::TestScene()
 {
     Player* playerCharacter = new Player();
@@ -11,17 +13,19 @@ TestScene::TestScene()
     AddEntity(playerCharacter);
     AddEntity(wall);
 
-    TextBox* testBox = new TextBox("TEST MESSAGE IN BOX", WHITE,18);
-    testBox->Init(GREEN,V2(500,500));
+    TextBox* testBox = new TextBox("TEST MESSAGE IN BOX", WHITE, GREEN, 18, V2(50,50));
     testBox->SetPosition(1000,500);
     testBox->SetAlignment(TextBox::CENTER);
     AddUI(testBox);
-
+    textBox = testBox;
     SetBG(Color{75,75,75,255});
 }
 
+float temp = 0;
 void TestScene::SceneUpdate()
 {
+    temp += IsKeyDown(KEY_R) - IsKeyDown(KEY_F);
+    textBox->SetRotation(temp);
     SceneDraw();
     Collision();
 }
