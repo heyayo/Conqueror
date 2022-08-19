@@ -1,6 +1,8 @@
 #include "TestScene.hpp"
 #include "Player.hpp"
 #include "Slime.hpp"
+#include "Goblin.h"
+#include "Demon.h"
 #include "Wall.hpp"
 #include "TextBox.hpp"
 
@@ -10,11 +12,15 @@ TestScene::TestScene()
 {
     Player* playerCharacter = new Player();
     Slime* EnemySlime = new Slime();
+    Goblin* EnemyGoblin = new Goblin();
+    Demon* EnemyDemon = new Demon();
     Wall* wall = new Wall();
 
     AddEntity(playerCharacter);
     AddEntity(wall);
     AddEntity(EnemySlime);
+    AddEntity(EnemyGoblin);
+    AddEntity(EnemyDemon);
 
     TextBox* testBox = new TextBox("TEST MESSAGE IN BOX");
     testBox->SetPosition(1000,500);
@@ -42,6 +48,10 @@ void TestScene::Collision()
         PlayerPtr->Move(-PlayerPtr->GetVelocity());
     }
     if (CalculateCollisionsBetween(PlayerPtr, GetPhysicsByIndex(2)) || CalculateCollisionBorder(PlayerPtr))
+    {
+        PlayerPtr->Move(-PlayerPtr->GetVelocity());
+    }
+    if (CalculateCollisionsBetween(PlayerPtr, GetPhysicsByIndex(3)) || CalculateCollisionBorder(PlayerPtr))
     {
         PlayerPtr->Move(-PlayerPtr->GetVelocity());
     }

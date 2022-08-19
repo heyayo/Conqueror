@@ -1,3 +1,4 @@
 Prototype
 *.exe
+.vs
 build

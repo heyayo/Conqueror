@@ -15,7 +15,7 @@ void Slime::Update()
 
 void Slime::Start()
 {
-	x = 1000;
+	/*x = 1000;
 	y = 1010;
-	angle = 0;
+	angle = 0;*/
 }

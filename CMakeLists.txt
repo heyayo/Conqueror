@@ -23,7 +23,7 @@ add_executable(Prototype
         Arrow.cpp
         Game.cpp
         Slime.cpp
-        Scenes/MainMenu.cpp)
+        Scenes/MainMenu.cpp "headers/Goblin.h" "Goblin.cpp" "headers/Demon.h" "Demon.cpp")
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)
