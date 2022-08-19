@@ -4,7 +4,7 @@
 
 Player::Player()
 {
-    Init("sprites/hero.png", V2(128,128));
+   Init("sprites/hero.png", V2(128,128));
 }
 
 void Player::Start()

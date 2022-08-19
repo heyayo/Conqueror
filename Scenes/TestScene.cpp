@@ -4,7 +4,10 @@
 #include "Goblin.h"
 #include "Demon.h"
 #include "Wall.hpp"
+#include "Warrior.h"
+#include "Thief.h"
 #include "TextBox.hpp"
+#include "Character.h"
 
 UIElement* textBox;
 
