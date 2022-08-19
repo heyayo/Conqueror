@@ -24,7 +24,11 @@ add_executable(Prototype
         Game.cpp
         Slime.cpp
         Scenes/MainMenu.cpp
-        Config.cpp)
+        Config.cpp
+        Scenes/MainMenu.cpp
+        Skeleton.cpp
+        Undead.cpp
+        Demon.cpp)
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)

@@ -3,7 +3,9 @@
 #include "Slime.hpp"
 #include "Wall.hpp"
 #include "TextBox.hpp"
-
+#include "Slime.hpp"
+#include "Skeleton.hpp"
+#include "Undead.hpp"
 UIElement* textBox;
 
 TestScene::TestScene()
@@ -11,10 +13,14 @@ TestScene::TestScene()
     Player* playerCharacter = new Player();
     Slime* EnemySlime = new Slime();
     Wall* wall = new Wall();
+    Skeleton* EnemySkele = new Skeleton();
+    Undead* EnemyUndead = new Undead();
 
     AddEntity(playerCharacter);
     AddEntity(wall);
     AddEntity(EnemySlime);
+    AddEntity(EnemySkele);
+    AddEntity(EnemyUndead);
 
     TextBox* testBox = new TextBox("TEST MESSAGE IN BOX");
     testBox->SetPosition(1000,500);
@@ -42,6 +48,14 @@ void TestScene::Collision()
         PlayerPtr->Move(-PlayerPtr->GetVelocity());
     }
     if (CalculateCollisionsBetween(PlayerPtr, GetPhysicsByIndex(2)) || CalculateCollisionBorder(PlayerPtr))
+    {
+        PlayerPtr->Move(-PlayerPtr->GetVelocity());
+    }
+    if (CalculateCollisionsBetween(PlayerPtr, GetPhysicsByIndex(3)) || CalculateCollisionBorder(PlayerPtr))
+    {
+        PlayerPtr->Move(-PlayerPtr->GetVelocity());
+    }
+    if (CalculateCollisionsBetween(PlayerPtr, GetPhysicsByIndex(4)) || CalculateCollisionBorder(PlayerPtr))
     {
         PlayerPtr->Move(-PlayerPtr->GetVelocity());
     }
