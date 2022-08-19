@@ -1,4 +1,7 @@
 #include "Entity.hpp"
+#include "Config.hpp"
+#include <cmath>
+#include "Maths.hpp"
 
 Entity::~Entity()
 {
@@ -7,7 +10,12 @@ Entity::~Entity()
 
 void Entity::Draw()
 {
-    DrawTexturePro(tex,Rectangle{0,0,(float)tex.width,(float)tex.height},Rectangle{x,y,(float)tex.width,(float)tex.height},{(float)tex.width/2,(float)tex.height/2},angle,WHITE);
+    DrawTexturePro(tex,
+                   Rectangle{0,0,(float)tex.width,(float)tex.height},
+                   Rectangle{DeltarizeX(x), DeltarizeY(y),DeltarizeX(tex.width),DeltarizeY(tex.height)},
+                   {DeltarizeX(tex.width/2),DeltarizeY(tex.height/2)},
+                   angle,
+                   WHITE);
 }
 
 void Entity::Move(int nx, int ny)
@@ -117,4 +125,11 @@ void Entity::SetName(std::string newName)
 void Entity::SetID(unsigned int newID)
 {
     groupID = newID;
+}
+
+void Entity::LookAtMouse()
+{
+    V2 mousePos = Maths::ConvertToV2(GetMousePosition());
+
+    angle = -Maths::RTD(std::atan2(mousePos.x-DeltarizeX(x), mousePos.y-DeltarizeY(y)));
 }

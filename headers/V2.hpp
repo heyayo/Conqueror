@@ -6,16 +6,18 @@
 class V2
 {
 public:
-    int x,y;
-    V2(int a = 0, int b = 0);
+    float x,y;
+    V2(float a = 0, float b = 0);
     ~V2();
 
-    int Length();
+    float Length();
+    float Dot(V2& other);
 
     V2& operator+=(V2&rhs);
     V2& operator-=(V2&rhs);
     V2 operator-(V2&rhs) const;
     V2 operator+(V2&rhs) const;
+    V2 operator*(V2&rhs) const;
     V2 operator/(V2&rhs) const;
     V2 operator-(void) const;
     bool operator!=(V2&rhs);

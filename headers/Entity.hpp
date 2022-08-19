@@ -25,6 +25,7 @@ public:
     void Draw();
     void Move(int,int);
     void Move(V2);
+    void LookAtMouse();
 
     unsigned GetID();
     float GetX();

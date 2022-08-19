@@ -1,15 +1,12 @@
-#include <iostream>
 #include "raylib.h"
-#include "TestScene.hpp"
 #include "Game.hpp"
-#include "MainMenu.hpp"
 
 int main()
 {
-    InitWindow(CONFIG::GetScreenWidth(), CONFIG::GetScreenHeight(),"TESTWINDOW");
-    Init();
+    InitWindow(GetScreenWidthC(), GetScreenHeightC(),"TESTWINDOW");
+    InitScenes();
 
-    LoadSceneByEnum(MAINMENU);
+    LoadSceneByEnum(TESTSCENE);
 
     SetTargetFPS(60);
     while (!WindowShouldClose())

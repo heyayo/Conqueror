@@ -5,25 +5,31 @@
 #include <vector>
 #include "UiElement.hpp"
 #include "Physical.hpp"
+#include "Config.hpp"
 
 class Scene
 {
     std::vector<Entity*> Entities;
     std::vector<UIElement*> UICollection;
-    Rectangle bg;
     Texture2D bgTex;
 
 protected:
     std::vector<Entity*>* GetEntities();
     std::vector<UIElement*>* GetUIElements();
+    V2 sceneSize;
+    V2 cameraSize;
+    V2 cameraPos;
 
 public:
     Scene();
     virtual ~Scene();
 
-    void SetBG(Texture2D bgimg);
+    void SetBG(const char* bgimgsrc, V2 resize);
     void SetBG(const char* bgimgsrc);
     void SetBG(Color color);
+    void SetSceneSize(V2 newSize);
+    void SetCameraSize(V2 newSize);
+    void SetCameraPos(V2 newPos);
     void SceneDraw();
 
     void AddEntity(Entity* add);

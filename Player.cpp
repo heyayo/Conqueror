@@ -28,7 +28,7 @@ void Player::InputHandler()
 {
     velocity.x = (IsKeyDown(KEY_D) - IsKeyDown(KEY_A)) * speed;
     velocity.y = (IsKeyDown(KEY_S) - IsKeyDown(KEY_W)) * speed;
-    angle += IsKeyDown(KEY_E) - IsKeyDown(KEY_Q);
+    LookAtMouse();
 
     if (IsKeyPressed(KEY_SPACE))
     {

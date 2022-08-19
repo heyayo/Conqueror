@@ -1,29 +1,26 @@
 #include "TestScene.hpp"
 #include "Player.hpp"
 #include "Slime.hpp"
-#include "Goblin.h"
-#include "Demon.h"
 #include "Wall.hpp"
-#include "Warrior.h"
-#include "Thief.h"
 #include "TextBox.hpp"
-#include "Character.h"
-
+#include "Slime.hpp"
+#include "Skeleton.hpp"
+#include "Undead.hpp"
 UIElement* textBox;
 
 TestScene::TestScene()
 {
     Player* playerCharacter = new Player();
     Slime* EnemySlime = new Slime();
-    Goblin* EnemyGoblin = new Goblin();
-    Demon* EnemyDemon = new Demon();
     Wall* wall = new Wall();
+    Skeleton* EnemySkele = new Skeleton();
+    Undead* EnemyUndead = new Undead();
 
     AddEntity(playerCharacter);
     AddEntity(wall);
     AddEntity(EnemySlime);
-    AddEntity(EnemyGoblin);
-    AddEntity(EnemyDemon);
+    AddEntity(EnemySkele);
+    AddEntity(EnemyUndead);
 
     TextBox* testBox = new TextBox("TEST MESSAGE IN BOX");
     testBox->SetPosition(1000,500);
@@ -31,7 +28,7 @@ TestScene::TestScene()
     testBox->SetPadding(V2(200,200));
     AddUI(testBox);
     textBox = testBox;
-    SetBG(Color{75,75,75,255});
+    SetBG("SceneBG/wallpaper.png");
 }
 
 float temp = 0;
@@ -55,6 +52,10 @@ void TestScene::Collision()
         PlayerPtr->Move(-PlayerPtr->GetVelocity());
     }
     if (CalculateCollisionsBetween(PlayerPtr, GetPhysicsByIndex(3)) || CalculateCollisionBorder(PlayerPtr))
+    {
+        PlayerPtr->Move(-PlayerPtr->GetVelocity());
+    }
+    if (CalculateCollisionsBetween(PlayerPtr, GetPhysicsByIndex(4)) || CalculateCollisionBorder(PlayerPtr))
     {
         PlayerPtr->Move(-PlayerPtr->GetVelocity());
     }
