@@ -81,11 +81,10 @@ bool Scene::CalculateCollisionBorder(Physical *body)
     V2 bPos = body->GetPosition();
     V2 bSize = body->GetColSize();
 
-
     return
-    ((bPos.x + bSize.x >= GetScreenWidth()) ||
+    ((bPos.x + bSize.x >= GetScreenWidthDeltad()) ||
     (bPos.x - bSize.x <= 0) ||
-    (bPos.y + bSize.y >= GetScreenHeight()) ||
+    (bPos.y + bSize.y >= GetScreenHeightDeltad()) ||
     (bPos.y - bSize.y <= 0));
 }
 

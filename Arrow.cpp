@@ -5,6 +5,7 @@
 void Arrow::Update()
 {
     Move(sin(Maths::DTR(-angle)) * speed,cos(Maths::DTR(-angle)) * speed);
+    std::cout << GetPosition() << std::endl;
 }
 
 void Arrow::Start()

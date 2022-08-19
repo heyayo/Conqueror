@@ -59,10 +59,10 @@ void TestScene::Collision()
     {
         PlayerPtr->Move(-PlayerPtr->GetVelocity());
     }
-    std::vector<Entity*> temp = GetPhysicsByGroup("PROJECTILE");
+    /*std::vector<Entity*> temp = GetPhysicsByGroup("PROJECTILE");
     for (int i = 0; i < temp.size(); i++)
     {
         if (CalculateCollisionBorder(static_cast<Physical*>(temp[i])))
             Kill(temp[i]);
-    }
+    }*/
 }

@@ -57,3 +57,22 @@ float GetScreenDeltaX()
 {
     return ScreenDeltaY;
 }
+
+V2 GetScreenResolutionDeltad()
+{
+    V2 scrRes = GetScreenResolution();
+    V2 delta = GetScreenDelta();
+    return scrRes * delta;
+}
+
+float GetScreenWidthDeltad()
+{
+    return ScreenWidth/ScreenDeltaX;
+}
+
+float GetScreenHeightDeltad()
+{
+    return ScreenHeight/ScreenDeltaY;
+}
+
+

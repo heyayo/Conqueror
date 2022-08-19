@@ -38,6 +38,7 @@ void Player::InputHandler()
         temp->SetParent(this);
         temp->SetRotation(angle);
         GetCurrentScene()->AddEntity(temp);
+        std::cout << GetScreenDelta() << std::endl;
     }
 }
 
