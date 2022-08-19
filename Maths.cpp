@@ -35,3 +35,28 @@ float Maths::RTD(float Radian)
 {
     return (Radian * (180/PI));
 }
+
+void Maths::Range(float &victim, float max)
+{
+    victim = (1/victim) * max;
+}
+
+Vector2 Maths::ConvertTorlVector2(V2 toConvert)
+{
+    return Vector2{(float)toConvert.x,(float)toConvert.y};
+}
+
+V2 Maths::ConvertToV2(Vector2 toConvert)
+{
+    return V2(toConvert.x,toConvert.y);
+}
+
+float Maths::RelativeX(float xPixel)
+{
+    return 0;
+}
+
+float Maths::RelativeY(float yPixel)
+{
+    return 0;
+}

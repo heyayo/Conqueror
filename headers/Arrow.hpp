@@ -5,12 +5,12 @@
 
 class Arrow : public Physical
 {
-    float speed = -20;
+    float speed = 20;
 
 public:
 
-    void Update();
-    void Start();
+    void Update() override;
+    void Start() override;
 };
 
 

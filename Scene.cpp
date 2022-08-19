@@ -1,6 +1,5 @@
 #include "Scene.hpp"
 #include "Physical.hpp"
-#include "Game.hpp"
 
 std::vector<Entity *> *Scene::GetEntities(){return &Entities;}
 std::vector<UIElement *> *Scene::GetUIElements(){return &UICollection;}
@@ -10,18 +9,27 @@ Scene::Scene()
     Image img = GenImageColor(GetScreenWidth(),GetScreenHeight(),WHITE);
     bgTex = LoadTextureFromImage(img);
     UnloadImage(img);
+    sceneSize = V2(1920,1080);
+    cameraSize = V2(1920,1080);
+    cameraPos = V2();
+    SetScreenDelta(cameraSize);
 }
 
-void Scene::SetBG(Texture2D bgimg)
+void Scene::SetBG(const char* bgimgsrc, V2 resize)
 {
     UnloadTexture(bgTex);
-    bgTex = bgimg;
+    Image bgimg = LoadImage(bgimgsrc);
+    ImageResize(&bgimg,resize.x,resize.y);
+    bgTex = LoadTextureFromImage(bgimg);
+    UnloadImage(bgimg);
 }
 
 void Scene::SetBG(const char *bgimgsrc)
 {
     UnloadTexture(bgTex);
-    LoadTexture(bgimgsrc);
+    Image img = LoadImage(bgimgsrc);
+    ImageResize(&img, img.width,img.height);
+    bgTex = LoadTextureFromImage(img);
 }
 
 void Scene::AddEntity(Entity *add)
@@ -33,7 +41,7 @@ void Scene::AddEntity(Entity *add)
 void Scene::SceneDraw()
 {
     DrawTexturePro(bgTex,
-                   bg,
+                   Rectangle{cameraPos.x,cameraPos.y,cameraSize.x,cameraSize.y},
                    {0,0,(float)GetScreenWidth(),(float)GetScreenHeight()},
                     {0,0},
                     0,
@@ -148,7 +156,7 @@ std::vector<Entity*> Scene::GetPhysicsByGroup(const char *name)
 void Scene::SetBG(Color color)
 {
     UnloadTexture(bgTex);
-    Image img = GenImageColor(GetScreenWidth(),GetScreenHeight(),color);
+    Image img = GenImageColor(sceneSize.x,sceneSize.y,color);
     bgTex = LoadTextureFromImage(img);
     UnloadImage(img);
 }
@@ -157,4 +165,20 @@ void Scene::AddUI(UIElement *add)
 {
     UICollection.push_back(add);
     add->Start();
+}
+
+void Scene::SetSceneSize(V2 newSize)
+{
+    sceneSize = newSize;
+}
+
+void Scene::SetCameraSize(V2 newSize)
+{
+    cameraSize = newSize;
+    SetCameraSize(cameraSize);
+}
+
+void Scene::SetCameraPos(V2 newPos)
+{
+    cameraPos = newPos;
 }

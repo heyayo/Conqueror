@@ -23,7 +23,8 @@ add_executable(Prototype
         Arrow.cpp
         Game.cpp
         Slime.cpp
-        Scenes/MainMenu.cpp)
+        Scenes/MainMenu.cpp
+        Config.cpp)
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)
