@@ -1,9 +1,9 @@
 #ifndef PROTOTYPE_SKELETON_HPP
 #define PROTOTYPE_SKELETON_HPP
 
-#include "Physical.hpp"
+#include "Enemy.hpp"
 
-class Skeleton : public Physical
+class Skeleton : public Enemy
 {
     V2 velocity;
 

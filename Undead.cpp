@@ -2,6 +2,10 @@
 
 Undead::Undead()
 {
+	health = 30;
+	attack = 8;
+	movspd = 5;
+	atkspd = 30;
 	Init("sprites/undead move.png", V2(128, 128));
 }
 

@@ -1,9 +1,9 @@
 #ifndef PROTOTYPE_UNDEAD_HPP
 #define PROTOTYPE_UNDEAD_HPP
 
-#include "Physical.hpp"
+#include "Enemy.hpp"
 
-class Undead : public Physical
+class Undead : public Enemy
 {
 	V2 velocity;
 

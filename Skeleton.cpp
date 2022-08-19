@@ -2,6 +2,10 @@
 
 Skeleton::Skeleton()
 {
+	health = 30;
+	attack = 6;
+	movspd = 5;
+	atkspd = 20;
 	Init("sprites/skele move.png", V2(128, 128));
 }
 
