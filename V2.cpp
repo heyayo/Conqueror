@@ -1,7 +1,7 @@
 #include "V2.hpp"
 #include "Maths.hpp"
 
-V2::V2(int a, int b) : x(a), y(b) {}
+V2::V2(float a, float b) : x(a), y(b) {}
 V2::~V2() {}
 
 V2& V2::operator+=(V2& rhs)
@@ -11,7 +11,7 @@ V2& V2::operator+=(V2& rhs)
     return *this;
 }
 
-int V2::Length()
+float V2::Length()
 {
     return Maths::Root(x*x + y*y);
 }
@@ -56,5 +56,15 @@ std::ostream &operator<<(std::ostream& os, const V2 &v)
 
 V2 V2::operator/(V2 &rhs) const
 {
-    return V2(x/rhs.x,y/rhs.x);
+    return V2(x/rhs.x,y/rhs.y);
+}
+
+float V2::Dot(V2 &other)
+{
+    return (x*other.x) + (y*other.y);
+}
+
+V2 V2::operator*(V2 &rhs) const
+{
+    return V2(x*rhs.x,y*rhs.y);
 }

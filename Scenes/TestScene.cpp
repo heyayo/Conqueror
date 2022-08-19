@@ -28,7 +28,7 @@ TestScene::TestScene()
     testBox->SetPadding(V2(200,200));
     AddUI(testBox);
     textBox = testBox;
-    SetBG(Color{75,75,75,255});
+    SetBG("SceneBG/wallpaper.png");
 }
 
 float temp = 0;

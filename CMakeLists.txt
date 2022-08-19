@@ -23,7 +23,12 @@ add_executable(Prototype
         Arrow.cpp
         Game.cpp
         Slime.cpp
-        Scenes/MainMenu.cpp "headers/Skeleton.hpp" "Skeleton.cpp" "headers/Undead.hpp" "Undead.cpp" "headers/Demon.hpp" "Demon.cpp" "headers/Enemy.hpp" "Enemy.cpp")
+        Scenes/MainMenu.cpp
+        Config.cpp
+        Scenes/MainMenu.cpp
+        Skeleton.cpp
+        Undead.cpp
+        Demon.cpp)
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)

@@ -14,7 +14,7 @@ MainMenu::MainMenu()
     Title->SetFontSize(120);
     Title->SetPadding(V2(100,100));
     V2 offset(0,300);
-    Title->SetPosition(CONFIG::GetScreenCenter() + offset);
+    Title->SetPosition(GetScreenCenter() + offset);
     AddUI(Title);
 
     PButton = new TextBox("START");
@@ -23,7 +23,7 @@ MainMenu::MainMenu()
     PButton->SetFontSize(40);
     PButton->SetPadding(V2(60,60));
     PButton->SetAlignment(TextBox::CENTER);
-    PButton->SetPosition(CONFIG::GetScreenCenter());
+    PButton->SetPosition(GetScreenCenter());
     AddUI(PButton);
 }
 

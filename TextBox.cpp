@@ -1,5 +1,6 @@
 #include "TextBox.hpp"
 #include "Game.hpp"
+#include "Maths.hpp"
 
 TextBox::TextBox(const char *nText)
 : text(nText) {}
@@ -32,12 +33,12 @@ TextBox::~TextBox()
 
 V2 TextBox::GetBoxSize()
 {
-    return ConvertToV2(MeasureTextEx(font,text,fontSize,0)) + padding;
+    return Maths::ConvertToV2(MeasureTextEx(font,text,fontSize,0)) + padding;
 }
 
 V2 TextBox::GetTextSize()
 {
-    return ConvertToV2(MeasureTextEx(font,text,fontSize,0));
+    return Maths::ConvertToV2(MeasureTextEx(font,text,fontSize,0));
 }
 
 void TextBox::TextBoxFormat()
@@ -61,6 +62,7 @@ void TextBox::TextBoxFormat()
 void TextBox::TextBoxDraw()
 {
     V2 temp = GetTextSize();
-    DrawTextPro(font, text, ConvertTorlVector2(GetPosition()), textOffset, angle, fontSize, 0, textColor);
+    Vector2 Pos = Maths::ConvertTorlVector2(GetPosition());
+    DrawTextPro(font, text, {DeltarizeX(Pos.x), DeltarizeY(Pos.y)}, textOffset, angle, fontSize, 0, textColor);
 }
 
