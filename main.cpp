@@ -4,9 +4,7 @@
 int main()
 {
     InitWindow(GetScreenWidthC(), GetScreenHeightC(),"TESTWINDOW");
-    InitScenes();
-
-    LoadSceneByEnum(TESTSCENE);
+    GenerateScenes();
 
     SetTargetFPS(60);
     while (!WindowShouldClose())

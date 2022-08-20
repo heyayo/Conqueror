@@ -12,8 +12,7 @@ V2 GetScreenResolution()
 
 V2 GetScreenCenter()
 {
-    V2 divisor(2,2);
-    return GetScreenResolution() / divisor;
+    return V2(ScreenWidth/ScreenDeltaX/2, ScreenHeight/ScreenDeltaY/2);
 }
 
 int GetScreenWidthC()

@@ -3,41 +3,23 @@
 #include "Slime.hpp"
 #include "Wall.hpp"
 #include "TextBox.hpp"
-#include "Slime.hpp"
 #include "Skeleton.hpp"
 #include "Undead.hpp"
-UIElement* textBox;
+#include "Door.hpp"
 
-TestScene::TestScene()
-{
-    Player* playerCharacter = new Player();
-    Slime* EnemySlime = new Slime();
-    Wall* wall = new Wall();
-    Skeleton* EnemySkele = new Skeleton();
-    Undead* EnemyUndead = new Undead();
-
-    AddEntity(playerCharacter);
-    AddEntity(wall);
-    AddEntity(EnemySlime);
-    AddEntity(EnemySkele);
-    AddEntity(EnemyUndead);
-
-    TextBox* testBox = new TextBox("TEST MESSAGE IN BOX");
-    testBox->SetPosition(1000,500);
-    testBox->SetAlignment(TextBox::CENTER);
-    testBox->SetPadding(V2(200,200));
-    AddUI(testBox);
-    textBox = testBox;
-    SetBG("SceneBG/wallpaper.png");
-}
+Player* playerCharacter;
+Slime* EnemySlime;
+Wall* wall;
+Skeleton* EnemySkele;
+Undead* EnemyUndead;
+TextBox* testBox;
+Door* testDoor;
 
 float temp = 0;
 void TestScene::SceneUpdate()
 {
     temp += IsKeyDown(KEY_R) - IsKeyDown(KEY_F);
-    textBox->SetRotation(temp);
-    SceneDraw();
-    Collision();
+    testBox->SetRotation(temp);
 }
 
 void TestScene::Collision()
@@ -59,10 +41,34 @@ void TestScene::Collision()
     {
         PlayerPtr->Move(-PlayerPtr->GetVelocity());
     }
-    /*std::vector<Entity*> temp = GetPhysicsByGroup("PROJECTILE");
+    std::vector<Physical*> temp = GetPhysicsByGroup("PROJECTILE");
     for (int i = 0; i < temp.size(); i++)
     {
         if (CalculateCollisionBorder(static_cast<Physical*>(temp[i])))
             Kill(temp[i]);
-    }*/
+    }
+}
+
+void TestScene::LoadScene()
+{
+    playerCharacter = new Player;
+    EnemySlime = new Slime;
+    wall = new Wall();
+    EnemySkele = new Skeleton;
+    EnemyUndead = new Undead;
+    testBox = new TextBox("TEXT MESSAGE IN A BOX");
+    testDoor = new Door();
+
+    testBox->SetPosition(1000,500);
+    testBox->SetAlignment(TextBox::CENTER);
+    testBox->SetPadding(V2(200,200));
+
+    SetBG("SceneBG/wallpaper.png");
+    AddPhysical(playerCharacter);
+    AddPhysical(wall);
+    AddPhysical(EnemySlime);
+    AddPhysical(EnemySkele);
+    AddPhysical(EnemyUndead);
+    AddPhysical(testDoor);
+    AddUI(testBox);
 }

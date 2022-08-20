@@ -5,6 +5,9 @@
 Player::Player()
 {
     Init("sprites/hero.png", V2(128,128));
+    name = "PLAYER";
+    groupName = "PLAYERS";
+    groupID = 5;
 }
 
 void Player::Start()
@@ -37,8 +40,7 @@ void Player::InputHandler()
         temp->Init("sprites/arrow.png", V2(32,96));
         temp->SetParent(this);
         temp->SetRotation(angle);
-        GetCurrentScene()->AddEntity(temp);
-        std::cout << GetScreenDelta() << std::endl;
+        GetCurrentScene()->AddPhysical(temp);
     }
 }
 
