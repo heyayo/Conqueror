@@ -6,8 +6,8 @@
 class TestScene : public Scene
 {
 public:
-    TestScene();
 
+    void LoadScene() override;
     void SceneUpdate() override;
     void Collision() override;
 };

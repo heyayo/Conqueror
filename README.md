@@ -4,9 +4,9 @@ A game made for Module DX1124 Interactive Story Telling using Raylib
 ## How to compile
 Using CMake:
 ```
-mkdir build ( Create a folder in the repo or somewhere else, the name can be anything )
+mkdir build ( Create a folder in the repo or somewhere else, the groupName can be anything )
 cmake -S [repo] -B [the folder you made above]
-cmake --build [name of folder]
+cmake --build [groupName of folder]
 ```
 OR
 ```
@@ -113,7 +113,7 @@ This is a class for easily creating a textbox
 
 To Create a TextBox
 ```
-TextBox [name] = new TextBox("INSERT TEXT HERE");
+TextBox [groupName] = new TextBox("INSERT TEXT HERE");
 ```
 
 TextBox Functions
@@ -175,6 +175,6 @@ In the Constructor of the Scene you wanna add the class to, do
 ```
 Entity* [anyname] = new [CLASS];
 [anyname]->Init([INSERTTEXTURE]); // The Init Function has Three Varieties, Refer to Entity Class Above
-AddEntity([anyname]
+AddPhysical([anyname]
 ```
 There is no need to delete the pointer, it is handled by the Scene Class

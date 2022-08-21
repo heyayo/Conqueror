@@ -12,8 +12,7 @@ V2 GetScreenResolution()
 
 V2 GetScreenCenter()
 {
-    V2 divisor(2,2);
-    return GetScreenResolution() / divisor;
+    return V2(ScreenWidth/ScreenDeltaX/2, ScreenHeight/ScreenDeltaY/2);
 }
 
 int GetScreenWidthC()
@@ -57,3 +56,22 @@ float GetScreenDeltaX()
 {
     return ScreenDeltaY;
 }
+
+V2 GetScreenResolutionDeltad()
+{
+    V2 scrRes = GetScreenResolution();
+    V2 delta = GetScreenDelta();
+    return scrRes * delta;
+}
+
+float GetScreenWidthDeltad()
+{
+    return ScreenWidth/ScreenDeltaX;
+}
+
+float GetScreenHeightDeltad()
+{
+    return ScreenHeight/ScreenDeltaY;
+}
+
+

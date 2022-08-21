@@ -5,7 +5,7 @@ Physical::Physical()
     xCol = 0;
     yCol = 0;
     groupID = 0;
-    name = "ALL";
+    groupName = "ALL";
 }
 
 void Physical::Update(){}
