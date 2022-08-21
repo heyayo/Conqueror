@@ -6,7 +6,18 @@
 
 class Entity
 {
+public:
+    enum TYPEOFENTITY
+    {
+        ENTITY,
+        PHYSICAL,
+        ACTOR,
+        PLAYER,
+        UIELEMENT
+    };
+
 protected:
+
     Texture2D tex;
     float x,y;
     float angle = 0;
@@ -14,8 +25,10 @@ protected:
     std::string name;
     std::string groupName;
     unsigned groupID;
+    TYPEOFENTITY EType;
 
 public:
+    Entity();
     virtual ~Entity();
 
     void Init(const char* imgSrc);
@@ -37,6 +50,7 @@ public:
     Entity* GetParent();
     std::string GetGroupName();
     std::string GetName();
+    TYPEOFENTITY GetTypeOfEntity();
 
     void SetPosition(int xPos, int yPos);
     void SetPosition(V2 newPos);

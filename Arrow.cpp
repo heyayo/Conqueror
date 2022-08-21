@@ -13,4 +13,11 @@ void Arrow::Start()
     SetCollisionSize(32);
     groupID = 2;
     groupName = "PROJECTILE";
+
+}
+
+Arrow::Arrow()
+{
+    health = 0;
+    damage = 20;
 }

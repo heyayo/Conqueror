@@ -47,6 +47,16 @@ float DeltarizeY(float ye)
     return ye*ScreenDeltaY;
 }
 
+float ODeltarizeX(float xe)
+{
+    return xe/ScreenDeltaX;
+}
+
+float ODeltarizeY(float ye)
+{
+    return ye/ScreenDeltaY;
+}
+
 float GetScreenDeltaY()
 {
     return ScreenDeltaX;
@@ -73,5 +83,3 @@ float GetScreenHeightDeltad()
 {
     return ScreenHeight/ScreenDeltaY;
 }
-
-
