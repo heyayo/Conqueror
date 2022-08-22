@@ -1,4 +1,7 @@
+
+
 #include "Demon.hpp"
+
 
 Demon::Demon()
 {
@@ -11,11 +14,16 @@ Demon::~Demon()
 
 void Demon::Update()
 {
+
 }
 
 void Demon::Start()
 {
-	x = 00;
-	y = 800;
+
+	x = 1000;
+	y = 1010;
+
+	
+
 	angle = 0;
 }

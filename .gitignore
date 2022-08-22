@@ -1,5 +1,6 @@
 Prototype
 *.exe
+.vs
 build
 .vs
 .vs/*
