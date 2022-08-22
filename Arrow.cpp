@@ -10,8 +10,7 @@ void Arrow::Update()
 void Arrow::Start()
 {
     SetPosition(parent->GetPosition());
-    std::cout << parent->GetPosition() << std::endl;
     SetCollisionSize(32);
     groupID = 2;
-    name = "PROJECTILE";
+    groupName = "PROJECTILE";
 }

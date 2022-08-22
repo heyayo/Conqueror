@@ -1,7 +1,7 @@
 #include "Scene.hpp"
 #include "Physical.hpp"
 
-std::vector<Entity *> *Scene::GetEntities(){return &Entities;}
+std::vector<Physical *> * Scene::GetPhysicals(){return &Entities;}
 std::vector<UIElement *> *Scene::GetUIElements(){return &UICollection;}
 
 Scene::Scene()
@@ -13,6 +13,23 @@ Scene::Scene()
     cameraSize = V2(1920,1080);
     cameraPos = V2();
     SetScreenDelta(cameraSize);
+}
+
+Scene::~Scene()
+{
+
+}
+
+void Scene::UnloadScene()
+{
+    for (int i = 0; i < Entities.size(); i++)
+        if (Entities[i] != nullptr)
+            delete Entities[i];
+    Entities.clear();
+    for (int i = 0; i < UICollection.size(); i++)
+        if (UICollection[i] != nullptr)
+            delete UICollection[i];
+    UICollection.clear();
 }
 
 void Scene::SetBG(const char* bgimgsrc, V2 resize)
@@ -32,9 +49,23 @@ void Scene::SetBG(const char *bgimgsrc)
     bgTex = LoadTextureFromImage(img);
 }
 
-void Scene::AddEntity(Entity *add)
+void Scene::SetBG(Color color)
+{
+    UnloadTexture(bgTex);
+    Image img = GenImageColor(sceneSize.x,sceneSize.y,color);
+    bgTex = LoadTextureFromImage(img);
+    UnloadImage(img);
+}
+
+void Scene::AddPhysical(Physical *add)
 {
     Entities.push_back(add);
+    add->Start();
+}
+
+void Scene::AddUI(UIElement *add)
+{
+    UICollection.push_back(add);
     add->Start();
 }
 
@@ -81,34 +112,28 @@ bool Scene::CalculateCollisionBorder(Physical *body)
     V2 bPos = body->GetPosition();
     V2 bSize = body->GetColSize();
 
-
     return
-    ((bPos.x + bSize.x >= GetScreenWidth()) ||
+    ((bPos.x + bSize.x >= GetScreenWidthDeltad()) ||
     (bPos.x - bSize.x <= 0) ||
-    (bPos.y + bSize.y >= GetScreenHeight()) ||
+    (bPos.y + bSize.y >= GetScreenHeightDeltad()) ||
     (bPos.y - bSize.y <= 0));
-}
-
-Entity* Scene::GetEntityByIndex(unsigned int index)
-{
-    return Entities[index];
 }
 
 Physical *Scene::GetPhysicsByIndex(unsigned int index)
 {
-    return static_cast<Physical*>(Entities[index]);
+    if (index > Entities.size())
+        return nullptr;
+    return Entities[index];
 }
 
-Scene::~Scene()
+Physical *Scene::GetPhysicsByName(const char *name)
 {
     for (int i = 0; i < Entities.size(); i++)
-        if (Entities[i] != nullptr)
-            delete Entities[i];
-    Entities.clear();
-    for (int i = 0; i < UICollection.size(); i++)
-        if (UICollection[i] != nullptr)
-            delete UICollection[i];
-    UICollection.clear();
+    {
+        if (Entities[i]->GetName() == name)
+            return Entities[i];
+    }
+    return nullptr;
 }
 
 bool Scene::Kill(Entity *object)
@@ -127,13 +152,15 @@ bool Scene::Kill(Entity *object)
 
 void Scene::KillByIndex(unsigned int index)
 {
+    if (index > Entities.size())
+        return;
     delete Entities[index];
     Entities.erase(Entities.begin()+index);
 }
 
-std::vector<Entity*> Scene::GetPhysicsByGroupID(unsigned int ID)
+std::vector<Physical *> Scene::GetPhysicsByGroupID(unsigned int ID)
 {
-    std::vector<Entity*> list;
+    std::vector<Physical*> list;
     for (int i = 0; i < Entities.size(); i++)
     {
         if (Entities[i]->GetID() == ID)
@@ -142,29 +169,15 @@ std::vector<Entity*> Scene::GetPhysicsByGroupID(unsigned int ID)
     return list;
 }
 
-std::vector<Entity*> Scene::GetPhysicsByGroup(const char *name)
+std::vector<Physical *> Scene::GetPhysicsByGroup(const char *name)
 {
-    std::vector<Entity*> list;
+    std::vector<Physical*> list;
     for (int i = 0; i < Entities.size(); i++)
     {
-        if (Entities[i]->GetName() == name)
+        if (Entities[i]->GetGroupName() == name)
             list.push_back(Entities[i]);
     }
     return list;
-}
-
-void Scene::SetBG(Color color)
-{
-    UnloadTexture(bgTex);
-    Image img = GenImageColor(sceneSize.x,sceneSize.y,color);
-    bgTex = LoadTextureFromImage(img);
-    UnloadImage(img);
-}
-
-void Scene::AddUI(UIElement *add)
-{
-    UICollection.push_back(add);
-    add->Start();
 }
 
 void Scene::SetSceneSize(V2 newSize)
@@ -175,7 +188,6 @@ void Scene::SetSceneSize(V2 newSize)
 void Scene::SetCameraSize(V2 newSize)
 {
     cameraSize = newSize;
-    SetCameraSize(cameraSize);
 }
 
 void Scene::SetCameraPos(V2 newPos)

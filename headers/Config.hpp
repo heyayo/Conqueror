@@ -7,7 +7,10 @@ int GetScreenWidthC();
 int GetScreenHeightC();
 float GetScreenDeltaX();
 float GetScreenDeltaY();
+float GetScreenWidthDeltad();
+float GetScreenHeightDeltad();
 V2 GetScreenResolution();
+V2 GetScreenResolutionDeltad();
 V2 GetScreenCenter();
 V2 GetScreenDelta();
 

@@ -18,6 +18,6 @@ void LoadScene(Scene* next);
 void LoadSceneByEnum(SCENES enumer);
 void RunScene();
 void Close();
-void InitScenes();
+void GenerateScenes();
 
 #endif

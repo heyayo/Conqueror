@@ -12,6 +12,7 @@ protected:
     float angle = 0;
     Entity* parent;
     std::string name;
+    std::string groupName;
     unsigned groupID;
 
 public:
@@ -34,6 +35,7 @@ public:
     V2 GetPosition();
     V2 GetSize();
     Entity* GetParent();
+    std::string GetGroupName();
     std::string GetName();
 
     void SetPosition(int xPos, int yPos);

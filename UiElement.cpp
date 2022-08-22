@@ -1,10 +1,12 @@
+#include "Config.hpp"
 #include "UiElement.hpp"
 
-UIElement::UIElement(){ groupID = 99; name = "UIELEMENT"; }
+UIElement::UIElement(){ groupID = 99; groupName = "UIELEMENT"; name = "GENERICUI"; }
 
 bool UIElement::CalculateMouseCollision()
 {
-    V2 aPos = GetPosition();
+    V2 delta = GetScreenDelta();
+    V2 aPos = GetPosition() * delta;
     Vector2 bPos = GetMousePosition();
     V2 aDist = GetSize();
 

@@ -6,8 +6,8 @@
 class MainMenu : public Scene
 {
 public:
-    MainMenu();
 
+    void LoadScene() override;
     void SceneUpdate() override;
     void Collision() override;
 };
