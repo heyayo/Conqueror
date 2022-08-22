@@ -45,6 +45,7 @@ void LevelTwo::SceneUpdate()
     std::vector<Actor*> enemylist = GetActorsByGroup("ENEMY");
     for (auto enemy : enemylist)
     {
+        dynamic_cast<Enemy*>(enemy)->Act();
         if (enemy->GetHealth() <= 0)
             Kill(enemy);
     }
