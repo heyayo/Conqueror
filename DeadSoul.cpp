@@ -21,26 +21,12 @@ void DeadSoul::Start()
     m[4] = "WIFE GONE";
     m[5] = "REGRET";
     messageBox = new TextBox(m, 6);
-    switch (orient)
-    {
-        case LEFT:
-            side.x -= tex.width + messageBox->GetBoxSize().x;
-            break;
-        case RIGHT:
-            side.x += tex.width + messageBox->GetBoxSize().x;
-            break;
-        case UP:
-            side.y -= tex.height + messageBox->GetBoxSize().y;
-            break;
-        case DOWN:
-            side.y += tex.height + messageBox->GetBoxSize().y;
-            break;
-    }
     messageBox->SetPosition(GetScreenCenter());
     messageBox->SetPadding(V2(1000,800));
     messageBox->SetAlignment(TextBox::CENTER);
     messageBox->SetSpacing(2);
     messageBox->SetFontSize(150);
+    messageBox->SetBoxTexture("sprites/scroll.png");
     GetCurrentScene()->AddUI(messageBox);
     playerptr = GetCurrentScene()->GetPhysicsByName("PLAYER");
 }
@@ -53,14 +39,4 @@ void DeadSoul::Update()
 bool DeadSoul::isSpeaking()
 {
     return speaking;
-}
-
-DeadSoul::TEXTORIENTATION DeadSoul::GetOrientation()
-{
-    return orient;
-}
-
-void DeadSoul::SetOrientation(DeadSoul::TEXTORIENTATION ori)
-{
-    orient = ori;
 }
