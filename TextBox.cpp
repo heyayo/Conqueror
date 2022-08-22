@@ -44,7 +44,12 @@ void TextBox::UpdateTextSize()
 void TextBox::Start()
 {
     AutoLineSpacing();
-    Init(boxColor, GetBoxSize());
+    if (hasTexture)
+    {
+        Init(boxImage);
+    }
+    else
+        Init(boxColor, GetBoxSize());
     SetTextureFilter(font.texture,TEXTURE_FILTER_BILINEAR);
     TextBoxFormat();
 }
@@ -115,5 +120,23 @@ void TextBox::AutoLineSpacing()
     UpdateTextSize();
     lineSpacing = TextSize.y;
     UpdateBoxSize();
+}
+
+void TextBox::SetBoxTexture(const char *imgsrc)
+{
+    if (hasTexture)
+        UnloadImage(boxImage);
+    UpdateBoxSize();
+    boxImage = LoadImage(imgsrc);
+    ImageResize(&boxImage, BoxSize.x,BoxSize.y);
+    hasTexture = true;
+}
+
+void TextBox::SetBoxTexture(Image &img)
+{
+    if (hasTexture)
+        UnloadImage(boxImage);
+    boxImage = img;
+    hasTexture = true;
 }
 

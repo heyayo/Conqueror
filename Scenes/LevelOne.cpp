@@ -29,7 +29,6 @@ void LevelOne::LoadScene()
 
     speaker = new DeadSoul("TEST MESSAGE I WANT TO DIE");
     speaker->SetPosition(300,350);
-    speaker->SetOrientation(DeadSoul::DOWN);
 
     AddPhysical(player);
     AddPhysical(toNextLevel);
