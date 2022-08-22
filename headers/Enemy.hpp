@@ -19,6 +19,8 @@ public:
 	void move();
 	void attackchar();
 
+    virtual void Act();
+
 };
 
 #endif

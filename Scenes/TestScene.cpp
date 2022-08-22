@@ -56,7 +56,8 @@ void TestScene::LoadScene()
     wall = new Wall();
     EnemySkele = new Skeleton;
     EnemyUndead = new Undead;
-    testBox = new TextBox("TEXT MESSAGE IN A BOX");
+    std::string m("TEXT MESSAGE IN A BOX");
+    testBox = new TextBox(&m , 1);
     testDoor = new Door();
 
     testBox->SetPosition(1000,500);

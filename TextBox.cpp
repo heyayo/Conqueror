@@ -2,10 +2,13 @@
 #include "Game.hpp"
 #include "Maths.hpp"
 
-TextBox::TextBox(const char *nText)
-: text(nText) {}
+TextBox::TextBox(std::string* messages, unsigned msgcount)
+{
+    for (int i = 0; i < msgcount; i++)
+        msgList.push_back(messages[i]);
+}
 
-void TextBox::SetText(const char* newText){text = newText;}
+void TextBox::SetTexts(std::string* messages, unsigned msgcount){ msgList.clear(); for (int i = 0; i < msgcount; i++) {msgList.push_back(messages[i]);}}
 void TextBox::SetFont(Font newFont){font = newFont;}
 void TextBox::SetTextColor(Color color){textColor = color;}
 void TextBox::SetFontSize(float newFontSize){fontSize = newFontSize;}
@@ -14,8 +17,33 @@ void TextBox::SetTextPosition(Vector2 vecPos){textOffset = vecPos;}
 void TextBox::SetPadding(V2 newPadding){padding = V2(newPadding.x,-newPadding.y);}
 void TextBox::SetBoxColor(Color color){boxColor = color;}
 
+void TextBox::UpdateBoxSize()
+{
+    UpdateTextSize();
+    BoxSize = Maths::ConvertTorlVector2(Maths::ConvertToV2(TextSize) + padding);
+}
+
+void TextBox::UpdateTextSize()
+{
+    unsigned highestIndex = 0;
+    V2 sizes[msgList.size()];
+    for (int i = 0; i < msgList.size(); i++)
+    {
+        sizes[i] = Maths::ConvertToV2(MeasureTextEx(font,msgList[i].c_str(),fontSize,spacing));
+        if (i > 0)
+        {
+            if (sizes[i] > sizes[i-1])
+            {
+                highestIndex = i;
+            }
+        }
+    }
+    TextSize = Maths::ConvertTorlVector2(sizes[highestIndex]);
+}
+
 void TextBox::Start()
 {
+    AutoLineSpacing();
     Init(boxColor, GetBoxSize());
     SetTextureFilter(font.texture,TEXTURE_FILTER_BILINEAR);
     TextBoxFormat();
@@ -34,12 +62,12 @@ TextBox::~TextBox()
 
 V2 TextBox::GetBoxSize()
 {
-    return Maths::ConvertToV2(MeasureTextEx(font,text,fontSize,0)) + padding;
+    return Maths::ConvertToV2(BoxSize);
 }
 
 V2 TextBox::GetTextSize()
 {
-    return Maths::ConvertToV2(MeasureTextEx(font,text,fontSize,0));
+    return Maths::ConvertToV2(TextSize);
 }
 
 void TextBox::TextBoxFormat()
@@ -62,8 +90,30 @@ void TextBox::TextBoxFormat()
 
 void TextBox::TextBoxDraw()
 {
-    V2 temp = GetTextSize();
+    const float toTop = BoxSize.y/2 - TextSize.y/2;
     Vector2 Pos = Maths::ConvertTorlVector2(GetPosition());
-    DrawTextPro(font, text, {DeltarizeX(Pos.x), DeltarizeY(Pos.y)}, textOffset, angle, fontSize, 0, textColor);
+    for (int i = 0; i < msgList.size(); i++)
+    {
+        DrawTextPro(font,
+                    msgList[i].c_str(),
+                    {DeltarizeX(Pos.x), DeltarizeY(Pos.y)},
+                    {textOffset.x, textOffset.y + toTop - (lineSpacing * i)},
+                    angle,
+                    fontSize,
+                    spacing,
+                    textColor);
+    }
+}
+
+void TextBox::SetSpacing(float newSpacing)
+{
+    spacing = newSpacing;
+}
+
+void TextBox::AutoLineSpacing()
+{
+    UpdateTextSize();
+    lineSpacing = TextSize.y;
+    UpdateBoxSize();
 }
 

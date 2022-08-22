@@ -5,7 +5,6 @@
 
 class Slime : public Enemy
 {
-
     V2 velocity;
 
 public:

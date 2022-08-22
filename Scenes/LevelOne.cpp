@@ -49,7 +49,11 @@ void LevelOne::SceneUpdate()
     for (auto enemy : enemylist)
     {
         if (enemy->GetHealth() <= 0)
+        {
             Kill(enemy);
+            continue;
+        }
+        dynamic_cast<Enemy*>(enemy)->Act();
     }
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
@@ -71,7 +75,6 @@ void LevelOne::Collision()
             {
                 enemy->Hurt(arrow->GetDamage());
                 Kill(arrow);
-                std::cout << enemy->GetHealth() << std::endl;
             }
         }
     }
