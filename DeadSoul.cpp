@@ -13,7 +13,14 @@ DeadSoul::DeadSoul(const char* msg) : message(msg)
 void DeadSoul::Start()
 {
     V2 side = GetPosition();
-    messageBox = new TextBox(message);
+    std::string m[6];
+    m[0] = "RIDE WIFE";
+    m[1] = "LIFE GOOD";
+    m[2] = "WIFE FIGHT BACK";
+    m[3] = "KILL WIFE";
+    m[4] = "WIFE GONE";
+    m[5] = "REGRET";
+    messageBox = new TextBox(m, 6);
     switch (orient)
     {
         case LEFT:
@@ -29,9 +36,11 @@ void DeadSoul::Start()
             side.y += tex.height + messageBox->GetBoxSize().y;
             break;
     }
-    messageBox->SetPosition(side);
-    messageBox->SetPadding(V2(50,50));
+    messageBox->SetPosition(GetScreenCenter());
+    messageBox->SetPadding(V2(1000,800));
     messageBox->SetAlignment(TextBox::CENTER);
+    messageBox->SetSpacing(2);
+    messageBox->SetFontSize(150);
     GetCurrentScene()->AddUI(messageBox);
     playerptr = GetCurrentScene()->GetPhysicsByName("PLAYER");
 }

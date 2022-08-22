@@ -41,7 +41,6 @@ void Player::InputHandler()
         temp->SetParent(this);
         temp->SetRotation(angle);
         GetCurrentScene()->AddPhysical(temp);
-        std::cout << temp->GetGroupName() << std::endl;
     }
 }
 

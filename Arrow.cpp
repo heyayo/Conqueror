@@ -19,5 +19,5 @@ void Arrow::Start()
 Arrow::Arrow()
 {
     health = 0;
-    damage = 20;
+    damage = 2;
 }
