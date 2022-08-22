@@ -31,7 +31,9 @@ add_executable(Prototype
         Door.cpp
         Scenes/LevelOne.cpp
         Actor.cpp
-        DeadSoul.cpp)
+        DeadSoul.cpp
+        SaveState.cpp
+        )
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)

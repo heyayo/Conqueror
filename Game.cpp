@@ -5,6 +5,7 @@
 
 Scene* currentScene;
 Scene* scenes[SCENEMAX];
+std::vector<SaveState> saves;
 
 void GenerateScenes()
 {
@@ -48,3 +49,23 @@ void Close()
         delete scenes[i];
 }
 
+void LoadSave(Entity *en, const char *sn)
+{
+    saves.push_back(SaveState(en,sn));
+}
+
+SaveState GetSaveByName(const char *name)
+{
+    for (auto i : saves)
+    {
+        if (i.GetName() == name)
+            return i;
+    }
+}
+
+SaveState GetSaveByIndex(unsigned int index)
+{
+    if (index > saves.size())
+        return SaveState(nullptr,"NULL");
+    return saves[index];
+}
