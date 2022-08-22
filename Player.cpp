@@ -3,10 +3,13 @@
 
 Player::Player()
 {
+
     Init("sprites/hero.png", V2(128,128));
     name = "PLAYER";
     groupName = "PLAYERS";
+
     groupID = 0;
+
 }
 
 void Player::Start()

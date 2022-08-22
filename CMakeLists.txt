@@ -29,12 +29,15 @@ add_executable(Prototype
         Undead.cpp
         Demon.cpp
         Door.cpp
-        Enemy.cpp
-        DeadSoul.cpp
-        Actor.cpp
-        Group.cpp
         Scenes/LevelOne.cpp
-        )
+        Actor.cpp
+        DeadSoul.cpp
+        Archer.cpp 
+        Wizard.cpp
+        Fire.cpp
+        Goblin.cpp
+        Enemy.cpp
+        Character.cpp)
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)
