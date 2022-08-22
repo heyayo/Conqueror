@@ -25,7 +25,8 @@ void MainMenu::Collision()
 
 void MainMenu::LoadScene()
 {
-    Title = new TextBox("CONQUERORS DUNGEON");
+    std::string mT("CONQUERORS DUNGEON");
+    Title = new TextBox(&mT, 1);
     Title->SetTextColor(BLACK);
     Title->SetBoxColor(GOLD);
     Title->SetAlignment(TextBox::CENTER);
@@ -34,7 +35,8 @@ void MainMenu::LoadScene()
     V2 offset(0,300);
     Title->SetPosition(GetScreenCenter() + offset);
 
-    PButton = new TextBox("START");
+    std::string mP("START");
+    PButton = new TextBox(&mP, 1);
     PButton->SetTextColor(BLACK);
     PButton->SetBoxColor(GOLD);
     PButton->SetFontSize(40);

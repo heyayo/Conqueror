@@ -43,6 +43,11 @@ bool V2::operator!=(V2 & rhs)
     return (x != rhs.x && y != rhs.y);
 }
 
+bool V2::operator>(V2 &rhs)
+{
+    return (x > rhs.x && y > rhs.y);
+}
+
 V2 V2::operator-(void) const
 {
     return V2(-x,-y);
@@ -68,3 +73,4 @@ V2 V2::operator*(V2 &rhs) const
 {
     return V2(x*rhs.x,y*rhs.y);
 }
+

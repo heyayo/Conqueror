@@ -22,6 +22,7 @@ public:
     V2 operator-(void) const;
     bool operator!=(V2&rhs);
     bool operator==(V2&rhs);
+    bool operator>(V2&rhs);
 
     friend std::ostream& operator<< (std::ostream& os, const V2& v);
 };
