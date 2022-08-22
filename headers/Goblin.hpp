@@ -1,9 +1,9 @@
 #ifndef PROTOTYPE_GOBLIN_HPP
 #define PROTOTYPE_GOBLIN_HPP
 
-#include "Physical.hpp"
+#include "Enemy.hpp"
 
-class Goblin : public Physical
+class Goblin : public Enemy
 {
     V2 velocity;
 
@@ -14,6 +14,5 @@ public:
     void Update() override;
     void Start() override;
 };
-
 
 #endif

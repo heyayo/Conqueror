@@ -26,7 +26,7 @@ void TextBox::UpdateBoxSize()
 void TextBox::UpdateTextSize()
 {
     unsigned highestIndex = 0;
-    std::vector<V2>sizes;
+    std::vector<V2> sizes;
     for (int i = 0; i < msgList.size(); i++)
     {
         sizes.push_back(Maths::ConvertToV2(MeasureTextEx(font,msgList[i].c_str(),fontSize,spacing)));
