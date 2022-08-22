@@ -1,7 +1,7 @@
 #include "Config.hpp"
 #include "UiElement.hpp"
 
-UIElement::UIElement(){ groupID = 99; groupName = "UIELEMENT"; name = "GENERICUI"; }
+UIElement::UIElement(){ groupID = 99; groupName = "UIELEMENT"; name = "GENERICUI"; EType = UIELEMENT; }
 
 bool UIElement::CalculateMouseCollision()
 {
@@ -15,4 +15,14 @@ bool UIElement::CalculateMouseCollision()
 
     return
     (aDist.x/2 >= trueXDist && aDist.y/2 >= trueYDist);
+}
+
+void UIElement::SetVisibility(bool t)
+{
+    visible = t;
+}
+
+bool UIElement::GetVisibility()
+{
+    return visible;
 }

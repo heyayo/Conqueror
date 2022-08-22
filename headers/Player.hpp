@@ -2,6 +2,7 @@
 #define PROTOTYPE_PLAYER_HPP
 
 #include "Physical.hpp"
+#include "Arrow.hpp"
 
 class Player : public Physical
 {

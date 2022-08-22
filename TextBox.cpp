@@ -23,7 +23,8 @@ void TextBox::Start()
 
 void TextBox::Update()
 {
-    TextBoxDraw();
+    if (visible)
+        TextBoxDraw();
 }
 
 TextBox::~TextBox()

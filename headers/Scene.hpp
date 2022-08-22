@@ -6,6 +6,7 @@
 #include "UiElement.hpp"
 #include "Physical.hpp"
 #include "Config.hpp"
+#include "Actor.hpp"
 
 class Scene
 {
@@ -43,6 +44,7 @@ public:
     Physical* GetPhysicsByName(const char* name);
     std::vector<Physical *> GetPhysicsByGroupID(unsigned ID);
     std::vector<Physical *> GetPhysicsByGroup(const char* name);
+    std::vector<Actor*> GetActorsByGroup(const char* name);
 
     void AddUI(UIElement* add);
 

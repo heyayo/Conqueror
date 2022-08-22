@@ -86,7 +86,8 @@ void Scene::SceneDraw()
     for (int i = 0; i < UICollection.size(); i++)
     {
         UIElement* temp = UICollection[i];
-        temp->Draw();
+        if (temp->GetVisibility())
+            temp->Draw();
         temp->Update();
     }
 }
@@ -180,6 +181,17 @@ std::vector<Physical *> Scene::GetPhysicsByGroup(const char *name)
     return list;
 }
 
+std::vector<Actor *> Scene::GetActorsByGroup(const char *name)
+{
+    std::vector<Actor*> list;
+    for (auto actors : Entities)
+    {
+        if (actors->GetTypeOfEntity() == Entity::ACTOR && actors->GetGroupName() == name)
+            list.push_back(dynamic_cast<Actor*>(actors));
+    }
+    return list;
+}
+
 void Scene::SetSceneSize(V2 newSize)
 {
     sceneSize = newSize;
@@ -194,3 +206,4 @@ void Scene::SetCameraPos(V2 newPos)
 {
     cameraPos = newPos;
 }
+

@@ -5,9 +5,14 @@
 
 class UIElement : public Entity
 {
+protected:
+    bool visible = true;
 public:
     UIElement();
     bool CalculateMouseCollision();
+    void SetVisibility(bool t);
+
+    bool GetVisibility();
 };
 
 

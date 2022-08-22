@@ -9,8 +9,15 @@ void Arrow::Update()
 
 void Arrow::Start()
 {
+    Init("sprites/arrow.png", V2(32,96));
     SetPosition(parent->GetPosition());
     SetCollisionSize(32);
     groupID = 2;
     groupName = "PROJECTILE";
+}
+
+Arrow::Arrow()
+{
+    health = 0;
+    damage = 20;
 }

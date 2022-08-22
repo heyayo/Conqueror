@@ -7,10 +7,11 @@ Slime::Slime()
 	movspd = 5;
 	atkspd = 10;
 	Init("sprites/slime move.png", V2(128, 128));
-}
-
-Slime::~Slime()
-{
+	x = 1000;
+	y = 1010;
+    groupName = "ENEMY";
+    groupID = 1;
+    health = 100;
 }
 
 void Slime::Update()
@@ -19,7 +20,5 @@ void Slime::Update()
 
 void Slime::Start()
 {
-	x = 1000;
-	y = 1010;
 	angle = 0;
 }
