@@ -30,7 +30,8 @@ add_executable(Prototype
         Demon.cpp
         Door.cpp
         Scenes/LevelOne.cpp
-        Actor.cpp)
+        Actor.cpp
+        DeadSoul.cpp)
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)

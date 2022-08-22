@@ -1,7 +1,7 @@
 #include "Config.hpp"
 
-int ScreenWidth = 1280;
-int ScreenHeight = 720;
+int ScreenWidth = 1920;
+int ScreenHeight = 1080;
 float ScreenDeltaX = 1;
 float ScreenDeltaY = 1;
 

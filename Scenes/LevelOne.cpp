@@ -3,17 +3,19 @@
 #include "Player.hpp"
 #include "Slime.hpp"
 #include "Maths.hpp"
+#include "DeadSoul.hpp"
 
 Door* toNextLevel;
 Player* player;
 Actor* enemies[3];
+DeadSoul* speaker;
 
 void LevelOne::LoadScene()
 {
     SetBG("SceneBG/stage_1.png",V2(1920,1080));
     toNextLevel = new Door;
     toNextLevel->Redirect(MAINMENU);
-    toNextLevel->SetPosition(1800,500);
+    toNextLevel->SetPosition(1000,500);
 
     player = new Player;
     player->SetPosition(100,350);
@@ -25,6 +27,10 @@ void LevelOne::LoadScene()
     enemies[2] = new Slime;
     enemies[2]->SetPosition(750,500);
 
+    speaker = new DeadSoul("TEST MESSAGE I WANT TO DIE");
+    speaker->SetPosition(300,350);
+    speaker->SetOrientation(DeadSoul::DOWN);
+
     AddPhysical(player);
     AddPhysical(toNextLevel);
     for (auto i : enemies)
@@ -32,10 +38,17 @@ void LevelOne::LoadScene()
         AddPhysical(i);
         std::cout << i->GetPosition() << std::endl;
     }
+    AddPhysical(speaker);
 }
 
 void LevelOne::SceneUpdate()
 {
+    std::vector<Actor*> enemylist = GetActorsByGroup("ENEMY");
+    for (auto enemy : enemylist)
+    {
+        if (enemy->GetHealth() <= 0)
+            Kill(enemy);
+    }
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
 }
@@ -55,6 +68,7 @@ void LevelOne::Collision()
             if (CalculateCollisionsBetween(arrow, enemy))
             {
                 enemy->Hurt(arrow->GetDamage());
+                Kill(arrow);
                 std::cout << enemy->GetHealth() << std::endl;
             }
         }
