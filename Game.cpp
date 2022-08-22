@@ -12,7 +12,7 @@ void GenerateScenes()
     scenes[TESTSCENE] = new TestScene;
     scenes[MAINMENU] = new MainMenu;
     scenes[LEVELONE] = new LevelOne;
-    scenes[LEVELTWO] = new LevelOne;
+    scenes[LEVELTWO] = new LevelTwo;
 
     currentScene = scenes[LEVELONE];
     currentScene->LoadScene();
