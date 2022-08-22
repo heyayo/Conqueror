@@ -34,6 +34,8 @@ add_executable(Prototype
         Actor.cpp
         Group.cpp
         Scenes/LevelOne.cpp
+        Scenes/LevelTwo.cpp
+        Goblin.cpp
          "Scenes/LevelTwo.hpp" "Scenes/LevelTwo.cpp")
 
 target_include_directories(Prototype PUBLIC headers)

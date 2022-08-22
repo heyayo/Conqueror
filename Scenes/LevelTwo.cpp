@@ -1,7 +1,7 @@
 #include "LevelTwo.hpp"
 #include "Door.hpp"
 #include "Player.hpp"
-#include "Skeleton.hpp"
+#include "Goblin.hpp"
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
 
@@ -20,11 +20,11 @@ void LevelTwo::LoadScene()
     player1 = new Player;
     player1->SetPosition(100, 350);
 
-    enemies1[0] = new Skeleton;
+    enemies1[0] = new Goblin;
     enemies1[0]->SetPosition(480, 150);
-    enemies1[1] = new Skeleton;
+    enemies1[1] = new Goblin;
     enemies1[1]->SetPosition(1150, 150);
-    enemies1[2] = new Skeleton;
+    enemies1[2] = new Goblin;
     enemies1[2]->SetPosition(750, 500);
 
     speaker1 = new DeadSoul("TEST MESSAGE I WANT TO DIE");
