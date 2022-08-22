@@ -30,6 +30,11 @@ add_executable(Prototype
         Demon.cpp
         Door.cpp
         Enemy.cpp
+        DeadSoul.cpp
+        Actor.cpp
+        Button.cpp
+        Group.cpp
+
         )
 
 target_include_directories(Prototype PUBLIC headers)

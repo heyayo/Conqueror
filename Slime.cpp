@@ -14,6 +14,10 @@ Slime::Slime()
     health = 100;
 }
 
+Slime::~Slime()
+{
+}
+
 void Slime::Update()
 {
 }
