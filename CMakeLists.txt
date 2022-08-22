@@ -31,7 +31,13 @@ add_executable(Prototype
         Door.cpp
         Scenes/LevelOne.cpp
         Actor.cpp
-        DeadSoul.cpp "Archer.cpp" "headers/Wizard.h" "Wizard.cpp" "headers/Fire.h" "Fire.cpp")
+        DeadSoul.cpp
+        Archer.cpp 
+        Wizard.cpp
+        Fire.cpp
+        Goblin.cpp
+        Enemy.cpp
+        Character.cpp)
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)
