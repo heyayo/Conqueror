@@ -14,8 +14,8 @@ public:
 
     V2 GetVelocity();
 
-    void Update() override;
-    void Start() override;
+    void Update();
+    void Start();
     void InputHandler();
 };
 

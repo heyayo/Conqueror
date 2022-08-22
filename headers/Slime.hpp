@@ -12,8 +12,8 @@ public:
     Slime();
     ~Slime();
 
-    void Update() override;
-    void Start() override;
+    void Update();
+    void Start();
 };
 
 

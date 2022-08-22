@@ -28,7 +28,9 @@ add_executable(Prototype
         Skeleton.cpp
         Undead.cpp
         Demon.cpp
-        Door.cpp)
+        Door.cpp
+        Enemy.cpp
+        )
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)
