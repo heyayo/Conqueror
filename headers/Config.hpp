@@ -18,5 +18,7 @@ void SetScreenDelta(V2 camSize);
 
 float DeltarizeX(float xe);
 float DeltarizeY(float ye);
+float ODeltarizeX(float xe);
+float ODeltarizeY(float ye);
 
 #endif

@@ -34,7 +34,7 @@ float Entity::GetX() { return x; }
 float Entity::GetY() { return y; }
 float Entity::GetRotation() { return angle; }
 unsigned Entity::GetID() { return groupID; }
-V2 Entity::GetPosition() { return V2(x,y); }
+V2 Entity::GetPosition() { return V2(DeltarizeX(x),DeltarizeY(y)); }
 V2 Entity::GetSize() { return V2(tex.width,tex.height); }
 std::string Entity::GetGroupName() { return groupName; }
 std::string Entity::GetName() { return name; }
@@ -42,13 +42,13 @@ Entity *Entity::GetParent() { return parent; }
 
 void Entity::SetPosition(int xPos, int yPos)
 {
-    x = xPos;
-    y = yPos;
+    x = ODeltarizeX(xPos);
+    y = ODeltarizeY(yPos);
 }
 void Entity::SetPosition(V2 newPos)
 {
-    x = newPos.x;
-    y = newPos.y;
+    x = ODeltarizeX(newPos.x);
+    y = ODeltarizeY(newPos.y);
 }
 void Entity::SetParent(Entity *newParent) { parent = newParent; }
 void Entity::SetRotation(float angl) { angle = angl; }
@@ -85,5 +85,15 @@ void Entity::LookAtMouse()
     V2 mousePos = Maths::ConvertToV2(GetMousePosition());
 
     angle = -Maths::RTD(std::atan2(mousePos.x-DeltarizeX(x), mousePos.y-DeltarizeY(y)));
+}
+
+Entity::Entity()
+{
+    EType = ENTITY;
+}
+
+Entity::TYPEOFENTITY Entity::GetTypeOfEntity()
+{
+    return EType;
 }
 

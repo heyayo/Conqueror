@@ -372,7 +372,7 @@ typedef struct Transform {
 
 // Bone, skeletal animation bone
 typedef struct BoneInfo {
-    char name[32];          // Bone name
+    char name[32];          // Bone groupName
     int parent;             // Bone parent
 } BoneInfo;
 
@@ -915,7 +915,7 @@ typedef bool (*SaveFileTextCallback)(const char *fileName, char *text); // FileI
 //------------------------------------------------------------------------------------
 
 #if defined(__cplusplus)
-extern "C" {            // Prevents name mangling of functions
+extern "C" {            // Prevents groupName mangling of functions
 #endif
 
 // Window-related functions
@@ -958,7 +958,7 @@ RLAPI int GetMonitorPhysicalHeight(int monitor);                  // Get specifi
 RLAPI int GetMonitorRefreshRate(int monitor);                     // Get specified monitor refresh rate
 RLAPI Vector2 GetWindowPosition(void);                            // Get window position XY on monitor
 RLAPI Vector2 GetWindowScaleDPI(void);                            // Get window scale DPI factor
-RLAPI const char *GetMonitorName(int monitor);                    // Get the human-readable, UTF-8 encoded name of the primary monitor
+RLAPI const char *GetMonitorName(int monitor);                    // Get the human-readable, UTF-8 encoded groupName of the primary monitor
 RLAPI void SetClipboardText(const char *text);                    // Set clipboard text content
 RLAPI const char *GetClipboardText(void);                         // Get clipboard text content
 RLAPI void EnableEventWaiting(void);                              // Enable waiting for events on EndDrawing(), no automatic event polling
@@ -1102,7 +1102,7 @@ RLAPI int GetCharPressed(void);                               // Get char presse
 
 // Input-related functions: gamepads
 RLAPI bool IsGamepadAvailable(int gamepad);                   // Check if a gamepad is available
-RLAPI const char *GetGamepadName(int gamepad);                // Get gamepad internal name id
+RLAPI const char *GetGamepadName(int gamepad);                // Get gamepad internal groupName id
 RLAPI bool IsGamepadButtonPressed(int gamepad, int button);   // Check if a gamepad button has been pressed once
 RLAPI bool IsGamepadButtonDown(int gamepad, int button);      // Check if a gamepad button is being pressed
 RLAPI bool IsGamepadButtonReleased(int gamepad, int button);  // Check if a gamepad button has been released once

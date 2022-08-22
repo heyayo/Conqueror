@@ -1,7 +1,7 @@
 #include "Config.hpp"
 
-int ScreenWidth = 1280;
-int ScreenHeight = 720;
+int ScreenWidth = 1920;
+int ScreenHeight = 1080;
 float ScreenDeltaX = 1;
 float ScreenDeltaY = 1;
 
@@ -47,6 +47,16 @@ float DeltarizeY(float ye)
     return ye*ScreenDeltaY;
 }
 
+float ODeltarizeX(float xe)
+{
+    return xe/ScreenDeltaX;
+}
+
+float ODeltarizeY(float ye)
+{
+    return ye/ScreenDeltaY;
+}
+
 float GetScreenDeltaY()
 {
     return ScreenDeltaX;
@@ -73,5 +83,3 @@ float GetScreenHeightDeltad()
 {
     return ScreenHeight/ScreenDeltaY;
 }
-
-
