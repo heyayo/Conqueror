@@ -8,8 +8,6 @@ Warrior::Warrior()
 	Init("sprites/warrior move.png", V2(128, 128));
 	health = 50;
 	baseAtk = 10;
-	maxStamina = 100;
-	stamina = 100;
 	atkSpd = 5;
 	speed = 10;
 
