@@ -1,15 +1,13 @@
 #ifndef PROTOTYPE_SLIME_HPP
 #define PROTOTYPE_SLIME_HPP
 
-#include "Physical.hpp"
+#include "Actor.hpp"
 
-class Slime : public Physical
+class Slime : public Actor
 {
-    V2 velocity;
 
 public:
     Slime();
-    ~Slime();
 
     void Update() override;
     void Start() override;

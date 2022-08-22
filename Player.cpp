@@ -1,6 +1,5 @@
 #include "Player.hpp"
 #include "Game.hpp"
-#include "Arrow.hpp"
 
 Player::Player()
 {
@@ -8,7 +7,8 @@ Player::Player()
     Init("sprites/hero.png", V2(128,128));
     name = "PLAYER";
     groupName = "PLAYERS";
-    groupID = 5;
+
+    groupID = 0;
 
 }
 
@@ -37,12 +37,11 @@ void Player::InputHandler()
 
     if (IsKeyPressed(KEY_SPACE))
     {
-        std::cout << "SHOOTING" << std::endl;
         Arrow* temp = new Arrow();
-        temp->Init("sprites/arrow.png", V2(32,96));
         temp->SetParent(this);
         temp->SetRotation(angle);
         GetCurrentScene()->AddPhysical(temp);
+        std::cout << temp->GetGroupName() << std::endl;
     }
 }
 

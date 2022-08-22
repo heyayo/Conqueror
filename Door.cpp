@@ -9,7 +9,6 @@ Physical* PlayerPtr;
 
 void Door::Start()
 {
-    SetPosition(200,200);
     PlayerPtr = GetCurrentScene()->GetPhysicsByName("PLAYER");
 }
 

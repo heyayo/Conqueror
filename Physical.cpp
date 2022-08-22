@@ -6,6 +6,7 @@ Physical::Physical()
     yCol = 0;
     groupID = 0;
     groupName = "ALL";
+    EType = PHYSICAL;
 }
 
 void Physical::Update(){}
