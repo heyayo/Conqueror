@@ -34,7 +34,7 @@ add_executable(Prototype
         Actor.cpp
         Button.cpp
         Group.cpp
-
+        Scenes/LevelOne.cpp
         )
 
 target_include_directories(Prototype PUBLIC headers)

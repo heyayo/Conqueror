@@ -2,8 +2,6 @@
 
 Enemy::Enemy()
 {
-	health = 10;
-	attack = 10;
 	movspd = 10;
 	atkspd = 10;
 	

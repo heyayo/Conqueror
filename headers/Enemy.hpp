@@ -1,13 +1,11 @@
 
 #ifndef PROTOTYPE_ENEMY_HPP
 #define PROTOTYPE_ENEMY_HPP
-#include "Physical.hpp"
+#include "Actor.hpp"
 
-class Enemy : public Physical
+class Enemy : public Actor
 {
 protected:
-	int health;
-	int attack;
 	int movspd;
 	int atkspd;
 
