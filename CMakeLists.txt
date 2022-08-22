@@ -35,7 +35,7 @@ add_executable(Prototype
         Button.cpp
         Group.cpp
         Scenes/LevelOne.cpp
-        )
+         "Scenes/LevelTwo.hpp" "Scenes/LevelTwo.cpp")
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)

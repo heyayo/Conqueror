@@ -4,6 +4,8 @@
 #include "Slime.hpp"
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
+#include "LevelTwo.hpp"
+
 
 Door* toNextLevel;
 Player* player;
@@ -14,7 +16,7 @@ void LevelOne::LoadScene()
 {
     SetBG("SceneBG/stage_1.png",V2(1920,1080));
     toNextLevel = new Door;
-    toNextLevel->Redirect(MAINMENU);
+    toNextLevel->Redirect(LEVELTWO);
     toNextLevel->SetPosition(1000,500);
 
     player = new Player;

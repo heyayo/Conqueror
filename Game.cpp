@@ -2,6 +2,7 @@
 #include "TestScene.hpp"
 #include "MainMenu.hpp"
 #include "LevelOne.hpp"
+#include "LevelTwo.hpp"
 
 Scene* currentScene;
 Scene* scenes[SCENEMAX];
@@ -11,6 +12,7 @@ void GenerateScenes()
     scenes[TESTSCENE] = new TestScene;
     scenes[MAINMENU] = new MainMenu;
     scenes[LEVELONE] = new LevelOne;
+    scenes[LEVELTWO] = new LevelOne;
 
     currentScene = scenes[LEVELONE];
     currentScene->LoadScene();
