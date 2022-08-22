@@ -16,7 +16,9 @@ public:
 
 protected:
     std::vector<std::string> msgList;
-    Font font = LoadFont("fonts/regina.ttf");
+    Image boxImage;
+    bool hasTexture = false;
+    Font font = LoadFont("fonts/caveat.ttf");
     float fontSize = 18;
     Color textColor = WHITE;
     Color boxColor = BLACK;
@@ -46,6 +48,8 @@ public:
     void SetTextPosition(Vector2 vecPos);
     void SetPadding(V2 newPadding);
     void SetSpacing(float newSpacing);
+    void SetBoxTexture(const char* imgsrc);
+    void SetBoxTexture(Image &img);
     void AutoLineSpacing();
 
     V2 GetBoxSize();
