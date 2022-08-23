@@ -25,6 +25,7 @@ void MainMenu::Collision()
 
 void MainMenu::LoadScene()
 {
+    SetBG(GREEN);
     std::string mT("CONQUERORS DUNGEON");
     Title = new TextBox(&mT, 1);
     Title->SetTextColor(BLACK);
