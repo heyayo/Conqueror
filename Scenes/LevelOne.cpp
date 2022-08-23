@@ -65,6 +65,7 @@ void LevelOne::Collision()
             Kill(arrow);
         for (auto enemy : enemyList)
         {
+            enemy->LookAt(player);
             if (CalculateCollisionsBetween(arrow, enemy))
             {
                 enemy->Hurt(arrow->GetDamage());

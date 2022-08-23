@@ -11,9 +11,12 @@ class Player : public Physical
 
 public:
     Player();
+    Player(float spd);
     ~Player();
 
     V2 GetVelocity();
+
+    Entity* MakeCopy();
 
     void Update() override;
     void Start() override;

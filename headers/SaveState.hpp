@@ -3,16 +3,10 @@
 
 #include "Entity.hpp"
 
-class SaveState
+struct SaveState
 {
 Entity* toSave;
 std::string saveName;
-
-public:
-    SaveState(Entity* saving, const char* sn);
-
-    const char* GetName();
-    Entity* GetEntity();
 };
 
 

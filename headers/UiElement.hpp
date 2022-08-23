@@ -13,7 +13,7 @@ public:
     void SetVisibility(bool t);
 
     bool GetVisibility();
-};
 
+};
 
 #endif

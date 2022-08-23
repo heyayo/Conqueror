@@ -51,21 +51,25 @@ void Close()
 
 void LoadSave(Entity *en, const char *sn)
 {
-    saves.push_back(SaveState(en,sn));
+    SaveState temp;
+    temp.toSave = en->MakeCopy();
+    temp.saveName = sn;
+    saves.push_back(temp);
 }
 
 SaveState GetSaveByName(const char *name)
 {
     for (auto i : saves)
     {
-        if (i.GetName() == name)
+        if (i.saveName == name)
             return i;
     }
+    return SaveState{nullptr,"NULL"};
 }
 
 SaveState GetSaveByIndex(unsigned int index)
 {
     if (index > saves.size())
-        return SaveState(nullptr,"NULL");
+        return SaveState{nullptr,"NULL"};
     return saves[index];
 }

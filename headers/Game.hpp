@@ -25,6 +25,5 @@ void GenerateScenes();
 void LoadSave(Entity* en, const char* sn);
 SaveState GetSaveByName(const char* name);
 SaveState GetSaveByIndex(unsigned index);
-void ReloadSave(Entity* en, SaveState state); // TODO
 
 #endif

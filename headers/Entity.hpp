@@ -40,6 +40,7 @@ public:
     void Move(int,int);
     void Move(V2);
     void LookAtMouse();
+    void LookAt(Entity* toLook);
 
     unsigned GetID();
     float GetX();
@@ -58,6 +59,8 @@ public:
     void SetParent(Entity* newParent);
     void SetName(std::string newName);
     void SetID(unsigned newID);
+
+    virtual Entity* MakeCopy();
 
     virtual void Update() = 0;
     virtual void Start() = 0;
