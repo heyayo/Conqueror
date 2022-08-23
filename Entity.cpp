@@ -106,4 +106,5 @@ Entity::TYPEOFENTITY Entity::GetTypeOfEntity()
 
 Entity* Entity::MakeCopy()
 {
+    return 0;
 }
