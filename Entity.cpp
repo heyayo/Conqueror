@@ -87,6 +87,13 @@ void Entity::LookAtMouse()
     angle = -Maths::RTD(std::atan2(mousePos.x-DeltarizeX(x), mousePos.y-DeltarizeY(y)));
 }
 
+void Entity::LookAt(Entity* toLook)
+{
+    V2 target = toLook->GetPosition();
+
+    angle = -Maths::RTD(std::atan2(target.x-DeltarizeX(x), target.y-DeltarizeY(y)));
+}
+
 Entity::Entity()
 {
     EType = ENTITY;
@@ -97,3 +104,7 @@ Entity::TYPEOFENTITY Entity::GetTypeOfEntity()
     return EType;
 }
 
+Entity* Entity::MakeCopy()
+{
+    return 0;
+}

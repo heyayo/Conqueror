@@ -1,4 +1,5 @@
 #include "Actor.hpp"
+#include "Game.hpp"
 
 void Actor::Hurt(const float& dmg)
 {
@@ -19,3 +20,4 @@ Actor::Actor()
 {
     EType = ACTOR;
 }
+

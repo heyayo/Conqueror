@@ -1,4 +1,3 @@
-#pragma once
 #include "LevelFive.hpp"
 #include "Door.hpp"
 #include "Player.hpp"

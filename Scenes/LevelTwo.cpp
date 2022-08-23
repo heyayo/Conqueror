@@ -4,10 +4,13 @@
 #include "Goblin.hpp"
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
+#include "Physical.hpp"
+#include "Wall.hpp"
 
+Physical* wall2[2];
 Door* toNextLevel1;
 Player* player1;
-Actor* enemies1[3];
+Actor* enemies1[5];
 DeadSoul* speaker1;
 
 void LevelTwo::LoadScene()
@@ -26,12 +29,26 @@ void LevelTwo::LoadScene()
     enemies1[1]->SetPosition(1150, 150);
     enemies1[2] = new Goblin;
     enemies1[2]->SetPosition(750, 500);
+    enemies1[3] = new Goblin;
+    enemies1[3]->SetPosition(550, 200);
+    enemies1[4] = new Goblin;
+    enemies1[4]->SetPosition(900, 300);
 
+    wall2[0] = new Wall;
+    wall2[0]->SetCollisionSize(V2(650,1000));
+    wall2[0]->SetPosition(840,780);
+    wall2[0]->Init(BLACK, V2(350, 580));
+    wall2[1] = new Wall;
+    wall2[1]->SetCollisionSize(V2(180, 240));
+    wall2[1]->SetPosition(840, 120);
+    wall2[1]->Init(GREEN, V2(330, 220));
     speaker1 = new DeadSoul("TEST MESSAGE I WANT TO DIE");
     speaker1->SetPosition(300, 350);
     
     AddPhysical(player1);
     AddPhysical(toNextLevel1);
+    AddPhysical(wall2[0]);
+    AddPhysical(wall2[1]);
     for (auto i : enemies1)
     {
         AddPhysical(i);
@@ -56,7 +73,31 @@ void LevelTwo::SceneUpdate()
 void LevelTwo::Collision()
 {
     if (CalculateCollisionBorder(player1))
+    {
         player1->Move(-player1->GetVelocity());
+    }
+    if (CalculateCollisionsBetween(player1, wall2[0]))
+    {
+        player1->Move(-player1->GetVelocity());
+    }
+    /*for (int i = 0; i < 6; i++)
+    {
+        if (CalculateCollisionsBetween(enemies1[i], wall[0]))
+        {
+            enemies1[i]->Move(-enemies[i]->GetVelocity());
+        }
+    }
+    for (int i = 0; i < 6; i++)
+    {
+        if (CalculateCollisionsBetween(enemies1[i], wall[1]))
+        {
+            enemies1[i]->Move(-enemies[i]->GetVelocity());
+        }
+    }*/
+    if (CalculateCollisionsBetween(player1, wall2[1]))
+    {
+        player1->Move(-player1->GetVelocity());
+    }
     std::vector<Actor*> arrows = GetActorsByGroup("PROJECTILE");
     std::vector<Actor*> enemyList = GetActorsByGroup("ENEMY");
     for (auto arrow : arrows)
