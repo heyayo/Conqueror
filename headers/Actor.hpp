@@ -8,6 +8,7 @@ class Actor : public Physical
 protected:
     float health;
     float damage;
+    V2 velocity;
 
 public:
     Actor();
@@ -15,6 +16,7 @@ public:
 
     float GetHealth() const;
     float GetDamage() const;
+    V2 GetVelocity() const;
 };
 
 

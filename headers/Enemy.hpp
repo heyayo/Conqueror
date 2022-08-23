@@ -6,6 +6,9 @@
 class Enemy : public Actor
 {
 protected:
+    bool canAttack = true;
+    int cooldown = 180;
+    int currentCooldown = 0;
 	int movspd;
 	int atkspd;
 
@@ -18,6 +21,7 @@ public:
 	int setY();
 	void move();
 	void attackchar();
+    void SetCooldown(int cool);
 
     virtual void Act();
 

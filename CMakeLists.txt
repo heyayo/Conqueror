@@ -35,11 +35,13 @@ add_executable(Prototype
         SaveState.cpp
         Group.cpp
         Scenes/LevelOne.cpp
-        Scenes/LevelTwo.cpp
-        Scenes/LevelThree.cpp
         Goblin.cpp
-        Enemy.cpp
-        Character.cpp "Scenes/LevelThree.cpp" "Scenes/LevelThree.h")
+        Scenes/LevelTwo.cpp
+        timer.cpp
+        Melee.cpp
+        Scenes/LevelFive.cpp
+        Dragon.cpp
+         "headers/Dragon.hpp")
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)

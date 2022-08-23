@@ -4,9 +4,10 @@
 #include "Slime.hpp"
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
-#include "LevelThree.h"
+#include "LevelTwo.hpp"
+#include "Wall.hpp"
 
-
+Physical* wall1[2];
 Door* toNextLevel;
 Player* player;
 Actor* enemies[3];
@@ -16,7 +17,7 @@ void LevelOne::LoadScene()
 {
     SetBG("SceneBG/stage_1.png",V2(1920,1080));
     toNextLevel = new Door;
-    toNextLevel->Redirect(LEVELTWO );
+    toNextLevel->Redirect(LEVELTWO);
     toNextLevel->SetPosition(1000,500);
 
     player = new Player;
@@ -29,11 +30,29 @@ void LevelOne::LoadScene()
     enemies[2] = new Slime;
     enemies[2]->SetPosition(800,650);
 
-    speaker = new DeadSoul("TEST MESSAGE I WANT TO DIE");
+    wall1[0] = new Wall;
+    wall1[0]->SetCollisionSize(V2(350, 1000));
+    wall1[0]->SetPosition(250, 950);
+    wall1[0]->Init(RED, V2(550, 300));
+    wall1[1] = new Wall;
+    wall1[1]->SetCollisionSize(V2(180, 240));
+    wall1[1]->SetPosition(250, 120);
+    wall1[1]->Init(GREEN, V2(550, 300));
+
+    std::string m[6];
+    m[0] = "RIDE WIFE";
+    m[1] = "LIFE GOOD";
+    m[2] = "WIFE FIGHT BACK";
+    m[3] = "KILL WIFE";
+    m[4] = "WIFE GONE";
+    m[5] = "REGRET";
+    speaker = new DeadSoul(m,6);
     speaker->SetPosition(300,350);
 
     AddPhysical(player);
     AddPhysical(toNextLevel);
+    AddPhysical(wall1[0]);
+    AddPhysical(wall1[1]);
     for (auto i : enemies)
     {
         AddPhysical(i);
@@ -47,8 +66,6 @@ void LevelOne::SceneUpdate()
     std::vector<Actor*> enemylist = GetActorsByGroup("ENEMY");
     for (auto enemy : enemylist)
     {
-        enemy->LookAt(player);
-        dynamic_cast<Enemy*>(enemy)->Act();
         if (enemy->GetHealth() <= 0)
         {
             Kill(enemy);
@@ -62,6 +79,18 @@ void LevelOne::SceneUpdate()
 
 void LevelOne::Collision()
 {
+    if (CalculateCollisionBorder(player))
+    {
+        player->Move(-player->GetVelocity());
+    }
+    if (CalculateCollisionsBetween(player, wall1[0]))
+    {
+        player->Move(-player->GetVelocity());
+    }
+    if (CalculateCollisionsBetween(player, wall1[1]))
+    {
+        player->Move(-player->GetVelocity());
+    }
     if (CalculateCollisionBorder(player))
         player->Move(-player->GetVelocity());
     std::vector<Actor*> arrows = GetActorsByGroup("PROJECTILE");

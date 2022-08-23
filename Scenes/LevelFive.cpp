@@ -27,7 +27,14 @@ void LevelFive::LoadScene()
     enemies5[2] = new Dragon;
     enemies5[2]->SetPosition(750, 500);
 
-    speaker5 = new DeadSoul("TEST MESSAGE I WANT TO DIE");
+    std::string m[6];
+    m[0] = "RIDE WIFE";
+    m[1] = "LIFE GOOD";
+    m[2] = "WIFE FIGHT BACK";
+    m[3] = "KILL WIFE";
+    m[4] = "WIFE GONE";
+    m[5] = "REGRET";
+    speaker5 = new DeadSoul(m,6);
     speaker5->SetPosition(300, 350);
 
     AddPhysical(player5);

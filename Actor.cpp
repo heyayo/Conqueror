@@ -1,5 +1,4 @@
 #include "Actor.hpp"
-#include "Game.hpp"
 
 void Actor::Hurt(const float& dmg)
 {
@@ -21,3 +20,7 @@ Actor::Actor()
     EType = ACTOR;
 }
 
+V2 Actor::GetVelocity() const
+{
+    return velocity;
+}

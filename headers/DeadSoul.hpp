@@ -6,11 +6,12 @@
 class DeadSoul : public Physical
 {
 private:
-    const char* message;
+    std::string* msgList;
+    unsigned count;
     bool speaking = false;
 
 public:
-    DeadSoul(const char* msg);
+    DeadSoul(std::string* list, unsigned c);
 
     void Start() override;
     void Update() override;
