@@ -42,6 +42,7 @@ public:
 
     Physical* GetPhysicsByIndex(unsigned index);
     Physical* GetPhysicsByName(const char* name);
+    Actor* GetActorByName(const char* name);
     std::vector<Physical *> GetPhysicsByGroupID(unsigned ID);
     std::vector<Physical *> GetPhysicsByGroup(const char* name);
     std::vector<Actor*> GetActorsByGroup(const char* name);

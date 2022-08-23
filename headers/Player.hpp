@@ -1,10 +1,10 @@
 #ifndef PROTOTYPE_PLAYER_HPP
 #define PROTOTYPE_PLAYER_HPP
 
-#include "Physical.hpp"
+#include "Actor.hpp"
 #include "Arrow.hpp"
 
-class Player : public Physical
+class Player : public Actor
 {
     V2 velocity;
     float speed = 5;

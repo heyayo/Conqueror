@@ -27,7 +27,14 @@ void LevelOne::LoadScene()
     enemies[2] = new Slime;
     enemies[2]->SetPosition(750,500);
 
-    speaker = new DeadSoul("TEST MESSAGE I WANT TO DIE");
+    std::string m[6];
+    m[0] = "RIDE WIFE";
+    m[1] = "LIFE GOOD";
+    m[2] = "WIFE FIGHT BACK";
+    m[3] = "KILL WIFE";
+    m[4] = "WIFE GONE";
+    m[5] = "REGRET";
+    speaker = new DeadSoul(m,6);
     speaker->SetPosition(300,350);
 
     AddPhysical(player);
@@ -45,8 +52,6 @@ void LevelOne::SceneUpdate()
     std::vector<Actor*> enemylist = GetActorsByGroup("ENEMY");
     for (auto enemy : enemylist)
     {
-        enemy->LookAt(player);
-        dynamic_cast<Enemy*>(enemy)->Act();
         if (enemy->GetHealth() <= 0)
         {
             Kill(enemy);

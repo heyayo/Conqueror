@@ -6,7 +6,8 @@ Enemy::Enemy()
 {
 	movspd = 10;
 	atkspd = 10;
-	
+	damage = 10;
+    health = 10;
 }
 
 Enemy::~Enemy()
@@ -41,13 +42,37 @@ int Enemy::setY()
     return 0;
 }
 
-Physical* ptrtoplayer;
+Actor* ptrtoplayer;
 void Enemy::Act()
 {
-    ptrtoplayer = GetCurrentScene()->GetPhysicsByName("PLAYER");
+    // Get the Player Pointer
+    ptrtoplayer = GetCurrentScene()->GetActorByName("PLAYER");
+
+    // Move Enemy towards Player
     V2 move = GetPosition();
     V2 targetPos = ptrtoplayer->GetPosition();
-    Maths::ShiftTowards(move.x, targetPos.x, movspd);
-    Maths::ShiftTowards(move.y, targetPos.y, movspd);
-    SetPosition(move);
+    velocity.x = move.x > targetPos.x ? -movspd : movspd;
+    velocity.x = move.y > targetPos.y ? -movspd : movspd;
+    SetPosition(velocity);
+    LookAt(ptrtoplayer);
+    if (GetCurrentScene()->CalculateCollisionsBetween(ptrtoplayer,this) && canAttack)
+    {
+        ptrtoplayer->Hurt(this->GetDamage());
+        canAttack = false;
+        currentCooldown = 0;
+    }
+    if (!canAttack)
+    {
+        if (currentCooldown < cooldown)
+        {
+            currentCooldown++;
+        }
+        else
+            canAttack = true;
+    }
+}
+
+void Enemy::SetCooldown(int cool)
+{
+    cooldown = cool;
 }

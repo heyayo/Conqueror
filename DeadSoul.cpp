@@ -5,7 +5,7 @@
 TextBox* messageBox;
 Physical* playerptr;
 
-DeadSoul::DeadSoul(const char* msg) : message(msg)
+DeadSoul::DeadSoul(std::string* list, unsigned c) : msgList(list), count(c)
 {
     Init(GREEN,V2(64,64));
 }
@@ -13,14 +13,7 @@ DeadSoul::DeadSoul(const char* msg) : message(msg)
 void DeadSoul::Start()
 {
     V2 side = GetPosition();
-    std::string m[6];
-    m[0] = "RIDE WIFE";
-    m[1] = "LIFE GOOD";
-    m[2] = "WIFE FIGHT BACK";
-    m[3] = "KILL WIFE";
-    m[4] = "WIFE GONE";
-    m[5] = "REGRET";
-    messageBox = new TextBox(m, 6);
+    messageBox = new TextBox(msgList, count);
     messageBox->SetPosition(GetScreenCenter());
     messageBox->SetPadding(V2(1000,800));
     messageBox->SetAlignment(TextBox::CENTER);

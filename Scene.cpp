@@ -207,3 +207,13 @@ void Scene::SetCameraPos(V2 newPos)
     cameraPos = newPos;
 }
 
+Actor *Scene::GetActorByName(const char *name)
+{
+    for (auto i : Entities)
+    {
+        if (i->GetName() == name && i->GetTypeOfEntity() == Entity::ACTOR)
+            return dynamic_cast<Actor*>(i);
+    }
+    return nullptr;
+}
+

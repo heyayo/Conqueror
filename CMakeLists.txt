@@ -35,6 +35,13 @@ add_executable(Prototype
         SaveState.cpp
         Group.cpp
         Scenes/LevelOne.cpp
+<<<<<<< Updated upstream
+=======
+        Scenes/LevelTwo.cpp
+        Goblin.cpp
+        Scenes/LevelTwo.cpp
+        timer.cpp
+>>>>>>> Stashed changes
         )
 
 target_include_directories(Prototype PUBLIC headers)

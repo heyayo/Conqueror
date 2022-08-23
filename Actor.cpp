@@ -19,3 +19,8 @@ Actor::Actor()
 {
     EType = ACTOR;
 }
+
+V2 Actor::GetVelocity() const
+{
+    return velocity;
+}
