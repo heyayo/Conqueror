@@ -4,8 +4,6 @@
 #include "Goblin.hpp"
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
-#include <thread>
-#include "timer.h"
 
 // Create pointers to scene entities
 Door* toNextLevel1;
