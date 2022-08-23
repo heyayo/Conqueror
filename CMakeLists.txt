@@ -41,7 +41,7 @@ add_executable(Prototype
         Melee.cpp
         Scenes/LevelFive.cpp
         Dragon.cpp
-         "headers/Dragon.hpp")
+        )
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)
