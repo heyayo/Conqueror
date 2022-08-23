@@ -5,36 +5,44 @@
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
 #include "Melee.hpp"
+#include "Physical.hpp"
+#include "Wall.hpp"
 
-// Create pointers to scene entities
+Physical* wall2[2];
 Door* toNextLevel1;
 Player* player1;
-Actor* enemies1[3];
+Actor* enemies1[5];
 DeadSoul* speaker1;
 
 void LevelTwo::LoadScene()
 {
-    // Set the Scene Background
     SetBG("SceneBG/stage_2.png", V2(1920, 1080));
-
-    // Create Door, Redirect door, Set Position
     toNextLevel1 = new Door;
-    toNextLevel1->Redirect(LEVELONE);
-    toNextLevel1->SetPosition(1000, 500);
+    toNextLevel1->Redirect(LEVELFIVE);
+    toNextLevel1->SetPosition(1200, 500);
 
-    // Create Player, Set Position
     player1 = new Player;
     player1->SetPosition(100, 350);
 
-    // Create Enemies and Set Positions
     enemies1[0] = new Goblin;
-    enemies1[0]->SetPosition(480, 150);
+    enemies1[0]->SetPosition(850, 250);
     enemies1[1] = new Goblin;
-    enemies1[1]->SetPosition(1150, 150);
+    enemies1[1]->SetPosition(950, 350);
     enemies1[2] = new Goblin;
-    enemies1[2]->SetPosition(750, 500);
+    enemies1[2]->SetPosition(1150, 600);
+    enemies1[3] = new Goblin;
+    enemies1[3]->SetPosition(1150, 200);
+    enemies1[4] = new Goblin;
+    enemies1[4]->SetPosition(900, 300);
 
-    // Load Messages to Display on Scroll
+    wall2[0] = new Wall;
+    wall2[0]->SetCollisionSize(V2(650,1000));
+    wall2[0]->SetPosition(840,780);
+    wall2[0]->Init(BLACK, V2(350, 580));
+    wall2[1] = new Wall;
+    wall2[1]->SetCollisionSize(V2(180, 240));
+    wall2[1]->SetPosition(840, 120);
+    wall2[1]->Init(GREEN, V2(330, 220));
     std::string m[6];
     m[0] = "RIDE WIFE";
     m[1] = "LIFE GOOD";
@@ -42,14 +50,13 @@ void LevelTwo::LoadScene()
     m[3] = "KILL WIFE";
     m[4] = "WIFE GONE";
     m[5] = "REGRET";
-    // Create the Dead Soul that displays the scroll
-    speaker1 = new DeadSoul(m,6); // ( List of Messages, Message Count )
-    // Set Position of Dead Soul
+    speaker1 = new DeadSoul(m, 6);
     speaker1->SetPosition(300, 350);
 
-    // Spawn Entities into World
     AddPhysical(player1);
     AddPhysical(toNextLevel1);
+    AddPhysical(wall2[0]);
+    AddPhysical(wall2[1]);
     for (auto i : enemies1)
     {
         AddPhysical(i);

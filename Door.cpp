@@ -2,7 +2,7 @@
 
 Door::Door()
 {
-    Init("sprites/stairs.png",V2(64,64));
+    Init("sprites/door.png",V2(64,64));
 }
 
 Physical* PlayerPtr;
