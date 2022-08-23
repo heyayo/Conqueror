@@ -35,9 +35,11 @@ add_executable(Prototype
         SaveState.cpp
         Group.cpp
         Scenes/LevelOne.cpp
-        Scenes/LevelTwo.cpp
-        Scenes/LevelFive.cpp
         Goblin.cpp
+        Scenes/LevelTwo.cpp
+        timer.cpp
+        Melee.cpp
+        Scenes/LevelFive.cpp
         Dragon.cpp
          "headers/Dragon.hpp")
 

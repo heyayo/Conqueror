@@ -6,7 +6,7 @@ Goblin::Goblin()
 	damage = 4;
 	movspd = 2;
 	atkspd = 10;
-	Init("sprites/goblin move.png", V2(128, 128));
+	Init("sprites/Goblin move.png", V2(128, 128));
 	name = "ENEMY";
 	groupName = "ENEMY";
 	groupID = 3;
