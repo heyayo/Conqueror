@@ -16,7 +16,7 @@ void MainMenu::Collision()
         PButton->SetTextColor(BLUE);
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
-            LoadSceneByEnum(LEVELONE);
+            LoadSceneByEnum(CLASSCHOOSE);
         }
     }
     else

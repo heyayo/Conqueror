@@ -40,6 +40,7 @@ add_executable(Prototype
         timer.cpp
         Melee.cpp
         Scenes/LevelFive.cpp
+        Scenes/classChoose.cpp
         Dragon.cpp
          "Scenes/LevelFour.cpp" "Scenes/LevelFour.h")
 
