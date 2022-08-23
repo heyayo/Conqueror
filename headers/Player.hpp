@@ -16,12 +16,16 @@ public:
 
     V2 GetVelocity();
 
+<<<<<<< HEAD
     Entity* MakeCopy();
 
     void Update() override;
     void Start() override;
+=======
+    void Update();
+    void Start();
+>>>>>>> master
     void InputHandler();
 };
-
 
 #endif

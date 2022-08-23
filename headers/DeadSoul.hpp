@@ -5,19 +5,9 @@
 
 class DeadSoul : public Physical
 {
-public:
-    enum TEXTORIENTATION
-    {
-        LEFT,
-        RIGHT,
-        UP,
-        DOWN
-    };
-
 private:
     const char* message;
     bool speaking = false;
-    TEXTORIENTATION orient = LEFT;
 
 public:
     DeadSoul(const char* msg);
@@ -25,9 +15,6 @@ public:
     void Start() override;
     void Update() override;
 
-    void SetOrientation(TEXTORIENTATION ori);
-
-    TEXTORIENTATION GetOrientation();
     bool isSpeaking();
 };
 

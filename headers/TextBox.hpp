@@ -2,6 +2,7 @@
 #define PROTOTYPE_TEXTBOX_HPP
 
 #include "UiElement.hpp"
+#include <vector>
 
 class TextBox : public UIElement
 {
@@ -14,23 +15,31 @@ public:
     };
 
 protected:
-    const char* text;
-    Font font = LoadFont("fonts/regina.ttf");
+    std::vector<std::string> msgList;
+    Image boxImage;
+    bool hasTexture = false;
+    Font font = LoadFont("fonts/caveat.ttf");
     float fontSize = 18;
     Color textColor = WHITE;
     Color boxColor = BLACK;
     Alignment alignment = TOPLEFT;
     Vector2 textOffset;
     V2 padding;
+    float spacing = 1;
+    float lineSpacing = 2;
+    Vector2 BoxSize;
+    Vector2 TextSize;
 
     void TextBoxFormat();
     void TextBoxDraw();
+    void UpdateBoxSize();
+    void UpdateTextSize();
 
 public:
-    TextBox(const char *nText);
+    TextBox(std::string* messages, unsigned msgcount);
     ~TextBox();
 
-    void SetText(const char* newText);
+    void SetTexts(std::string* messages, unsigned msgcount);
     void SetFont(Font newFont);
     void SetFontSize(float newFontSize);
     void SetTextColor(Color color);
@@ -38,6 +47,10 @@ public:
     void SetAlignment(Alignment align);
     void SetTextPosition(Vector2 vecPos);
     void SetPadding(V2 newPadding);
+    void SetSpacing(float newSpacing);
+    void SetBoxTexture(const char* imgsrc);
+    void SetBoxTexture(Image &img);
+    void AutoLineSpacing();
 
     V2 GetBoxSize();
     V2 GetTextSize();

@@ -22,8 +22,11 @@ void RunScene();
 void Close();
 void GenerateScenes();
 
+<<<<<<< HEAD
 void LoadSave(Entity* en, const char* sn);
 SaveState GetSaveByName(const char* name);
 SaveState GetSaveByIndex(unsigned index);
+=======
+>>>>>>> master
 
 #endif

@@ -29,10 +29,16 @@ add_executable(Prototype
         Undead.cpp
         Demon.cpp
         Door.cpp
-        Scenes/LevelOne.cpp
+        Enemy.cpp
+        DeadSoul.cpp
         Actor.cpp
+<<<<<<< HEAD
         DeadSoul.cpp
         SaveState.cpp
+=======
+        Group.cpp
+        Scenes/LevelOne.cpp
+>>>>>>> master
         )
 
 target_include_directories(Prototype PUBLIC headers)

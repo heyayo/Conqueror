@@ -29,7 +29,6 @@ void LevelOne::LoadScene()
 
     speaker = new DeadSoul("TEST MESSAGE I WANT TO DIE");
     speaker->SetPosition(300,350);
-    speaker->SetOrientation(DeadSoul::DOWN);
 
     AddPhysical(player);
     AddPhysical(toNextLevel);
@@ -47,7 +46,11 @@ void LevelOne::SceneUpdate()
     for (auto enemy : enemylist)
     {
         if (enemy->GetHealth() <= 0)
+        {
             Kill(enemy);
+            continue;
+        }
+        dynamic_cast<Enemy*>(enemy)->Act();
     }
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
@@ -70,7 +73,6 @@ void LevelOne::Collision()
             {
                 enemy->Hurt(arrow->GetDamage());
                 Kill(arrow);
-                std::cout << enemy->GetHealth() << std::endl;
             }
         }
     }
