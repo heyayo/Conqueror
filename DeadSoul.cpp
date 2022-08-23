@@ -7,7 +7,7 @@ Physical* playerptr;
 
 DeadSoul::DeadSoul(std::string* list, unsigned c) : msgList(list), count(c)
 {
-    Init("sprites/dead guy.png", V2(256,256));
+    Init("sprites/dead guy.png", V2(80,90));
     AutoCollider();
 }
 
