@@ -14,7 +14,7 @@ void LevelTwo::LoadScene()
 {
     SetBG("SceneBG/stage_2.png", V2(1920, 1080));
     toNextLevel1 = new Door;
-    toNextLevel1->Redirect(MAINMENU);
+    toNextLevel1->Redirect(LEVELFIVE);
     toNextLevel1->SetPosition(1000, 500);
 
     player1 = new Player;
