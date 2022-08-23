@@ -4,6 +4,7 @@
 #include "Goblin.hpp"
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
+#include "Melee.hpp"
 
 // Create pointers to scene entities
 Door* toNextLevel1;
@@ -59,13 +60,15 @@ void LevelTwo::LoadScene()
 void LevelTwo::SceneUpdate()
 {
     // Tick Enemy AI and Kill if Health Depleted
-    std::vector<Actor*> enemylist = GetActorsByGroup("ENEMY");
-    for (auto enemy : enemylist)
+    for (auto enemy : enemies1)
     {
+        if (enemy->GetHealth() <= 0)
+        {
+            Kill(enemy);
+            continue;
+        }
         Enemy* enemyconv = dynamic_cast<Enemy*>(enemy);
         enemyconv->Act();
-        if (enemy->GetHealth() <= 0)
-            Kill(enemy);
     }
 
     // DEBUG OPTION, MOUSE LEFT PRINTS OUT LOCATION IN SPACE
@@ -83,7 +86,6 @@ void LevelTwo::Collision()
 
     // Enemy Collision With Arrows
     std::vector<Actor*> arrows = GetActorsByGroup("PROJECTILE");
-    std::vector<Actor*> enemyList = GetActorsByGroup("ENEMY");
 
     // Enemy Collisions
     for (auto e : enemies1)
@@ -109,6 +111,21 @@ void LevelTwo::Collision()
             if (CalculateCollisionsBetween(e,eo) && CalculateCollisionsBetween(e,player1))
             {
                 e->Move(-e->GetVelocity());
+            }
+        }
+    }
+
+    std::vector<Physical*> melee = GetPhysicsByGroup("MELEE");
+    for (auto mel : melee)
+    {
+        Melee* temp = static_cast<Melee*>(mel);
+        if (temp->cooldown >= temp->maxCooldown)
+            Kill(mel);
+        for (auto e : enemies1)
+        {
+            if (CalculateCollisionsBetween(e,mel))
+            {
+                e->Hurt(temp->GetDamage());
             }
         }
     }

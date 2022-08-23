@@ -45,9 +45,10 @@ void Player::InputHandler()
     if (IsKeyPressed(KEY_SPACE))
     {
         Melee* temp = new Melee();
+        temp->SetParent(this);
         temp->Init(GREEN,GetSize());
         temp->SetRotation(angle);
-        temp->SetParent(this);
+        temp->maxCooldown = 10;
         GetCurrentScene()->AddPhysical(temp);
     }
 }

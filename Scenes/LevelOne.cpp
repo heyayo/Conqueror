@@ -6,6 +6,7 @@
 #include "DeadSoul.hpp"
 #include "LevelTwo.hpp"
 #include "Wall.hpp"
+#include "Melee.hpp"
 
 Physical* wall1[2];
 Door* toNextLevel;
@@ -63,49 +64,80 @@ void LevelOne::LoadScene()
 
 void LevelOne::SceneUpdate()
 {
-    std::vector<Actor*> enemylist = GetActorsByGroup("ENEMY");
-    for (auto enemy : enemylist)
+    // Tick Enemy AI and Kill if Health Depleted
+    for (auto enemy : enemies)
     {
         if (enemy->GetHealth() <= 0)
         {
             Kill(enemy);
             continue;
         }
-        dynamic_cast<Enemy*>(enemy)->Act();
+        Enemy* enemyconv = dynamic_cast<Enemy*>(enemy);
+        enemyconv->Act();
     }
+
+    // DEBUG OPTION, MOUSE LEFT PRINTS OUT LOCATION IN SPACE
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    {
         std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
+    }
 }
 
 void LevelOne::Collision()
 {
-    if (CalculateCollisionBorder(player))
+    // Wall Collision Checker
+    for (auto walls : wall1)
     {
-        player->Move(-player->GetVelocity());
+        if (CalculateCollisionsBetween(player, walls))
+            player->Move(-player->GetVelocity());
     }
-    if (CalculateCollisionsBetween(player, wall1[0]))
-    {
-        player->Move(-player->GetVelocity());
-    }
-    if (CalculateCollisionsBetween(player, wall1[1]))
-    {
-        player->Move(-player->GetVelocity());
-    }
+
+    // Player Collision With Border
     if (CalculateCollisionBorder(player))
         player->Move(-player->GetVelocity());
+
+    // Enemy Collision With Arrows
     std::vector<Actor*> arrows = GetActorsByGroup("PROJECTILE");
-    std::vector<Actor*> enemyList = GetActorsByGroup("ENEMY");
-    for (auto arrow : arrows)
+
+    // Enemy Collisions
+    for (auto e : enemies)
     {
-        if (CalculateCollisionBorder(arrow))
-            Kill(arrow);
-        for (auto enemy : enemyList)
+        for (auto arrow : arrows)
         {
-            enemy->LookAt(player);
-            if (CalculateCollisionsBetween(arrow, enemy))
-            {
-                enemy->Hurt(arrow->GetDamage());
+            // Kill Arrow on Border Collision
+            if (CalculateCollisionBorder(arrow))
                 Kill(arrow);
+            // Kill Arrow and Hurt Enemy on Enemy Collision
+            if (CalculateCollisionsBetween(arrow, e))
+            {
+                e->Hurt(arrow->GetDamage());
+                Kill(arrow);
+            }
+        }
+        // Collision with Other Enemies
+        for (auto eo : enemies)
+        {
+            if (eo == e) // If we are colliding with ourselves, stop doing that
+                continue;
+            // If colliding with another enemy, stop enemy
+            if (CalculateCollisionsBetween(e,eo) && CalculateCollisionsBetween(e,player))
+            {
+                e->Move(-e->GetVelocity());
+            }
+        }
+    }
+
+    std::vector<Physical*> melee = GetPhysicsByGroup("MELEE");
+    for (auto mel : melee)
+    {
+        Melee* temp = static_cast<Melee*>(mel);
+        if (temp->cooldown >= temp->maxCooldown)
+            Kill(mel);
+        for (auto e : enemies)
+        {
+            if (CalculateCollisionsBetween(e,mel))
+            {
+                e->Hurt(temp->GetDamage());
             }
         }
     }

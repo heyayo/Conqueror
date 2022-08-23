@@ -45,5 +45,4 @@ void MainMenu::LoadScene()
     PButton->SetPosition(GetScreenCenter());
     AddUI(Title);
     AddUI(PButton);
-    std::cout << Title->GetPosition() << ' ' << PButton->GetPosition() << std::endl;
 }

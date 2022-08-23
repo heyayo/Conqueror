@@ -1,13 +1,13 @@
-#pragma once
-#include "Physical.hpp"
+#include "Actor.hpp"
 
-class Melee : public Physical
+class Melee : public Actor
 {
-
 public:
 	Melee();
 	~Melee();
 	void Start();
 	void Update();
-	
+
+    unsigned cooldown;
+    unsigned maxCooldown;
 };
