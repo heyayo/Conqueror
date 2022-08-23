@@ -86,39 +86,28 @@ void LevelTwo::Collision()
     // Enemy Collision With Arrows
     std::vector<Actor*> arrows = GetActorsByGroup("PROJECTILE");
     std::vector<Actor*> enemyList = GetActorsByGroup("ENEMY");
-    for (auto arrow : arrows)
-    {
-        // Kill Arrow if touch border
-        if (CalculateCollisionBorder(arrow))
-            Kill(arrow);
 
-        // Hurt Enemy and Kill Arrow if Arrow Collided
-        for (auto enemy : enemyList)
-        {
-            if (CalculateCollisionsBetween(arrow, enemy))
-            {
-                enemy->Hurt(arrow->GetDamage());
-                Kill(arrow);
-            }
-        }
-    }
     // Enemy Collisions
     for (auto e : enemies1)
     {
         for (auto arrow : arrows)
         {
+            // Kill Arrow on Border Collision
             if (CalculateCollisionBorder(arrow))
                 Kill(arrow);
+            // Kill Arrow and Hurt Enemy on Enemy Collision
             if (CalculateCollisionsBetween(arrow, e))
             {
                 e->Hurt(arrow->GetDamage());
                 Kill(arrow);
             }
         }
+        // Collision with Other Enemies
         for (auto eo : enemies1)
         {
-            if (eo == e)
+            if (eo == e) // If we are colliding with ourselves, stop doing that
                 continue;
+            // If colliding with another enemy, stop enemy
             if (CalculateCollisionsBetween(e,eo) && CalculateCollisionsBetween(e,player1))
             {
                 e->Move(-e->GetVelocity());

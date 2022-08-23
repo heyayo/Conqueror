@@ -8,11 +8,8 @@ Player::Player()
     name = "PLAYER";
     groupName = "PLAYERS";
     groupID = 0;
-<<<<<<< Updated upstream
-=======
     health = 100;
     damage = 50;
->>>>>>> Stashed changes
 }
 
 void Player::Start()

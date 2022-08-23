@@ -1,6 +1,6 @@
 #include "headers\Thief.h"
 #include "Character.h"
-#include "Melee.hpp"
+#include "Melee.h"
 #include "Game.hpp"
 
 Thief::Thief()

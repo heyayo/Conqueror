@@ -52,8 +52,9 @@ void Enemy::Act()
     V2 move = GetPosition();
     V2 targetPos = ptrtoplayer->GetPosition();
     velocity.x = move.x > targetPos.x ? -movspd : movspd;
-    velocity.x = move.y > targetPos.y ? -movspd : movspd;
-    SetPosition(velocity);
+    velocity.y = move.y > targetPos.y ? -movspd : movspd;
+    std::cout << velocity << std::endl;
+    Move(velocity);
     LookAt(ptrtoplayer);
     if (GetCurrentScene()->CalculateCollisionsBetween(ptrtoplayer,this) && canAttack)
     {
