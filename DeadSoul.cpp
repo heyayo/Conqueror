@@ -7,7 +7,7 @@ Physical* playerptr;
 
 DeadSoul::DeadSoul(const char* msg) : message(msg)
 {
-    Init(GREEN,V2(64,64));
+    Init("sprites/dead guy.png", V2(80, 90));
 }
 
 void DeadSoul::Start()
