@@ -2,6 +2,7 @@
 #define PROTOTYPE_GAME_HPP
 
 #include "Scene.hpp"
+#include "SaveState.hpp"
 
 // ADD SCENE NAMES BELOW
 enum SCENES
@@ -22,5 +23,8 @@ void RunScene();
 void Close();
 void GenerateScenes();
 
+void LoadSave(Entity* en, const char* sn);
+SaveState GetSaveByName(const char* name);
+SaveState GetSaveByIndex(unsigned index);
 
 #endif

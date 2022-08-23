@@ -32,6 +32,7 @@ add_executable(Prototype
         Enemy.cpp
         DeadSoul.cpp
         Actor.cpp
+        SaveState.cpp
         Group.cpp
         Scenes/LevelOne.cpp
         Scenes/LevelTwo.cpp

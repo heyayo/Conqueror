@@ -52,3 +52,12 @@ V2 Player::GetVelocity()
 Player::~Player()
 {
 }
+
+Entity *Player::MakeCopy()
+{
+    return new Player(this->speed);
+}
+
+Player::Player(float spd) : speed(spd)
+{
+}

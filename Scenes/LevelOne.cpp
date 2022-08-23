@@ -47,6 +47,8 @@ void LevelOne::SceneUpdate()
     std::vector<Actor*> enemylist = GetActorsByGroup("ENEMY");
     for (auto enemy : enemylist)
     {
+        enemy->LookAt(player);
+        dynamic_cast<Enemy*>(enemy)->Act();
         if (enemy->GetHealth() <= 0)
         {
             Kill(enemy);
@@ -70,6 +72,7 @@ void LevelOne::Collision()
             Kill(arrow);
         for (auto enemy : enemyList)
         {
+            enemy->LookAt(player);
             if (CalculateCollisionsBetween(arrow, enemy))
             {
                 enemy->Hurt(arrow->GetDamage());
