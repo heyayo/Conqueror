@@ -7,7 +7,7 @@
 #include "Physical.hpp"
 #include "Wall.hpp"
 
-Physical* wall[2];
+Physical* wall1[2];
 Door* toNextLevel1;
 Player* player1;
 Actor* enemies1[5];
@@ -18,7 +18,7 @@ void LevelTwo::LoadScene()
     SetBG("SceneBG/stage_2.png", V2(1920, 1080));
     toNextLevel1 = new Door;
     toNextLevel1->Redirect(MAINMENU);
-    toNextLevel1->SetPosition(1000, 500);
+    toNextLevel1->SetPosition(1250, 500);
 
     player1 = new Player;
     player1->SetPosition(100, 350);
@@ -34,21 +34,21 @@ void LevelTwo::LoadScene()
     enemies1[4] = new Goblin;
     enemies1[4]->SetPosition(900, 300);
 
-    wall[0] = new Wall;
-    wall[0]->SetCollisionSize(V2(650,1000));
-    wall[0]->SetPosition(840,780);
-    wall[0]->Init(BLACK, V2(300, 540));
-    wall[1] = new Wall;
-    wall[1]->SetCollisionSize(V2(180, 240));
-    wall[1]->SetPosition(840, 120);
-    wall[1]->Init(GREEN, V2(240, 180));
+    wall1[0] = new Wall;
+    wall1[0]->SetCollisionSize(V2(650,1000));
+    wall1[0]->SetPosition(840,780);
+    wall1[0]->Init(BLACK, V2(350, 580));
+    wall1[1] = new Wall;
+    wall1[1]->SetCollisionSize(V2(180, 240));
+    wall1[1]->SetPosition(840, 120);
+    wall1[1]->Init(GREEN, V2(330, 220));
     speaker1 = new DeadSoul("TEST MESSAGE I WANT TO DIE");
     speaker1->SetPosition(300, 350);
     
     AddPhysical(player1);
     AddPhysical(toNextLevel1);
-    AddPhysical(wall[0]);
-    AddPhysical(wall[1]);
+    AddPhysical(wall1[0]);
+    AddPhysical(wall1[1]);
     for (auto i : enemies1)
     {
         AddPhysical(i);
@@ -76,7 +76,7 @@ void LevelTwo::Collision()
     {
         player1->Move(-player1->GetVelocity());
     }
-    if (CalculateCollisionsBetween(player1, wall[0]))
+    if (CalculateCollisionsBetween(player1, wall1[0]))
     {
         player1->Move(-player1->GetVelocity());
     }
@@ -94,7 +94,7 @@ void LevelTwo::Collision()
             enemies1[i]->Move(-enemies[i]->GetVelocity());
         }
     }*/
-    if (CalculateCollisionsBetween(player1, wall[0]))
+    if (CalculateCollisionsBetween(player1, wall1[1]))
     {
         player1->Move(-player1->GetVelocity());
     }

@@ -5,8 +5,9 @@
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
 #include "LevelTwo.hpp"
+#include "Wall.hpp"
 
-
+Physical* wall[2];
 Door* toNextLevel;
 Player* player;
 Actor* enemies[3];
@@ -29,11 +30,22 @@ void LevelOne::LoadScene()
     enemies[2] = new Slime;
     enemies[2]->SetPosition(800,650);
 
+    wall[0] = new Wall;
+    wall[0]->SetCollisionSize(V2(350, 1000));
+    wall[0]->SetPosition(250, 950);
+    wall[0]->Init(RED, V2(550, 300));
+    wall[1] = new Wall;
+    wall[1]->SetCollisionSize(V2(180, 240));
+    wall[1]->SetPosition(250, 120);
+    wall[1]->Init(GREEN, V2(550, 300));
+
     speaker = new DeadSoul("TEST MESSAGE I WANT TO DIE");
     speaker->SetPosition(300,350);
 
     AddPhysical(player);
     AddPhysical(toNextLevel);
+    AddPhysical(wall[0]);
+    AddPhysical(wall[1]);
     for (auto i : enemies)
     {
         AddPhysical(i);
@@ -62,6 +74,18 @@ void LevelOne::SceneUpdate()
 
 void LevelOne::Collision()
 {
+    if (CalculateCollisionBorder(player))
+    {
+        player->Move(-player->GetVelocity());
+    }
+    if (CalculateCollisionsBetween(player, wall[0]))
+    {
+        player->Move(-player->GetVelocity());
+    }
+    if (CalculateCollisionsBetween(player, wall[1]))
+    {
+        player->Move(-player->GetVelocity());
+    }
     if (CalculateCollisionBorder(player))
         player->Move(-player->GetVelocity());
     std::vector<Actor*> arrows = GetActorsByGroup("PROJECTILE");
