@@ -82,16 +82,16 @@ void LevelTwo::Collision()
     }
     /*for (int i = 0; i < 6; i++)
     {
-        if (CalculateCollisionsBetween(enemies1[i], wall[0]))
+        if (CalculateCollisionsBetween(enemies1[i], wall1[0]))
         {
-            enemies1[i]->Move(-enemies[i]->GetVelocity());
+            enemies1[i]->Move(-enemies1[i]->GetVelocity());
         }
     }
     for (int i = 0; i < 6; i++)
     {
-        if (CalculateCollisionsBetween(enemies1[i], wall[1]))
+        if (CalculateCollisionsBetween(enemies1[i], wall1[1]))
         {
-            enemies1[i]->Move(-enemies[i]->GetVelocity());
+            enemies1[i]->Move(-enemies1[i]->GetVelocity());
         }
     }*/
     if (CalculateCollisionsBetween(player1, wall1[1]))
