@@ -23,11 +23,11 @@ void LevelOne::LoadScene()
     player->SetPosition(100,350);
 
     enemies[0] = new Slime;
-    enemies[0]->SetPosition(480,150);
+    enemies[0]->SetPosition(600,150);
     enemies[1] = new Slime;
     enemies[1]->SetPosition(1150,150);
     enemies[2] = new Slime;
-    enemies[2]->SetPosition(750,500);
+    enemies[2]->SetPosition(800,650);
 
     speaker = new DeadSoul("TEST MESSAGE I WANT TO DIE");
     speaker->SetPosition(300,350);
