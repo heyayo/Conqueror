@@ -35,21 +35,21 @@ void Player::InputHandler()
     velocity.y = (IsKeyDown(KEY_S) - IsKeyDown(KEY_W)) * speed;
     LookAtMouse();
 
-    /*if (IsKeyPressed(KEY_SPACE))
+    if (IsKeyPressed(KEY_SPACE))
     {
         Arrow* temp = new Arrow();
         temp->SetParent(this);
         temp->SetRotation(angle);
         GetCurrentScene()->AddPhysical(temp);
-    }*/
-    if (IsKeyPressed(KEY_SPACE))
+    }
+    /*if (IsKeyPressed(KEY_SPACE))
     {
         Melee* temp = new Melee();
         temp->Init(GREEN,GetSize());
         temp->SetRotation(angle);
         temp->SetParent(this);
         GetCurrentScene()->AddPhysical(temp);
-    }
+    }*/
 }
 
 V2 Player::GetVelocity()

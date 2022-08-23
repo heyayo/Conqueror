@@ -43,12 +43,12 @@ void LevelTwo::LoadScene()
     wall2[1]->SetPosition(840, 120);
     wall2[1]->Init(GREEN, V2(330, 220));
     std::string m[6];
-    m[0] = "RIDE WIFE";
-    m[1] = "LIFE GOOD";
-    m[2] = "WIFE FIGHT BACK";
-    m[3] = "KILL WIFE";
-    m[4] = "WIFE GONE";
-    m[5] = "REGRET";
+    m[0] = "Those goblins";
+    m[1] = "look quite stupid";
+    m[2] = " and small, I ";
+    m[3] = "suppose this ";
+    m[4] = "will be easy.";
+   
     speaker1 = new DeadSoul(m, 6);
     speaker1->SetPosition(300, 350);
     
