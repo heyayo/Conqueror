@@ -1,9 +1,11 @@
 #include "classChoose.hpp"
 #include "TextBox.hpp"
 #include "Game.hpp"
+#include "PictureBox.hpp"
 
 TextBox* Title1;
 TextBox* PButton1;
+PictureBox* c1;
 
 void classChoose::SceneUpdate()
 {
@@ -44,7 +46,9 @@ void classChoose::LoadScene()
     PButton1->SetPadding(V2(60, 60));
     PButton1->SetAlignment(TextBox::CENTER);
     PButton1->SetPosition(GetScreenCenter());
+
+    c1 = new PictureBox;
+
     AddUI(Title1);
     AddUI(PButton1);
-    std::cout << Title1->GetPosition() << ' ' << PButton1->GetPosition() << std::endl;
 }
