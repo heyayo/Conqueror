@@ -18,19 +18,19 @@ void LevelTwo::LoadScene()
     SetBG("SceneBG/stage_2.png", V2(1920, 1080));
     toNextLevel1 = new Door;
     toNextLevel1->Redirect(LEVELFIVE);
-    toNextLevel1->SetPosition(1000, 500);
+    toNextLevel1->SetPosition(1200, 500);
 
     player1 = new Player;
     player1->SetPosition(100, 350);
 
     enemies1[0] = new Goblin;
-    enemies1[0]->SetPosition(480, 150);
+    enemies1[0]->SetPosition(850, 250);
     enemies1[1] = new Goblin;
-    enemies1[1]->SetPosition(1150, 150);
+    enemies1[1]->SetPosition(950, 350);
     enemies1[2] = new Goblin;
-    enemies1[2]->SetPosition(750, 500);
+    enemies1[2]->SetPosition(1150, 600);
     enemies1[3] = new Goblin;
-    enemies1[3]->SetPosition(550, 200);
+    enemies1[3]->SetPosition(1150, 200);
     enemies1[4] = new Goblin;
     enemies1[4]->SetPosition(900, 300);
 
@@ -42,7 +42,14 @@ void LevelTwo::LoadScene()
     wall2[1]->SetCollisionSize(V2(180, 240));
     wall2[1]->SetPosition(840, 120);
     wall2[1]->Init(GREEN, V2(330, 220));
-    speaker1 = new DeadSoul("TEST MESSAGE I WANT TO DIE");
+    std::string m[6];
+    m[0] = "RIDE WIFE";
+    m[1] = "LIFE GOOD";
+    m[2] = "WIFE FIGHT BACK";
+    m[3] = "KILL WIFE";
+    m[4] = "WIFE GONE";
+    m[5] = "REGRET";
+    speaker1 = new DeadSoul(m, 6);
     speaker1->SetPosition(300, 350);
     
     AddPhysical(player1);
@@ -80,20 +87,20 @@ void LevelTwo::Collision()
     {
         player1->Move(-player1->GetVelocity());
     }
-    /*for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 6; i++)
     {
-        if (CalculateCollisionsBetween(enemies1[i], wall1[0]))
+        if (CalculateCollisionsBetween(enemies1[i], wall2[0]))
         {
             enemies1[i]->Move(-enemies1[i]->GetVelocity());
         }
     }
     for (int i = 0; i < 6; i++)
     {
-        if (CalculateCollisionsBetween(enemies1[i], wall1[1]))
+        if (CalculateCollisionsBetween(enemies1[i], wall2[1]))
         {
             enemies1[i]->Move(-enemies1[i]->GetVelocity());
         }
-    }*/
+    }
     if (CalculateCollisionsBetween(player1, wall2[1]))
     {
         player1->Move(-player1->GetVelocity());
