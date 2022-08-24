@@ -3,14 +3,11 @@
 Character::Character()
 {
 	health = 0;
-	baseAtk = 0;
+	damage = 0;
 	maxStamina = 0;
 	stamina = 0;
 	atkSpd = 0;
 	speed = 0;
-	armour = 0;
-}
-
 }
 
 Character::Character(float hp, float aspd, float spd, float dmg, unsigned int JC, Character::CLASS type)

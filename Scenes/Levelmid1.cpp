@@ -1,7 +1,6 @@
 #include "Levelmid1.hpp"
 #include "Door.hpp"
-#include "player.hpp"
-#include "Slime.hpp"
+#include "Player.hpp"
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
 #include "Wall.hpp"

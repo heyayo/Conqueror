@@ -1,6 +1,6 @@
 #pragma once
 #include "Physical.hpp"
-#include "Character.h"
+#include "Character.hpp"
 #include "Player.hpp"
 
 class HPcrystal : public Physical
