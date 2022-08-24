@@ -18,7 +18,7 @@ void LevelOne::LoadScene()
 {
     SetBG("SceneBG/stage_1.png",V2(1920,1080));
     toNextLevel = new Door;
-    toNextLevel->Redirect(LEVELTWO);
+    toNextLevel->Redirect(LEVELMID1);
     toNextLevel->SetPosition(1000,500);
 
     player = new Player;
@@ -41,12 +41,10 @@ void LevelOne::LoadScene()
     wall1[1]->Init(GREEN, V2(550, 300));
 
     std::string m[6];
-    m[0] = "RIDE WIFE";
-    m[1] = "LIFE GOOD";
-    m[2] = "WIFE FIGHT BACK";
-    m[3] = "KILL WIFE";
-    m[4] = "WIFE GONE";
-    m[5] = "REGRET";
+    m[0] = "Are these slimes really what the adventurer";
+    m[1] = " died to? Do they really think that ";
+    m[2] = " they can scare me through numbers alone?";
+    m[3] = " I will show them what I am capable of!";
     speaker = new DeadSoul(m,6);
     speaker->SetPosition(300,350);
 
