@@ -1,9 +1,9 @@
 #ifndef PROTOTYPE_DEMON_HPP
 #define PROTOTYPE_DEMON_HPP
 
-#include "Physical.hpp"
+#include "Enemy.hpp"
 
-class Demon : public Physical
+class Demon : public Enemy
 {
     V2 velocity;
 
