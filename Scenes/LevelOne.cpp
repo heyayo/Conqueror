@@ -117,7 +117,7 @@ void LevelOne::Collision()
                 Kill(arrow);
             }
             // Kill Arrow and Hurt Enemy on Enemy Collision
-            if (CalculateCollisionsBetween(arrow, e))
+            else if (CalculateCollisionsBetween(arrow, e))
             {
                 e->Hurt(arrow->GetDamage());
                 Kill(arrow);

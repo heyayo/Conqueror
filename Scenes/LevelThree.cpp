@@ -104,7 +104,7 @@ void LevelThree::Collision()
                 std::cout << "BORDER HIT" << std::endl;
             }
             // Kill Arrow and Hurt Enemy on Enemy Collision
-            if (CalculateCollisionsBetween(arrow, e))
+            else if (CalculateCollisionsBetween(arrow, e))
             {
                 std::cout << "HIT" << std::endl;
                 e->Hurt(arrow->GetDamage());
