@@ -129,7 +129,7 @@ void LevelFive::Collision()
                 std::cout << "BORDER HIT" << std::endl;
             }
             // Kill EnemyFireball and Hurt Enemy on Enemy Collision
-            if (CalculateCollisionsBetween(EnemyFireball, player5))
+            else if (CalculateCollisionsBetween(EnemyFireball, player5))
             {
                 std::cout << "HIT" << std::endl;
                 player5->Hurt(EnemyFireball->GetDamage());
