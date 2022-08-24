@@ -1,11 +1,11 @@
 #ifndef PROTOTYPE_SAVESTATE_HPP
 #define PROTOTYPE_SAVESTATE_HPP
 
-#include "Entity.hpp"
+#include "Physical.hpp"
 
 struct SaveState
 {
-Entity* toSave;
+Physical* toSave;
 std::string saveName;
 };
 

@@ -45,8 +45,14 @@ add_executable(Prototype
         Scenes/LevelThree.cpp
         Scenes/classChoose.cpp
         PictureBox.cpp
-        Scenes/Levelmid1.cpp
+        Character.cpp
+        Archer.cpp
+        Warrior.cpp
+        Fireball.cpp
+        Wizard.cpp
+        Bar.cpp
         HPcrystal.cpp
+        Scenes/Levelmid1.cpp
         )
 
 target_include_directories(Prototype PUBLIC headers)

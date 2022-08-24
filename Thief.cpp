@@ -1,5 +1,5 @@
 #include "headers\Thief.h"
-#include "Character.h"
+#include "Character.hpp"
 #include "Melee.h"
 #include "Game.hpp"
 

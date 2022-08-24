@@ -23,7 +23,7 @@ void GenerateScenes()
     scenes[LEVELFIVE] = new LevelFive;
     scenes[LEVELFOUR] = new LevelFour;
     scenes[LEVELMID1] = new Levelmid1;
-    currentScene = scenes[MAINMENU];
+    currentScene = scenes[LEVELFIVE];
     currentScene->LoadScene();
 }
 
@@ -59,7 +59,7 @@ void Close()
         delete scenes[i];
 }
 
-void LoadSave(Entity *en, const char *sn)
+void LoadSave(Physical *en, const char *sn)
 {
     SaveState temp;
     temp.toSave = en->MakeCopy();

@@ -17,6 +17,7 @@ public:
 
     float GetHealth() const;
     float GetDamage() const;
+    float* GetHealthPtr();
     V2 GetVelocity() const;
 
 };

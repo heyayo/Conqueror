@@ -8,7 +8,7 @@ class Arrow : public Actor
     float speed = 20;
 
 public:
-    Arrow();
+    Arrow(float dmg);
 
     void Update() override;
     void Start() override;
