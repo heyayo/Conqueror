@@ -46,6 +46,7 @@ add_executable(Prototype
         Scenes/classChoose.cpp
         PictureBox.cpp
         Scenes/Levelmid1.cpp
+        HPcrystal.cpp
         )
 
 target_include_directories(Prototype PUBLIC headers)
