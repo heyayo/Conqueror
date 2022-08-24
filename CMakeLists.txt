@@ -49,11 +49,12 @@ add_executable(Prototype
         Archer.cpp
         Warrior.cpp
         Fireball.cpp
+        EnemyFireball.cpp
         Wizard.cpp
         Bar.cpp
         HPcrystal.cpp
         Scenes/Levelmid1.cpp
-        )
+         )
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)

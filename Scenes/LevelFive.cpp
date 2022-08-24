@@ -13,7 +13,7 @@
 Physical* wall5[2];
 Door* toNextLevel5;
 Player* player5;
-Actor* enemies5[3];
+Actor* enemies5[1];
 DeadSoul* speaker5;
 
 void LevelFive::LoadScene()
@@ -27,11 +27,8 @@ void LevelFive::LoadScene()
     player5->SetPosition(100, 350);
 
     enemies5[0] = new Dragon;
-    enemies5[0]->SetPosition(580, 150);
-    enemies5[1] = new Dragon;
-    enemies5[1]->SetPosition(1150, 150);
-    enemies5[2] = new Dragon;
-    enemies5[2]->SetPosition(750, 500);
+    enemies5[0]->SetPosition(1300, 540);
+ 
 
     wall5[0] = new Wall;
 
@@ -82,6 +79,7 @@ void LevelFive::Collision()
 
     // Enemy Collision With Arrows
     std::vector<Actor*> arrows = GetActorsByGroup("PROJECTILE");
+    std::vector<Actor*> EnemyFireballs = GetActorsByGroup("ENEMYPROJECTILE");
     std::vector<Actor*> enemyList1 = GetActorsByGroup("ENEMY");
 
     // Enemy Collisions
@@ -93,8 +91,9 @@ void LevelFive::Collision()
             Kill(e);
             continue;
         }
-        Enemy* enemyconv = dynamic_cast<Enemy*>(e);
+        Dragon* enemyconv = dynamic_cast<Dragon*>(e);
         enemyconv->Act();
+        enemyconv->LookAt(player5);
         for (auto arrow : arrows)
         {
             // Kill Arrow on Border Collision
@@ -109,6 +108,22 @@ void LevelFive::Collision()
                 std::cout << "HIT" << std::endl;
                 e->Hurt(arrow->GetDamage());
                 Kill(arrow);
+            }
+        }
+        for (auto EnemyFireball : EnemyFireballs)
+        {
+            // Kill EnemyFireball on Border Collision
+            if (CalculateCollisionBorder(EnemyFireball))
+            {
+                Kill(EnemyFireball);
+                std::cout << "BORDER HIT" << std::endl;
+            }
+            // Kill EnemyFireball and Hurt Enemy on Enemy Collision
+            if (CalculateCollisionsBetween(EnemyFireball, player5))
+            {
+                std::cout << "HIT" << std::endl;
+                player5->Hurt(EnemyFireball->GetDamage());
+                Kill(EnemyFireball);
             }
         }
         // Collision with Other Enemies
