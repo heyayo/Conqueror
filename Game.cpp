@@ -23,7 +23,7 @@ void GenerateScenes()
     scenes[LEVELFIVE] = new LevelFive;
     scenes[LEVELFOUR] = new LevelFour;
     scenes[LEVELMID1] = new Levelmid1;
-    currentScene = scenes[MAINMENU];
+    currentScene = scenes[LEVELFIVE];
     currentScene->LoadScene();
 }
 
