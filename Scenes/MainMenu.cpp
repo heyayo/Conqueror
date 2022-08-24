@@ -16,7 +16,7 @@ void MainMenu::Collision()
         PButton->SetTextColor(BLUE);
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
-            LoadSceneByEnum(LEVELONE);
+            LoadSceneByEnum(CLASSCHOOSE);
         }
     }
     else
@@ -46,5 +46,4 @@ void MainMenu::LoadScene()
     PButton->SetPosition(GetScreenCenter());
     AddUI(Title);
     AddUI(PButton);
-    std::cout << Title->GetPosition() << ' ' << PButton->GetPosition() << std::endl;
 }
