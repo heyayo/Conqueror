@@ -9,7 +9,7 @@ Player::Player()
     groupName = "PLAYERS";
     groupID = 0;
     health = 100;
-    damage = 50;
+    damage = 1;
 }
 
 void Player::Start()
@@ -31,37 +31,31 @@ void Player::Update()
 // Handle Input Here
 void Player::InputHandler()
 {
-    velocity.x = (IsKeyDown(KEY_D) - IsKeyDown(KEY_A)) * speed;
-    velocity.y = (IsKeyDown(KEY_S) - IsKeyDown(KEY_W)) * speed;
+    velocity.x = (IsKeyDown(KEY_D) - IsKeyDown(KEY_A)) * 5;
+    velocity.y = (IsKeyDown(KEY_S) - IsKeyDown(KEY_W)) * 5;
     LookAtMouse();
 
-    /*if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
-        Arrow* temp = new Arrow();
+        Arrow* temp = new Arrow(damage);
         temp->SetParent(this);
         temp->SetRotation(angle);
         GetCurrentScene()->AddPhysical(temp);
-    }*/
-    if (IsKeyPressed(KEY_SPACE))
+    }
+    /*if (IsKeyPressed(KEY_SPACE))
     {
-        std::cout << "SLASHING" << std::endl;
-        Melee* temp = new Melee();
+        Melee* temp = new Melee(damage);
         temp->SetParent(this);
         temp->Init(GREEN,GetSize());
         temp->SetRotation(angle);
         temp->maxCooldown = 10;
         temp->cooldown = 0;
         GetCurrentScene()->AddPhysical(temp);
-    }
+    }*/
 }
 
 Player::~Player()
 {
-}
-
-Entity *Player::MakeCopy()
-{
-    return new Player(this->health, this->damage, this->JournalCount, this->classType);
 }
 
 Player::Player(float hp, float dmg, unsigned JC, CLASS type)

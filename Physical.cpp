@@ -44,3 +44,8 @@ void Physical::AutoCollider()
     xCol = tex.width/2;
     yCol = tex.height/2;
 }
+
+Physical *Physical::MakeCopy()
+{
+    return new Physical;
+}

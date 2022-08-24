@@ -1,5 +1,5 @@
-#include "headers\HPcrystal.hpp"
-#include "Character.h"
+#include "HPcrystal.hpp"
+#include "Character.hpp"
 #include "Arrow.hpp"
 #include "Game.hpp"
 

@@ -16,8 +16,8 @@ void Arrow::Start()
     groupName = "PROJECTILE";
 }
 
-Arrow::Arrow()
+Arrow::Arrow(float dmg)
 {
     health = 0;
-    damage = 2;
+    damage = dmg;
 }
