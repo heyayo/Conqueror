@@ -2,9 +2,9 @@
 #include "Door.hpp"
 #include "Player.hpp"
 #include "Skeleton.hpp"
+#include "Maths.hpp"
 #include "DeadSoul.hpp"
 #include "Wall.hpp"
-#include "Maths.hpp"
 #include "Melee.hpp"
 #include "Physical.hpp"
 
@@ -73,6 +73,7 @@ void LevelFour::SceneUpdate()
         std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
     }*/
 }
+
 void LevelFour::Collision()
 {
     for (auto walls : wall4)
