@@ -66,13 +66,6 @@ void LevelThree::LoadScene()
 
 void LevelThree::SceneUpdate()
 {
-    std::vector<Actor*> enemylist = GetActorsByGroup("ENEMY");
-    for (auto enemy : enemylist)
-    {
-        dynamic_cast<Enemy*>(enemy)->Act();
-        if (enemy->GetHealth() <= 0)
-            Kill(enemy);
-    }
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
 }
@@ -134,7 +127,10 @@ void LevelThree::Collision()
         for (auto walle : wall3)
         {
             if (CalculateCollisionsBetween(walle, e))
+            {
                 e->Move(-e->GetVelocity());
+                std::cout << "test";
+            }
         }
     }
 
