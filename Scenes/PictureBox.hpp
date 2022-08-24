@@ -18,6 +18,9 @@ private:
     float spacing = 1;
     Font font = LoadFont("fonts/caveat.ttf");
     ORIENTATION orient = DOWN;
+    V2 textPos;
+    Vector2 textOffset;
+    Color textColor = WHITE;
 
 public:
     PictureBox(const char* imgsrc, V2 size);
@@ -26,6 +29,8 @@ public:
     void SetCaption(const char* newCap);
     void SetFontSize(float newFS);
     void SetSpacing(float newSpace);
+    void SetOrientation(ORIENTATION ori);
+    void SetTextColor(Color newC);
 
     void Start() override;
     void Update() override;

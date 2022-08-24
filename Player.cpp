@@ -35,14 +35,14 @@ void Player::InputHandler()
     velocity.y = (IsKeyDown(KEY_S) - IsKeyDown(KEY_W)) * speed;
     LookAtMouse();
 
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    /*if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
         Arrow* temp = new Arrow();
         temp->SetParent(this);
         temp->SetRotation(angle);
         GetCurrentScene()->AddPhysical(temp);
-    }
-    /*if (IsKeyPressed(KEY_SPACE))
+    }*/
+    if (IsKeyPressed(KEY_SPACE))
     {
         std::cout << "SLASHING" << std::endl;
         Melee* temp = new Melee();
@@ -52,7 +52,7 @@ void Player::InputHandler()
         temp->maxCooldown = 10;
         temp->cooldown = 0;
         GetCurrentScene()->AddPhysical(temp);
-    }*/
+    }
 }
 
 Player::~Player()
