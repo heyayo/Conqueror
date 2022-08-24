@@ -6,15 +6,23 @@
 
 class Player : public Actor
 {
-    V2 velocity;
+public:
+    enum CLASS
+    {
+        WARRIOR,
+        ARCHER,
+        MAGIC
+    };
+
+private:
     float speed = 5;
+    CLASS classType;
+    unsigned JournalCount = 0;
 
 public:
     Player();
-    Player(float spd);
+    Player(float hp, float dmg, unsigned JC, CLASS type);
     ~Player();
-
-    V2 GetVelocity();
 
     Entity* MakeCopy();
 

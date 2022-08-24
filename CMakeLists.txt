@@ -37,13 +37,17 @@ add_executable(Prototype
         Scenes/LevelOne.cpp
         Goblin.cpp
         Scenes/LevelTwo.cpp
+        Scenes/LevelThree.cpp
         timer.cpp
         Melee.cpp
         Scenes/LevelFive.cpp
         Scenes/classChoose.cpp
         Dragon.cpp
         Healthpot.cpp
-         "Scenes/LevelFour.cpp" "Scenes/LevelFour.h")
+        Scenes/LevelFour.cpp
+        PictureBox.cpp
+        )
+>>>>>>> master
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)

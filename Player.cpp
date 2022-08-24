@@ -35,7 +35,7 @@ void Player::InputHandler()
     velocity.y = (IsKeyDown(KEY_S) - IsKeyDown(KEY_W)) * speed;
     LookAtMouse();
 
-    /*if (IsKeyPressed(KEY_SPACE))
+    /*if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
         Arrow* temp = new Arrow();
         temp->SetParent(this);
@@ -44,18 +44,15 @@ void Player::InputHandler()
     }*/
     if (IsKeyPressed(KEY_SPACE))
     {
+        std::cout << "SLASHING" << std::endl;
         Melee* temp = new Melee();
         temp->SetParent(this);
         temp->Init(GREEN,GetSize());
         temp->SetRotation(angle);
         temp->maxCooldown = 10;
+        temp->cooldown = 0;
         GetCurrentScene()->AddPhysical(temp);
     }
-}
-
-V2 Player::GetVelocity()
-{
-    return velocity;
 }
 
 Player::~Player()
@@ -64,9 +61,10 @@ Player::~Player()
 
 Entity *Player::MakeCopy()
 {
-    return new Player(this->speed);
+    return new Player(this->health, this->damage, this->JournalCount, this->classType);
 }
 
-Player::Player(float spd) : speed(spd)
+Player::Player(float hp, float dmg, unsigned JC, CLASS type)
+: Actor(hp,dmg), JournalCount(JC), classType(type)
 {
 }
