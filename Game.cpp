@@ -16,6 +16,7 @@ void GenerateScenes()
     scenes[MAINMENU] = new MainMenu;
     scenes[LEVELONE] = new LevelOne;
     scenes[LEVELTWO] = new LevelTwo;
+    scenes[LEVELTHREE] = new LevelTwo;
     scenes[LEVELFIVE] = new LevelFive;
 
     currentScene = scenes[MAINMENU];
