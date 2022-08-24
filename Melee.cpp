@@ -2,12 +2,12 @@
 #include <cmath>
 #include "Maths.hpp"
 
-Melee::Melee()
+Melee::Melee(float dmg)
 {
 	groupID = 3;
     groupName = "MELEE";
     health = 0;
-    damage = 50;
+    damage = dmg;
 }
 
 Melee::~Melee()

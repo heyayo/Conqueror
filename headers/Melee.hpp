@@ -3,7 +3,7 @@
 class Melee : public Actor
 {
 public:
-	Melee();
+	Melee(float dmg);
 	~Melee();
 	void Start();
 	void Update();

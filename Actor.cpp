@@ -28,3 +28,8 @@ V2 Actor::GetVelocity() const
 Actor::Actor(float hp, float dmg) : health(hp), damage(dmg)
 {
 }
+
+float* Actor::GetHealthPtr()
+{
+    return &health;
+}

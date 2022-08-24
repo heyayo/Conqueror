@@ -43,6 +43,12 @@ add_executable(Prototype
         Dragon.cpp
          "Scenes/LevelFour.cpp"
         PictureBox.cpp
+        Character.cpp
+        Archer.cpp
+        Warrior.cpp
+        Fireball.cpp
+        Wizard.cpp
+        Bar.cpp
         )
 
 target_include_directories(Prototype PUBLIC headers)

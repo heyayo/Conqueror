@@ -7,12 +7,14 @@
 #include "Melee.hpp"
 #include "Physical.hpp"
 #include "Wall.hpp"
+#include "Bar.hpp"
 
 Physical* wall2[2];
 Door* toNextLevel1;
 Player* player1;
 Actor* enemies1[5];
 DeadSoul* speaker1;
+Bar* ebars2[5];
 
 void LevelTwo::LoadScene()
 {
@@ -34,6 +36,15 @@ void LevelTwo::LoadScene()
     enemies1[3]->SetPosition(1150, 200);
     enemies1[4] = new Goblin;
     enemies1[4]->SetPosition(900, 300);
+    for (int i = 0; i < 5; i++)
+    {
+        ebars2[i] = new Bar(enemies1[i]->GetHealthPtr(),
+                                    10,
+                                    GREEN,
+                                    enemies1[i]->GetSize().x,
+                                    5);
+        AddUI(ebars2[i]);
+    }
 
     wall2[0] = new Wall;
     wall2[0]->SetCollisionSize(V2(650,1000));
@@ -66,6 +77,11 @@ void LevelTwo::LoadScene()
 
 void LevelTwo::SceneUpdate()
 {
+    for (int i = 0; i < 5; i++)
+    {
+        V2 barOffset(0,enemies1[i]->GetSize().y/2);
+        ebars2[i]->SetPosition(enemies1[i]->GetPosition()+barOffset);
+    }
     // DEBUG OPTION, MOUSE LEFT PRINTS OUT LOCATION IN SPACE
     /*if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
