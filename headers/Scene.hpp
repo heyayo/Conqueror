@@ -8,6 +8,8 @@
 #include "Config.hpp"
 #include "Actor.hpp"
 
+#define AUTOLOAD(x) SaveState playerSave = GetSaveByIndex(0); classedPlayer = static_cast<Character*>(playerSave.toSave); switch (classedPlayer->GetClassType()) { case Character::ARCHER: classedPlayer = static_cast<Archer*>(playerSave.toSave); break; case Character::WARRIOR: classedPlayer = static_cast<Warrior*>(playerSave.toSave); break; case Character::MAGIC: classedPlayer = static_cast<Wizard*>(playerSave.toSave); break; }
+
 class Scene
 {
     std::vector<Physical*> Entities;

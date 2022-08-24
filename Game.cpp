@@ -59,7 +59,7 @@ void Close()
         delete scenes[i];
 }
 
-void LoadSave(Entity *en, const char *sn)
+void LoadSave(Physical *en, const char *sn)
 {
     SaveState temp;
     temp.toSave = en->MakeCopy();
