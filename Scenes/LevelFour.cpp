@@ -1,7 +1,7 @@
 #include "LevelFour.h"
 #include "Door.hpp"
 #include "Player.hpp"
-#include "Skeleton.hpp"
+#include "Demon.h"
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
 #include "Wall.hpp"
@@ -24,15 +24,15 @@ void LevelFour::LoadScene()
     player4 = new Player;
     player4->SetPosition(100, 350);
 
-    enemies4[0] = new Skeleton;
+    enemies4[0] = new Demon;
     enemies4[0]->SetPosition(850, 250);
-    enemies4[1] = new Skeleton;
+    enemies4[1] = new Demon;
     enemies4[1]->SetPosition(950, 350);
-    enemies4[2] = new Skeleton;
+    enemies4[2] = new Demon;
     enemies4[2]->SetPosition(1150, 600);
-    enemies4[3] = new Skeleton;
+    enemies4[3] = new Demon;
     enemies4[3]->SetPosition(1150, 200);
-    enemies4[4] = new Skeleton;
+    enemies4[4] = new Demon;
     enemies4[4]->SetPosition(900, 300);
 
     wall4[0] = new Wall;
