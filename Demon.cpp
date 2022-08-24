@@ -1,11 +1,16 @@
 
-
-#include "Demon.hpp"
-
+#include "Demon.h"
 
 Demon::Demon()
 {
-	Init("sprites/demon move.png", V2(128, 128));
+	health = 20;
+	damage = 4;
+	movspd = 2;
+	atkspd = 10;
+	Init("sprites/Demon move.png", V2(128, 128));
+	name = "ENEMY";
+	groupName = "ENEMY";
+	groupID = 3;
 }
 
 Demon::~Demon()
@@ -14,16 +19,9 @@ Demon::~Demon()
 
 void Demon::Update()
 {
-
 }
 
 void Demon::Start()
 {
-
-	x = 1000;
-	y = 1010;
-
-	
-
 	angle = 0;
 }

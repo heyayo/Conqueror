@@ -2,6 +2,14 @@
 
 Character::Character()
 {
+	health = 0;
+	baseAtk = 0;
+	maxStamina = 0;
+	stamina = 0;
+	atkSpd = 0;
+	speed = 0;
+	armour = 0;
+}
 
 }
 

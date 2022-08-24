@@ -59,7 +59,7 @@ void TestScene::LoadScene()
     std::string m("TEXT MESSAGE IN A BOX");
     testBox = new TextBox(&m , 1);
     testDoor = new Door();
-    testDoor->Redirect(LEVELFIVE);
+    //testDoor->Redirect(LEVELFIVE);
     testDoor->SetPosition(1800, 500);
     testBox->SetPosition(1000,500);
     testBox->SetAlignment(TextBox::CENTER);

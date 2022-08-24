@@ -47,7 +47,8 @@ void classChoose::Collision()
 
 void classChoose::LoadScene()
 {
-    SetBG(GREEN);
+    SetBG("SceneBG/mainmenu.png", V2(1920, 1080));
+
     std::string mT("CHOOSE YOUR CLASS");
     Title1 = new TextBox(&mT, 1);
     Title1->SetTextColor(BLACK);
