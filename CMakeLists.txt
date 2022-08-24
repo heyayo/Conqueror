@@ -45,6 +45,7 @@ add_executable(Prototype
         Scenes/LevelThree.cpp
         Scenes/classChoose.cpp
         PictureBox.cpp
+        Scenes/Levelmid1.cpp
         )
 
 target_include_directories(Prototype PUBLIC headers)
