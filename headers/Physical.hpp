@@ -18,6 +18,8 @@ public:
     void SetCollisionSize(int size);
     void SetCollisionSize(V2 size);
 
+    Physical* MakeCopy() override;
+
     void Update();
     void Start();
 };

@@ -4,32 +4,41 @@
 #include "Slime.hpp"
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
-#include "LevelTwo.hpp"
 #include "Wall.hpp"
 #include "Melee.hpp"
+#include "Bar.hpp"
 
 Physical* wall1[2];
 Door* toNextLevel;
-Player* player;
 Actor* enemies[3];
 DeadSoul* speaker;
+Player* player;
+Bar* enemyHealthBar[3];
 
 void LevelOne::LoadScene()
 {
     SetBG("SceneBG/stage_1.png",V2(1920,1080));
     toNextLevel = new Door;
-    toNextLevel->Redirect(LEVELTWO);
+    toNextLevel->Redirect(LEVELMID1);
     toNextLevel->SetPosition(1000,500);
 
     player = new Player;
-    player->SetPosition(100,350);
-
+    player->SetPosition(200,200);
     enemies[0] = new Slime;
     enemies[0]->SetPosition(600,150);
     enemies[1] = new Slime;
     enemies[1]->SetPosition(1150,150);
     enemies[2] = new Slime;
     enemies[2]->SetPosition(800,650);
+    for (int i = 0; i < 3; i++)
+    {
+        enemyHealthBar[i] = new Bar(enemies[i]->GetHealthPtr(),
+                                    10,
+                                    GREEN,
+                                    enemies[i]->GetSize().x,
+                                    5);
+        AddUI(enemyHealthBar[i]);
+    }
 
     wall1[0] = new Wall;
     wall1[0]->SetCollisionSize(V2(350, 1000));
@@ -41,12 +50,10 @@ void LevelOne::LoadScene()
     wall1[1]->Init(GREEN, V2(550, 300));
 
     std::string m[6];
-    m[0] = "RIDE WIFE";
-    m[1] = "LIFE GOOD";
-    m[2] = "WIFE FIGHT BACK";
-    m[3] = "KILL WIFE";
-    m[4] = "WIFE GONE";
-    m[5] = "REGRET";
+    m[0] = "Are these slimes really what the adventurer";
+    m[1] = " died to? Do they really think that ";
+    m[2] = " they can scare me through numbers alone?";
+    m[3] = " I will show them what I am capable of!";
     speaker = new DeadSoul(m,6);
     speaker->SetPosition(300,350);
 
@@ -57,13 +64,18 @@ void LevelOne::LoadScene()
     for (auto i : enemies)
     {
         AddPhysical(i);
-        std::cout << i->GetPosition() << std::endl;
     }
     AddPhysical(speaker);
 }
 
 void LevelOne::SceneUpdate()
 {
+    for (int i = 0; i < 3; i++)
+    {
+        V2 barOffset(0,enemies[i]->GetSize().y/2);
+        enemyHealthBar[i]->SetPosition(enemies[i]->GetPosition()+barOffset);
+    }
+
     // DEBUG OPTION, MOUSE LEFT PRINTS OUT LOCATION IN SPACE
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
@@ -74,7 +86,7 @@ void LevelOne::SceneUpdate()
 void LevelOne::Collision()
 {
     for (auto walls : wall1)
-        if (CalculateCollisionsBetween(player,walls))
+        if (CalculateCollisionsBetween(player, walls))
             player->Move(-player->GetVelocity());
 
     // Player Collision With Border
@@ -102,12 +114,10 @@ void LevelOne::Collision()
             if (CalculateCollisionBorder(arrow))
             {
                 Kill(arrow);
-                std::cout << "BORDER HIT" << std::endl;
             }
             // Kill Arrow and Hurt Enemy on Enemy Collision
             if (CalculateCollisionsBetween(arrow, e))
             {
-                std::cout << "HIT" << std::endl;
                 e->Hurt(arrow->GetDamage());
                 Kill(arrow);
             }
@@ -118,7 +128,7 @@ void LevelOne::Collision()
             if (eo == e) // If we are colliding with ourselves, stop doing that
                 continue;
             // If colliding with another enemy, stop enemy
-            if (CalculateCollisionsBetween(e,eo) || CalculateCollisionsBetween(e,player))
+            if (CalculateCollisionsBetween(e,eo) || CalculateCollisionsBetween(e, player))
             {
                 e->Move(-e->GetVelocity());
             }

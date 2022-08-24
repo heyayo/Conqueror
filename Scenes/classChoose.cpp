@@ -2,6 +2,10 @@
 #include "TextBox.hpp"
 #include "Game.hpp"
 #include "PictureBox.hpp"
+#include "Archer.hpp"
+#include "Warrior.hpp"
+#include "Wizard.hpp"
+
 
 TextBox* Title1;
 PictureBox* c[4];
@@ -12,22 +16,39 @@ void classChoose::SceneUpdate()
 
 void classChoose::Collision()
 {
-    for (auto i : c)
+    for (int i = 0; i < 4; i++)
     {
-        if (i->CalculateMouseCollision())
+        if (c[i]->CalculateMouseCollision())
         {
-            i->SetTextColor(BLUE);
+            c[i]->SetTextColor(BLUE);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            {
+                switch (i)
+                {
+                    case 0:
+                        LoadSave(new Archer, "PSAVE'");
+                        break;
+                    case 1:
+                        LoadSave(new Warrior, "PSAVE");
+                        break;
+                    case 2:
+                        LoadSave(new Wizard, "PSAVE");
+                        break;
+                    default:
+                        break;
+                }
                 LoadSceneByEnum(LEVELONE);
+            }
         }
         else
-            i->SetTextColor(WHITE);
+            c[i]->SetTextColor(WHITE);
     }
 }
 
 void classChoose::LoadScene()
 {
-    SetBG(GREEN);
+    SetBG("SceneBG/mainmenu.png", V2(1920, 1080));
+
     std::string mT("CHOOSE YOUR CLASS");
     Title1 = new TextBox(&mT, 1);
     Title1->SetTextColor(BLACK);

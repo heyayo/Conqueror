@@ -15,7 +15,6 @@ public:
     };
 
 private:
-    float speed = 5;
     CLASS classType;
     unsigned JournalCount = 0;
 
@@ -24,7 +23,6 @@ public:
     Player(float hp, float dmg, unsigned JC, CLASS type);
     ~Player();
 
-    Entity* MakeCopy();
 
     void Update() override;
     void Start() override;

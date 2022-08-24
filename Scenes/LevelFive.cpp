@@ -1,11 +1,16 @@
 #include "LevelFive.hpp"
 #include "Door.hpp"
 #include "Player.hpp"
+#include "LevelFive.hpp"
+#include "Door.hpp"
+#include "Player.hpp"
 #include "Dragon.hpp"
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
 #include "Melee.hpp"
+#include "Wall.hpp"
 
+Physical* wall5[2];
 Door* toNextLevel5;
 Player* player5;
 Actor* enemies5[3];
@@ -22,12 +27,21 @@ void LevelFive::LoadScene()
     player5->SetPosition(100, 350);
 
     enemies5[0] = new Dragon;
-    enemies5[0]->SetPosition(480, 150);
+    enemies5[0]->SetPosition(580, 150);
     enemies5[1] = new Dragon;
     enemies5[1]->SetPosition(1150, 150);
     enemies5[2] = new Dragon;
     enemies5[2]->SetPosition(750, 500);
 
+    wall5[0] = new Wall;
+
+    wall5[0]->SetCollisionSize(V2(350, 1000));  
+    wall5[0]->SetPosition(250, 950);
+    wall5[0]->Init(RED, V2(550, 300));
+    wall5[1] = new Wall;
+    wall5[1]->SetCollisionSize(V2(180, 240));
+    wall5[1]->SetPosition(250, 120);
+    wall5[1]->Init(GREEN, V2(550, 300));
     std::string m[6];
     m[0] = "RIDE WIFE";
     m[1] = "LIFE GOOD";
@@ -40,6 +54,8 @@ void LevelFive::LoadScene()
 
     AddPhysical(player5);
     AddPhysical(toNextLevel5);
+    AddPhysical(wall5[0]);
+    AddPhysical(wall5[1]);
     for (auto i : enemies5)
     {
         AddPhysical(i);
@@ -56,9 +72,9 @@ void LevelFive::SceneUpdate()
 
 void LevelFive::Collision()
 {
-    /*for (auto walls : wall2)
-        if (CalculateCollisionsBetween(player1,walls))
-            player1->Move(-player1->GetVelocity());*/
+    for (auto walls : wall5)
+        if (CalculateCollisionsBetween(player5,walls))
+            player5->Move(-player5->GetVelocity());
 
     // Player Collision With Border
     if (CalculateCollisionBorder(player5))
@@ -101,20 +117,18 @@ void LevelFive::Collision()
             if (eo == e) // If we are colliding with ourselves, stop doing that
                 continue;
             // If colliding with another enemy, stop enemy
-            if (CalculateCollisionsBetween(e,eo) || CalculateCollisionsBetween(e,player5))
+            if (CalculateCollisionsBetween(e, eo) || CalculateCollisionsBetween(e, player5))
             {
                 e->Move(-e->GetVelocity());
             }
         }
-
         // Enemy and Wall Collision
-        /*for (auto walle : wa)
+        for (auto walle : wall5)
         {
             if (CalculateCollisionsBetween(walle, e))
                 e->Move(-e->GetVelocity());
-        }*/
+        }
     }
-
     // Melee Collision Checking
     std::vector<Physical*> melee = GetPhysicsByGroup("MELEE");
     for (auto mel : melee)

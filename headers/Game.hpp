@@ -14,6 +14,8 @@ enum SCENES
     LEVELFIVE,
     LEVELTHREE,
     CLASSCHOOSE,
+    LEVELFOUR,
+    LEVELMID1,
     SCENEMAX
 };
 // ADD SCENE NAMES ABOVE
@@ -26,7 +28,7 @@ void RunScene();
 void Close();
 void GenerateScenes();
 
-void LoadSave(Entity* en, const char* sn);
+void LoadSave(Physical* en, const char* sn);
 SaveState GetSaveByName(const char* name);
 SaveState GetSaveByIndex(unsigned index);
 
