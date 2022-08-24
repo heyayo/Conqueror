@@ -4,4 +4,5 @@ Prototype
 build
 .vs
 .vs/*
+Prototype.pdb
 Prototype.*
