@@ -47,7 +47,6 @@ add_executable(Prototype
         Scenes/LevelFour.cpp
         PictureBox.cpp
         )
->>>>>>> master
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)
