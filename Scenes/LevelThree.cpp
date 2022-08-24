@@ -18,7 +18,7 @@ void LevelThree::LoadScene()
     SetBG("SceneBG/stage_3.png", V2(1920, 1080));
     toNextLevel3 = new Door;
     toNextLevel3->Redirect(LEVELFOUR);
-    toNextLevel3->SetPosition(1200, 500);
+    toNextLevel3->SetPosition(1300, 500);
 
     player3 = new Player;
     player3->SetPosition(100, 350);
@@ -36,12 +36,12 @@ void LevelThree::LoadScene()
 
     wall3[0] = new Wall;
     wall3[0]->SetCollisionSize(V2(650, 1000));
-    wall3[0]->SetPosition(840, 780);
-    wall3[0]->Init(BLACK, V2(350, 580));
+    wall3[0]->SetPosition(1070, 700);
+    wall3[0]->Init(RED, V2(260, 750));
     wall3[1] = new Wall;
     wall3[1]->SetCollisionSize(V2(180, 240));
-    wall3[1]->SetPosition(840, 120);
-    wall3[1]->Init(GREEN, V2(330, 220));
+    wall3[1]->SetPosition(400, 950);
+    wall3[1]->Init(GREEN, V2(1100, 240));
     std::string m[6];
     m[0] = "RIDE WIFE";
     m[1] = "LIFE GOOD";

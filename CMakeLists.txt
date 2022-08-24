@@ -42,8 +42,10 @@ add_executable(Prototype
         Scenes/classChoose.cpp
         Dragon.cpp
         Scenes/LevelFour.cpp
-        classChoose.cpp
-         "Scenes/LevelFour.cpp" "Scenes/LevelFour.h")
+        Scenes/LevelThree.cpp
+        Scenes/classChoose.cpp
+        PictureBox.cpp
+        )
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)
