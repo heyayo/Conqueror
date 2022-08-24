@@ -43,7 +43,8 @@ add_executable(Prototype
         Dragon.cpp
         Scenes/LevelThree.cpp
         Scenes/LevelFour.cpp
-        PictureBox.cpp)
+        PictureBox.cpp
+        Scenes/Levelmid1.cpp "HPcrystal.cpp" "headers/HPcrystal.hpp")
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)
