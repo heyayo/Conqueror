@@ -14,7 +14,7 @@ Player::Player()
 
 void Player::Start()
 {
-    x = 500;
+    x = 200;
     y = 500;
     angle = 0;
     SetCollisionSize(64);

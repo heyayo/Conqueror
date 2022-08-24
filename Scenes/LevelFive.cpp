@@ -35,6 +35,15 @@ void LevelFive::LoadScene()
 
     wall5[0] = new Wall;
 
+    wall5[0]->SetCollisionSize(V2(550, 300));
+    wall5[0]->SetPosition(220, 980);
+    wall5[0]->Init(RED, V2(460, 230));
+    wall5[1] = new Wall;
+    wall5[1]->SetCollisionSize(V2(550, 300));
+    wall5[1]->SetPosition(220, 90);
+    wall5[1]->Init(GREEN, V2(460, 240));
+
+
     wall5[0]->SetCollisionSize(V2(350, 1000));  
     wall5[0]->SetPosition(250, 950);
     wall5[0]->Init(RED, V2(550, 300));
@@ -42,6 +51,7 @@ void LevelFive::LoadScene()
     wall5[1]->SetCollisionSize(V2(180, 240));
     wall5[1]->SetPosition(250, 120);
     wall5[1]->Init(GREEN, V2(550, 300));
+
     std::string m[6];
     m[0] = "RIDE WIFE";
     m[1] = "LIFE GOOD";
