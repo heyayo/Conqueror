@@ -6,30 +6,27 @@
 #include "DeadSoul.hpp"
 #include "Wall.hpp"
 #include "Melee.hpp"
+#include "HPcrystal.hpp"
 
 Physical* wallmid1[2];
 Door* toNextLevelmid1;
 Player* playermid1;
-Actor* enemiesmid1[3];
-DeadSoul* speakermid11;
+DeadSoul* speakermid1;
+HPcrystal* HPcrystal1;
 
 void Levelmid1::LoadScene()
 {
     SetBG("SceneBG/stage middle.png", V2(1920, 1080));
     toNextLevelmid1 = new Door;
     toNextLevelmid1->Redirect(LEVELTWO);
-    toNextLevelmid1->SetPosition(1900, 500);
+    toNextLevelmid1->SetPosition(1500, 500);
 
     playermid1 = new Player;
     playermid1->SetPosition(100, 350);
 
-    enemiesmid1[0] = new Slime;
-    enemiesmid1[0]->SetPosition(600, 150);
-    enemiesmid1[1] = new Slime;
-    enemiesmid1[1]->SetPosition(1150, 150);
-    enemiesmid1[2] = new Slime;
-    enemiesmid1[2]->SetPosition(800, 650);
-
+    HPcrystal1 = new HPcrystal;
+    HPcrystal1->SetPosition(1000, 500);
+  
     wallmid1[0] = new Wall;
     wallmid1[0]->SetCollisionSize(V2(350, 1000));
     wallmid1[0]->SetPosition(250, 950);
@@ -46,19 +43,14 @@ void Levelmid1::LoadScene()
     m[3] = "KILL WIFE";
     m[4] = "WIFE GONE";
     m[5] = "REGRET";
-    speakermid11 = new DeadSoul(m, 6);
-    speakermid11->SetPosition(300, 350);
+    speakermid1 = new DeadSoul(m, 6);
+    speakermid1->SetPosition(1000, 350);
 
     AddPhysical(playermid1);
     AddPhysical(toNextLevelmid1);
     AddPhysical(wallmid1[0]);
     AddPhysical(wallmid1[1]);
-    for (auto i : enemiesmid1)
-    {
-        AddPhysical(i);
-        std::cout << i->GetPosition() << std::endl;
-    }
-    AddPhysical(speakermid11);
+    AddPhysical(HPcrystal1);
 }
 
 void Levelmid1::SceneUpdate()
@@ -72,6 +64,10 @@ void Levelmid1::SceneUpdate()
 
 void Levelmid1::Collision()
 {
+    if (CalculateCollisionsBetween(playermid1, HPcrystal1))
+    {
+        Kill(HPcrystal1);
+    }
     for (auto walls : wallmid1)
         if (CalculateCollisionsBetween(playermid1, walls))
             playermid1->Move(-playermid1->GetVelocity());
@@ -85,53 +81,15 @@ void Levelmid1::Collision()
     std::vector<Actor*> enemyList1 = GetActorsByGroup("ENEMY");
 
     // Enemy Collisions
-    for (auto e : enemyList1)
+    for (auto arrow : arrows)
     {
-        // Tick Enemy AI and Kill if Health Depleted
-        if (e->GetHealth() <= 0)
+        // Kill Arrow on Border Collision
+        if (CalculateCollisionBorder(arrow))
         {
-            Kill(e);
-            continue;
-        }
-        Enemy* enemyconv = dynamic_cast<Enemy*>(e);
-        enemyconv->Act();
-        for (auto arrow : arrows)
-        {
-            // Kill Arrow on Border Collision
-            if (CalculateCollisionBorder(arrow))
-            {
-                Kill(arrow);
-                std::cout << "BORDER HIT" << std::endl;
-            }
-            // Kill Arrow and Hurt Enemy on Enemy Collision
-            if (CalculateCollisionsBetween(arrow, e))
-            {
-                std::cout << "HIT" << std::endl;
-                e->Hurt(arrow->GetDamage());
-                Kill(arrow);
-            }
-        }
-        // Collision with Other enemiesmid1
-        for (auto eo : enemyList1)
-        {
-            if (eo == e) // If we are colliding with ourselves, stop doing that
-                continue;
-            // If colliding with another enemy, stop enemy
-            if (CalculateCollisionsBetween(e, eo) || CalculateCollisionsBetween(e, playermid1))
-            {
-                e->Move(-e->GetVelocity());
-            }
-        }
-
-        // Enemy and Wall Collision
-        for (auto walle : wallmid1)
-        {
-            if (CalculateCollisionsBetween(walle, e))
-                e->Move(-e->GetVelocity());
+            Kill(arrow);
+            std::cout << "BORDER HIT" << std::endl;
         }
     }
-
-    // Melee Collision Checking
     std::vector<Physical*> melee = GetPhysicsByGroup("MELEE");
     for (auto mel : melee)
     {
@@ -146,4 +104,6 @@ void Levelmid1::Collision()
             }
         }
     }
+    
+
 }
