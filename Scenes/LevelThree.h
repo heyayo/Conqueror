@@ -1,12 +1,13 @@
-#ifndef PROTOTYPE_LEVELTWO_HPP
-#define PROTOTYPE_LEVELTWO_HPP
+#ifndef PROTOTYPE_LEVELTHREE_HPP
+#define PROTOTYPE_LEVELTHREE_HPP
 
 #include "Scene.hpp"
 
-class LevelFour : public Scene
+class LevelThree : public Scene
 {
 
 public:
+
     void LoadScene() override;
     void SceneUpdate() override;
     void Collision() override;

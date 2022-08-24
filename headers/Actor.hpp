@@ -12,11 +12,13 @@ protected:
 
 public:
     Actor();
+    Actor(float hp, float dmg);
     void Hurt(const float& dmg);
 
     float GetHealth() const;
     float GetDamage() const;
     V2 GetVelocity() const;
+
 };
 
 

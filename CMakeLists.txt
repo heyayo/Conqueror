@@ -37,11 +37,11 @@ add_executable(Prototype
         Scenes/LevelOne.cpp
         Goblin.cpp
         Scenes/LevelTwo.cpp
-        timer.cpp
         Melee.cpp
         Scenes/LevelFive.cpp
         Scenes/classChoose.cpp
         Dragon.cpp
+        Scenes/LevelFour.cpp
          "Scenes/LevelFour.cpp" "Scenes/LevelFour.h")
 
 target_include_directories(Prototype PUBLIC headers)
