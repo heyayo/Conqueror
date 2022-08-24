@@ -10,9 +10,9 @@ Fireball::Fireball(float dmg)
 
 void Fireball::Start()
 {
-    Init("sprites/fireball.png", V2(32,96));
+    Init("sprites/fireball.png", V2(64,64));
     SetPosition(parent->GetPosition());
-    SetCollisionSize(32);
+    AutoCollider();
     groupID = 2;
     groupName = "PROJECTILE";
 }

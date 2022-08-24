@@ -6,21 +6,12 @@
 
 class Player : public Actor
 {
-public:
-    enum CLASS
-    {
-        WARRIOR,
-        ARCHER,
-        MAGIC
-    };
-
 private:
-    CLASS classType;
     unsigned JournalCount = 0;
 
 public:
     Player();
-    Player(float hp, float dmg, unsigned JC, CLASS type);
+    Player(float hp, float dmg, unsigned JC);
     ~Player();
 
 

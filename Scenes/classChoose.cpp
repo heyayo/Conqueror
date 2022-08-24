@@ -9,40 +9,67 @@
 
 TextBox* Title1;
 PictureBox* c[4];
+TextBox* Selectors[3];
+std::string selectText = "ARCHER";
+unsigned selection = 0;
 
 void classChoose::SceneUpdate()
 {
+    switch (selection)
+    {
+        case ARCHER:
+            selectText = "ARCHER";
+            break;
+        case WARRIOR:
+            selectText = "WARRIOR";
+            break;
+        case WIZARD:
+            selectText = "WIZARD";
+            break;
+        case HUGHJACKMAN:
+            selectText = "HUGHJACKMAN";
+            break;
+    }
+    Selectors[0]->SetTexts(&selectText, 1);
 }
 
 void classChoose::Collision()
 {
-    for (int i = 0; i < 4; i++)
+    if (Selectors[1]->CalculateMouseCollision())
     {
-        if (c[i]->CalculateMouseCollision())
+        Selectors[1]->SetTextColor(BLUE);
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
-            c[i]->SetTextColor(BLUE);
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-            {
-                switch (i)
-                {
-                    case 0:
-                        LoadSave(new Archer, "PSAVE'");
-                        break;
-                    case 1:
-                        LoadSave(new Warrior, "PSAVE");
-                        break;
-                    case 2:
-                        LoadSave(new Wizard, "PSAVE");
-                        break;
-                    default:
-                        break;
-                }
-                LoadSceneByEnum(LEVELONE);
-            }
+            if (selection > 0)
+                --selection;
+            std::cout << selection << std::endl;
         }
-        else
-            c[i]->SetTextColor(WHITE);
     }
+    else
+        Selectors[1]->SetTextColor(BLACK);
+    if (Selectors[2]->CalculateMouseCollision())
+    {
+        Selectors[2]->SetTextColor(BLUE);
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            if (selection < 3)
+                ++selection;
+            std::cout << selection << std::endl;
+        }
+    }
+    else
+        Selectors[2]->SetTextColor(BLACK);
+    if (Selectors[0]->CalculateMouseCollision())
+    {
+        Selectors[0]->SetTextColor(BLUE);
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            SetPlayersClass(static_cast<PLAYERCLASS>(selection));
+            LoadSceneByEnum(LEVELONE);
+        }
+    }
+    else
+        Selectors[0]->SetTextColor(BLACK);
 }
 
 void classChoose::LoadScene()
@@ -88,6 +115,38 @@ void classChoose::LoadScene()
     c[3]->SetCaption("HUGH JACKMAN");
     c[3]->SetOrientation(PictureBox::DOWN);
 
+    Selectors[0] = new TextBox(&selectText,1);
+    Selectors[0]->SetBoxColor(GOLD);
+    Selectors[0]->SetTextColor(BLACK);
+    Selectors[0]->SetAlignment(TextBox::CENTER);
+    Selectors[0]->SetFontSize(30);
+    Selectors[0]->SetSpacing(5);
+    Selectors[0]->SetPadding(V2(80,0));
+    Selectors[0]->SetPosition(GetScreenCenter());
+
+    std::string leftarrow("<");
+    V2 arrowOffset(120,0);
+    Selectors[1] = new TextBox(&leftarrow, 1);
+    Selectors[1]->SetBoxColor(GOLD);
+    Selectors[1]->SetTextColor(BLACK);
+    Selectors[1]->SetAlignment(TextBox::CENTER);
+    Selectors[1]->SetFontSize(30);
+    Selectors[1]->SetSpacing(5);
+    Selectors[1]->SetPadding(V2(10,0));
+    Selectors[1]->SetPosition(GetScreenCenter() - arrowOffset);
+
+    std::string rightarrow(">");
+    Selectors[2] = new TextBox(&rightarrow, 1);
+    Selectors[2]->SetBoxColor(GOLD);
+    Selectors[2]->SetTextColor(BLACK);
+    Selectors[2]->SetAlignment(TextBox::CENTER);
+    Selectors[2]->SetFontSize(30);
+    Selectors[2]->SetSpacing(5);
+    Selectors[2]->SetPadding(V2(10,0));
+    Selectors[2]->SetPosition(GetScreenCenter() + arrowOffset);
+
+    for (auto e : Selectors)
+        AddUI(e);
     AddUI(Title1);
     for (auto i : c)
         AddUI(i);

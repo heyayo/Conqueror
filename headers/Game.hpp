@@ -20,6 +20,14 @@ enum SCENES
 };
 // ADD SCENE NAMES ABOVE
 
+enum PLAYERCLASS
+{
+    ARCHER,
+    WARRIOR,
+    WIZARD,
+    HUGHJACKMAN
+};
+
 Scene* GetCurrentScene();
 
 void LoadScene(Scene* next);
@@ -31,5 +39,8 @@ void GenerateScenes();
 void LoadSave(Physical* en, const char* sn);
 SaveState GetSaveByName(const char* name);
 SaveState GetSaveByIndex(unsigned index);
+
+PLAYERCLASS GetPlayersClass();
+void SetPlayersClass(PLAYERCLASS choose);
 
 #endif

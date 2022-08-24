@@ -70,6 +70,7 @@ void LevelOne::LoadScene()
 
 void LevelOne::SceneUpdate()
 {
+    std::cout << GetPlayersClass() << std::endl;
     for (int i = 0; i < 3; i++)
     {
         V2 barOffset(0,enemies[i]->GetSize().y/2);

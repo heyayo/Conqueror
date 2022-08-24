@@ -5,7 +5,7 @@
 
 class Fireball : public Actor
 {
-    float speed = -10;
+    float speed = 10;
 public:
     Fireball(float dmg);
 

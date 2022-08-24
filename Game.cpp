@@ -8,9 +8,11 @@
 #include "LevelFour.h"
 #include "LevelThree.h"
 #include "Levelmid1.hpp"
+
 Scene* currentScene;
 Scene* scenes[SCENEMAX];
 std::vector<SaveState> saves;
+PLAYERCLASS chosen = ARCHER;
 
 void GenerateScenes()
 {
@@ -82,4 +84,14 @@ SaveState GetSaveByIndex(unsigned int index)
     if (index > saves.size())
         return SaveState{nullptr,"NULL"};
     return saves[index];
+}
+
+PLAYERCLASS GetPlayersClass()
+{
+    return chosen;
+}
+
+void SetPlayersClass(PLAYERCLASS choose)
+{
+    chosen = choose;
 }
