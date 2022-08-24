@@ -1,66 +1,67 @@
-#include "LevelOne.hpp"
+#include "Levelmid1.hpp"
 #include "Door.hpp"
-#include "Player.hpp"
+#include "player.hpp"
 #include "Slime.hpp"
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
-#include "LevelTwo.hpp"
 #include "Wall.hpp"
 #include "Melee.hpp"
 
-Physical* wall1[2];
-Door* toNextLevel;
-Player* player;
-Actor* enemies[3];
-DeadSoul* speaker;
+Physical* wallmid1[2];
+Door* toNextLevelmid1;
+Player* playermid1;
+Actor* enemiesmid1[3];
+DeadSoul* speakermid11;
 
-void LevelOne::LoadScene()
+void Levelmid1::LoadScene()
 {
-    SetBG("SceneBG/stage_1.png",V2(1920,1080));
-    toNextLevel = new Door;
-    toNextLevel->Redirect(LEVELMID1);
-    toNextLevel->SetPosition(1000,500);
+    SetBG("SceneBG/stage middle.png", V2(1920, 1080));
+    toNextLevelmid1 = new Door;
+    toNextLevelmid1->Redirect(LEVELTWO);
+    toNextLevelmid1->SetPosition(1900, 500);
 
-    player = new Player;
-    player->SetPosition(100,350);
+    playermid1 = new Player;
+    playermid1->SetPosition(100, 350);
 
-    enemies[0] = new Slime;
-    enemies[0]->SetPosition(600,150);
-    enemies[1] = new Slime;
-    enemies[1]->SetPosition(1150,150);
-    enemies[2] = new Slime;
-    enemies[2]->SetPosition(800,650);
+    enemiesmid1[0] = new Slime;
+    enemiesmid1[0]->SetPosition(600, 150);
+    enemiesmid1[1] = new Slime;
+    enemiesmid1[1]->SetPosition(1150, 150);
+    enemiesmid1[2] = new Slime;
+    enemiesmid1[2]->SetPosition(800, 650);
 
-    wall1[0] = new Wall;
-    wall1[0]->SetCollisionSize(V2(350, 1000));
-    wall1[0]->SetPosition(250, 950);
-    wall1[0]->Init(RED, V2(550, 300));
-    wall1[1] = new Wall;
-    wall1[1]->SetCollisionSize(V2(180, 240));
-    wall1[1]->SetPosition(250, 120);
-    wall1[1]->Init(GREEN, V2(550, 300));
+    wallmid1[0] = new Wall;
+    wallmid1[0]->SetCollisionSize(V2(350, 1000));
+    wallmid1[0]->SetPosition(250, 950);
+    wallmid1[0]->Init(RED, V2(550, 300));
+    wallmid1[1] = new Wall;
+    wallmid1[1]->SetCollisionSize(V2(180, 240));
+    wallmid1[1]->SetPosition(250, 120);
+    wallmid1[1]->Init(GREEN, V2(550, 300));
 
     std::string m[6];
-    m[0] = "Are these slimes really what the adventurer";
-    m[1] = " died to? Do they really think that ";
-    m[2] = " they can scare me through numbers alone?";
-    m[3] = " I will show them what I am capable of!";
-    speaker = new DeadSoul(m,6);
-    speaker->SetPosition(300,350);
+    m[0] = "RIDE WIFE";
+    m[1] = "LIFE GOOD";
+    m[2] = "WIFE FIGHT BACK";
+    m[3] = "KILL WIFE";
+    m[4] = "WIFE GONE";
+    m[5] = "REGRET";
+    speakermid11 = new DeadSoul(m, 6);
+    speakermid11->SetPosition(300, 350);
 
-    AddPhysical(player);
-    AddPhysical(toNextLevel);
-    AddPhysical(wall1[0]);
-    AddPhysical(wall1[1]);
-    for (auto i : enemies)
+    AddPhysical(playermid1);
+    AddPhysical(toNextLevelmid1);
+    AddPhysical(wallmid1[0]);
+    AddPhysical(wallmid1[1]);
+    for (auto i : enemiesmid1)
     {
         AddPhysical(i);
         std::cout << i->GetPosition() << std::endl;
     }
-    AddPhysical(speaker);
+    AddPhysical(speakermid11);
 }
 
-void LevelOne::SceneUpdate()
+void Levelmid1::SceneUpdate()
 {
     // DEBUG OPTION, MOUSE LEFT PRINTS OUT LOCATION IN SPACE
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
@@ -69,15 +70,15 @@ void LevelOne::SceneUpdate()
     }
 }
 
-void LevelOne::Collision()
+void Levelmid1::Collision()
 {
-    for (auto walls : wall1)
-        if (CalculateCollisionsBetween(player,walls))
-            player->Move(-player->GetVelocity());
+    for (auto walls : wallmid1)
+        if (CalculateCollisionsBetween(playermid1, walls))
+            playermid1->Move(-playermid1->GetVelocity());
 
-    // Player Collision With Border
-    if (CalculateCollisionBorder(player))
-        player->Move(-player->GetVelocity());
+    // playermid1 Collision With Border
+    if (CalculateCollisionBorder(playermid1))
+        playermid1->Move(-playermid1->GetVelocity());
 
     // Enemy Collision With Arrows
     std::vector<Actor*> arrows = GetActorsByGroup("PROJECTILE");
@@ -110,20 +111,20 @@ void LevelOne::Collision()
                 Kill(arrow);
             }
         }
-        // Collision with Other Enemies
+        // Collision with Other enemiesmid1
         for (auto eo : enemyList1)
         {
             if (eo == e) // If we are colliding with ourselves, stop doing that
                 continue;
             // If colliding with another enemy, stop enemy
-            if (CalculateCollisionsBetween(e,eo) || CalculateCollisionsBetween(e,player))
+            if (CalculateCollisionsBetween(e, eo) || CalculateCollisionsBetween(e, playermid1))
             {
                 e->Move(-e->GetVelocity());
             }
         }
 
         // Enemy and Wall Collision
-        for (auto walle : wall1)
+        for (auto walle : wallmid1)
         {
             if (CalculateCollisionsBetween(walle, e))
                 e->Move(-e->GetVelocity());
@@ -139,7 +140,7 @@ void LevelOne::Collision()
             Kill(mel);
         for (auto e : enemyList1)
         {
-            if (CalculateCollisionsBetween(e,mel))
+            if (CalculateCollisionsBetween(e, mel))
             {
                 e->Hurt(temp->GetDamage());
             }
