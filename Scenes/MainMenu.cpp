@@ -16,7 +16,7 @@ void MainMenu::Collision()
         PButton->SetTextColor(BLUE);
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
-            LoadSceneByEnum(LEVELONE);
+            LoadSceneByEnum(CLASSCHOOSE);
         }
     }
     else
@@ -25,6 +25,7 @@ void MainMenu::Collision()
 
 void MainMenu::LoadScene()
 {
+    SetBG(GREEN);
     std::string mT("CONQUERORS DUNGEON");
     Title = new TextBox(&mT, 1);
     Title->SetTextColor(BLACK);
@@ -45,5 +46,4 @@ void MainMenu::LoadScene()
     PButton->SetPosition(GetScreenCenter());
     AddUI(Title);
     AddUI(PButton);
-    std::cout << Title->GetPosition() << ' ' << PButton->GetPosition() << std::endl;
 }

@@ -40,8 +40,9 @@ add_executable(Prototype
         timer.cpp
         Melee.cpp
         Scenes/LevelFive.cpp
+        Scenes/classChoose.cpp
         Dragon.cpp
-         "headers/Dragon.hpp")
+         "Scenes/LevelFour.cpp" "Scenes/LevelFour.h")
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)
