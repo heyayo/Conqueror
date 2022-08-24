@@ -22,7 +22,7 @@ void LevelFour::LoadScene()
     toNextLevel4->SetPosition(1200, 500);
 
     player4 = new Player;
-    player4->SetPosition(100, 350);
+    player4->SetPosition(0, 350);
 
     enemies4[0] = new Demon;
     enemies4[0]->SetPosition(850, 250);
@@ -36,13 +36,13 @@ void LevelFour::LoadScene()
     enemies4[4]->SetPosition(900, 300);
 
     wall4[0] = new Wall;
-    wall4[0]->SetCollisionSize(V2(650, 1000));
-    wall4[0]->SetPosition(840, 780);
-    wall4[0]->Init(BLACK, V2(350, 580));
+    wall4[0]->SetCollisionSize(V2(150, 500));
+    wall4[0]->SetPosition(600, 830);
+    wall4[0]->Init(RED, V2(150, 580));
     wall4[1] = new Wall;
-    wall4[1]->SetCollisionSize(V2(180, 240));
-    wall4[1]->SetPosition(840, 120);
-    wall4[1]->Init(GREEN, V2(330, 220));
+    wall4[1]->SetCollisionSize(V2(150, 230));
+    wall4[1]->SetPosition(480, 480);
+    wall4[1]->Init(GREEN, V2(400, 150));
     std::string m[6];
     m[0] = "RIDE WIFE";
     m[1] = "LIFE GOOD";
