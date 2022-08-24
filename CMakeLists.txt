@@ -37,6 +37,8 @@ add_executable(Prototype
         Scenes/LevelOne.cpp
         Goblin.cpp
         Scenes/LevelTwo.cpp
+        Scenes/LevelThree.cpp
+        timer.cpp
         Melee.cpp
         Scenes/LevelFive.cpp
         Scenes/classChoose.cpp
