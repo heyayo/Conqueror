@@ -7,6 +7,7 @@
 #include "classChoose.hpp"
 #include "LevelFour.h"
 #include "LevelThree.h"
+#include "Levelmid1.hpp"
 Scene* currentScene;
 Scene* scenes[SCENEMAX];
 std::vector<SaveState> saves;
@@ -21,6 +22,7 @@ void GenerateScenes()
     scenes[LEVELTHREE] = new LevelThree;
     scenes[LEVELFIVE] = new LevelFive;
     scenes[LEVELFOUR] = new LevelFour;
+    scenes[LEVELMID1] = new Levelmid1;
     currentScene = scenes[MAINMENU];
     currentScene->LoadScene();
 }

@@ -8,6 +8,7 @@ Character::Character()
 	stamina = 0;
 	atkSpd = 0;
 	speed = 0;
+	armour = 0;
 }
 
 Character::~Character()
