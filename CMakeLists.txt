@@ -42,6 +42,7 @@ add_executable(Prototype
         Scenes/LevelFive.cpp
         Scenes/classChoose.cpp
         Dragon.cpp
+        Healthpot.cpp
          "Scenes/LevelFour.cpp" "Scenes/LevelFour.h")
 
 target_include_directories(Prototype PUBLIC headers)
