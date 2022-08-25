@@ -6,9 +6,6 @@ std::vector<UIElement *> *Scene::GetUIElements(){return &UICollection;}
 
 Scene::Scene()
 {
-    Image img = GenImageColor(GetScreenWidth(),GetScreenHeight(),WHITE);
-    bgTex = LoadTextureFromImage(img);
-    UnloadImage(img);
     sceneSize = V2(1920,1080);
     cameraSize = V2(1920,1080);
     cameraPos = V2();
@@ -163,6 +160,7 @@ bool Scene::RemoveUI(UIElement *ui)
         if (UICollection[i] == ui)
         {
             delete ui;
+            ui = nullptr;
             UICollection.erase(UICollection.begin()+i);
             return true;
         }

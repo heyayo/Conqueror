@@ -3,7 +3,7 @@
 Skeleton::Skeleton()
 {
 	health = 20;
-	damage = 6;
+	damage = 8;
 	movspd = 3;
 	atkspd = 20;
 	Init("sprites/skele move.png", V2(128, 128));

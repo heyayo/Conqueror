@@ -6,7 +6,7 @@ Dragon::Dragon()
 	health = 100;
 	damage = 60;
 	movspd = 2;
-	atkspd = 10;
+	atkspd = 5;
 	Init("sprites/dragon move.png", V2(256, 384));
 	name = "ENEMY";
 	groupName = "ENEMY";
@@ -28,12 +28,12 @@ void Dragon::Start()
 
 void Dragon::Act()
 {
-	if (cooldown >= cooldown1){
+	if (currentCooldown >= atkrate){
 		EnemyFireball* temp = new EnemyFireball(damage);
 		temp->SetParent(this);
 		temp->SetRotation(angle);
 		GetCurrentScene()->AddPhysical(temp);
-		cooldown = 0;
+		currentCooldown = 0;
 	}
-	else { cooldown += 1; }
+	else { currentCooldown += 1; }
 }

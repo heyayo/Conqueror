@@ -8,6 +8,7 @@ Enemy::Enemy()
 	atkspd = 10;
 	damage = 10;
     health = 10;
+    atkrate = cooldown/atkspd;
 }
 
 Enemy::~Enemy()
@@ -63,7 +64,7 @@ void Enemy::Act()
     }
     if (!canAttack)
     {
-        if (currentCooldown < cooldown)
+        if (currentCooldown < atkrate)
         {
             currentCooldown++;
         }
@@ -74,5 +75,5 @@ void Enemy::Act()
 
 void Enemy::SetCooldown(int cool)
 {
-    cooldown = cool;
+    atkspd = cool;
 }

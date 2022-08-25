@@ -3,7 +3,7 @@
 
 int main()
 {
-    InitWindow(GetScreenWidthC(), GetScreenHeightC(),"TESTWINDOW");
+    InitWindow(GetScreenWidthC(), GetScreenHeightC(),"CONQUERORS DUNGEON");
     GenerateScenes();
 
     SetTargetFPS(60);

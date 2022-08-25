@@ -23,6 +23,7 @@ void Door::Update()
         update.speed = PlayerPtr->GetSpeed();
         update.armour = PlayerPtr->GetArmour();
         update.JournalCount = PlayerPtr->GetJournalCount();
+        update.currentLevel = update.currentLevel;
         CreateSave(update);
         LoadSceneByEnum(toLoad);
     }
