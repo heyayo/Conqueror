@@ -30,7 +30,7 @@ void LevelFour::LoadScene()
     SetBG("SceneBG/stage_4.png", V2(1920, 1080));
     toNextLevel4 = new Door;
     toNextLevel4->Redirect(LEVELFIVE);
-    toNextLevel4->SetPosition(1200, 500);
+    toNextLevel4->SetPosition(1700, 500);
 
     player4 = new Player;
     player4->SetPosition(0, 350);
