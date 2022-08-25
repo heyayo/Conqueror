@@ -9,6 +9,7 @@
 #include "Wall.hpp"
 #include "Bar.hpp"
 #include "TextBox.hpp"
+#include <string>
 
 Physical* wall3[2];
 Door* toNextLevel3;
@@ -23,7 +24,7 @@ std::string st3[2];
 void LevelThree::LoadScene()
 {
     SaveState temp = LoadSave();
-    temp.currentLevel = LEVELTHREE;
+    temp.currentLevel = LEVELONE;
     CreateSave(temp);
 
     SetBG("SceneBG/stage_3.png", V2(1920, 1080));
