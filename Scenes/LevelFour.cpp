@@ -141,7 +141,7 @@ void LevelFour::Collision()
         Kill(speaker4);
         RemoveUI(GetUIElementByName("SPEAKERBOX"));
         st4[1] = std::to_string(player4->GetJournalCount());
-        Status4->SetTexts(st4,2);
+        Status4->SetTexts(st4,8);
     }
 
     for (auto walls : wall4)
