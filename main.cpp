@@ -4,6 +4,9 @@
 int main()
 {
     InitWindow(GetScreenWidthC(), GetScreenHeightC(),"CONQUERORS DUNGEON");
+#ifdef _WIN32
+    ToggleFullscreen();
+#endif
     GenerateScenes();
 
     SetTargetFPS(60);
