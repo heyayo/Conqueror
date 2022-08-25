@@ -2,7 +2,7 @@
 
 Skeleton::Skeleton()
 {
-	health = 20;
+	health = 120;
 	damage = 8;
 	movspd = 3;
 	atkspd = 20;

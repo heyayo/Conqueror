@@ -5,7 +5,7 @@
 
 Thief::Thief()
 {
-	Init("sprites/assasin move.png", V2(128, 128));
+	Init("sprites/assassin move.png", V2(128, 128));
 	health = 10;
 	baseAtk = 20;
 	maxStamina = 100;

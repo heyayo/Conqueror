@@ -14,7 +14,6 @@ private:
 public:
     Player();
     Player(float hp, float dmg, unsigned JC);
-    ~Player();
     void Hurt(const float& dmg);
     void TickJournalCount();
 

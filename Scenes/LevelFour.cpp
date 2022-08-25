@@ -57,7 +57,7 @@ void LevelFour::LoadScene()
     for (int i = 0; i < 5; i++)
     {
         ebars4[i] = new Bar(enemies4[i]->GetHealthPtr(),
-                            20,
+                            200,
                             GREEN,
                             enemies4[i]->GetSize().x,
                             5);
@@ -67,11 +67,11 @@ void LevelFour::LoadScene()
     wall4[0] = new Wall;
     wall4[0]->SetCollisionSize(V2(150, 500));
     wall4[0]->SetPosition(600, 830);
-    wall4[0]->Init(RED, V2(150, 580));
+    wall4[0]->Init({0,0,0,0}, V2(150, 580));
     wall4[1] = new Wall;
     wall4[1]->SetCollisionSize(V2(150, 230));
     wall4[1]->SetPosition(480, 480);
-    wall4[1]->Init(GREEN, V2(400, 150));
+    wall4[1]->Init({0,0,0,0}, V2(400, 150));
     std::string m[6];
     m[0] = "RIDE WIFE";
     m[1] = "LIFE GOOD";

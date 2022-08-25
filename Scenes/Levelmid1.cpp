@@ -94,11 +94,11 @@ void Levelmid1::LoadScene()
     wallmid1[0] = new Wall;
     wallmid1[0]->SetCollisionSize(V2(350, 1000));
     wallmid1[0]->SetPosition(250, 950);
-    wallmid1[0]->Init(RED, V2(550, 300));
+    wallmid1[0]->Init({0,0,0,0}, V2(550, 300));
     wallmid1[1] = new Wall;
     wallmid1[1]->SetCollisionSize(V2(180, 240));
     wallmid1[1]->SetPosition(250, 120);
-    wallmid1[1]->Init(GREEN, V2(550, 300));
+    wallmid1[1]->Init({0,0,0,0}, V2(550, 300));
 
     stm1[0] = "Journals Collected";
     stm1[1] = std::to_string(temp.JournalCount);

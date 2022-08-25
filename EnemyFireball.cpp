@@ -9,9 +9,9 @@ void EnemyFireball::Update()
 
 void EnemyFireball::Start()
 {
-    Init("sprites/fireball.png", V2(100, 100));
+    Init("sprites/fireball.png", V2(64, 64));
     SetPosition(parent->GetPosition());
-    SetCollisionSize(50);
+    AutoCollider();
     groupID = 10;
     groupName = "ENEMYPROJECTILE";
 }

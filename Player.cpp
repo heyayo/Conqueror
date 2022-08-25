@@ -23,8 +23,8 @@ void Player::Start()
         case WIZARD:
             Init("sprites/wizard move.png", V2(96,96));
             break;
-        case HUGHJACKMAN:
-            Init("sprites/hughjackman.png", V2(128,128));
+        case ASSASSIN:
+            Init("sprites/assassin move.png", V2(128,128));
             break;
     }
     SaveState temp = LoadSave();
@@ -72,7 +72,7 @@ void Player::InputHandler()
                 temp->SetParent(this);
                 temp->Init(Color{255,0,0,30},GetSize());
                 temp->SetRotation(angle);
-                temp->maxCooldown = 10;
+                temp->maxCooldown = 4;
                 temp->cooldown = 0;
                 GetCurrentScene()->AddPhysical(temp);
             }
@@ -86,24 +86,19 @@ void Player::InputHandler()
                 GetCurrentScene()->AddPhysical(temp);
             }
             break;
-        case HUGHJACKMAN:
+        case ASSASSIN:
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
             {
-                Arrow* temp = new Arrow(damage);
+                Melee* temp = new Melee(damage);
                 temp->SetParent(this);
+                temp->Init(Color{255,0,0,30},GetSize());
                 temp->SetRotation(angle);
+                temp->maxCooldown = 2;
+                temp->cooldown = 0;
                 GetCurrentScene()->AddPhysical(temp);
-                Fireball* fire = new Fireball(damage);
-                fire->SetParent(this);
-                fire->SetRotation(angle);
-                GetCurrentScene()->AddPhysical(fire);
             }
             break;
     }
-}
-
-Player::~Player()
-{
 }
 
 void Player::Hurt(const float& dmg)

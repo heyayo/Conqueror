@@ -13,7 +13,8 @@ protected:
 public:
     Actor();
     Actor(float hp, float dmg);
-    void Hurt(const float& dmg);
+
+    virtual void Hurt(const float& dmg);
 
     float GetHealth() const;
     float GetDamage() const;
