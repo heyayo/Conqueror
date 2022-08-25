@@ -6,7 +6,7 @@
 #include "Skeleton.hpp"
 #include "Undead.hpp"
 #include "Door.hpp"
-
+#include <string>
 Player* playerCharacter;
 Slime* EnemySlime;
 Wall* wall;

@@ -31,6 +31,7 @@ void Player::Start()
     health = temp.health;
     damage = temp.damage;
     speed = temp.speed;
+    armour = temp.armour;
     JournalCount = temp.JournalCount;
     x = 200;
     y = 500;
@@ -105,6 +106,14 @@ Player::~Player()
 {
 }
 
+void Player::Hurt(const float& dmg)
+{
+    float effectivearmour = dmg + armour;
+    float damagemulti = dmg / effectivearmour;
+    float finaldamage = dmg * damagemulti;
+    health -= finaldamage;
+}
+
 Player::Player(float hp, float dmg, unsigned JC)
 : Actor(hp,dmg), JournalCount(JC)
 {
@@ -123,4 +132,9 @@ unsigned Player::GetJournalCount()
 float Player::GetSpeed()
 {
     return speed;
+}
+
+float Player::GetArmour()
+{
+    return armour;
 }

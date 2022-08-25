@@ -89,6 +89,7 @@ void classChoose::Collision()
             }
             newSave.JournalCount = 0;
             newSave.currentLevel = LEVELONE;
+            newSave.armour = 10;
             CreateSave(newSave);
             LoadSceneByEnum(LEVELONE);
         }

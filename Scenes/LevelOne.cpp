@@ -7,6 +7,7 @@
 #include "Wall.hpp"
 #include "Melee.hpp"
 #include "Bar.hpp"
+#include <string>
 #include "TextBox.hpp"
 
 Physical* wall1[2];
