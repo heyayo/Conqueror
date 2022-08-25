@@ -16,26 +16,23 @@ void Player::Start()
     switch(GetPlayersClass())
     {
         case ARCHER:
-            damage = 1;
-            std::cout << "ARCHER" << std::endl;
             Init("sprites/Archer move.png", V2(96,96));
             break;
         case WARRIOR:
-            damage = 5;
-            std::cout << "WARRIOR" << std::endl;
             Init("sprites/warrior move.png", V2(128,128));
             break;
         case WIZARD:
-            damage = 3;
-            std::cout << "WIZARD" << std::endl;
             Init("sprites/wizard move.png", V2(96,96));
             break;
         case HUGHJACKMAN:
-            damage = 100;
-            std::cout << "HUGHJACKMAN" << std::endl;
             Init("sprites/hughjackman.png", V2(256,256));
             break;
     }
+    SaveState temp = LoadSave();
+    health = temp.health;
+    damage = temp.damage;
+    speed = temp.speed;
+    JournalCount = temp.JournalCount;
     x = 200;
     y = 500;
     angle = 0;
@@ -73,7 +70,7 @@ void Player::InputHandler()
             {
                 Melee* temp = new Melee(damage);
                 temp->SetParent(this);
-                temp->Init(GREEN,GetSize());
+                temp->Init(Color{255,0,0,30},GetSize());
                 temp->SetRotation(angle);
                 temp->maxCooldown = 10;
                 temp->cooldown = 0;
@@ -112,4 +109,19 @@ Player::~Player()
 Player::Player(float hp, float dmg, unsigned JC)
 : Actor(hp,dmg), JournalCount(JC)
 {
+}
+
+void Player::TickJournalCount()
+{
+    ++JournalCount;
+}
+
+unsigned Player::GetJournalCount()
+{
+    return JournalCount;
+}
+
+float Player::GetSpeed()
+{
+    return speed;
 }

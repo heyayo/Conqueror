@@ -42,7 +42,6 @@ void classChoose::Collision()
         {
             if (selection > 0)
                 --selection;
-            std::cout << selection << std::endl;
         }
     }
     else
@@ -54,7 +53,6 @@ void classChoose::Collision()
         {
             if (selection < 3)
                 ++selection;
-            std::cout << selection << std::endl;
         }
     }
     else
@@ -65,6 +63,33 @@ void classChoose::Collision()
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
             SetPlayersClass(static_cast<PLAYERCLASS>(selection));
+            SaveState newSave;
+            switch (GetPlayersClass())
+            {
+                case ARCHER:
+                    newSave.health = 100;
+                    newSave.damage = 1;
+                    newSave.speed = 5;
+                    break;
+                case WARRIOR:
+                    newSave.health = 150;
+                    newSave.damage = 5;
+                    newSave.speed = 2;
+                    break;
+                case WIZARD:
+                    newSave.health = 80;
+                    newSave.damage = 3;
+                    newSave.speed = 5;
+                    break;
+                case HUGHJACKMAN:
+                    newSave.health = 250;
+                    newSave.damage = 100;
+                    newSave.speed = 5;
+                    break;
+            }
+            newSave.JournalCount = 0;
+            newSave.currentLevel = LEVELONE;
+            CreateSave(newSave);
             LoadSceneByEnum(LEVELONE);
         }
     }

@@ -9,7 +9,7 @@ void EnemyFireball::Update()
 
 void EnemyFireball::Start()
 {
-    Init("sprites/Fireball.png", V2(64, 64));
+    Init("sprites/fireball.png", V2(64, 64));
     SetPosition(parent->GetPosition());
     SetCollisionSize(32);
     groupID = 10;

@@ -8,7 +8,7 @@ Bar::Bar(float *toVal, float maxVal, Color barC, float maxS, float thick)
 
 void Bar::Start()
 {
-    progress = delta * *value;
+    progress = delta * maxValue;
     switch (orient)
     {
         case HORIZONTAL:
@@ -18,12 +18,16 @@ void Bar::Start()
             angle = 90;
             break;
     }
+    Init(barColor,V2(progress,thickness));
 }
 
 void Bar::Update()
 {
-    Init(barColor,V2(progress,thickness));
-    progress = delta * *value;
+    if (progress != delta* *value)
+    {
+        Init(barColor,V2(progress,thickness));
+        progress = delta * *value;
+    }
 }
 
 void Bar::SetOrientation(Bar::ORIENTATION ori)

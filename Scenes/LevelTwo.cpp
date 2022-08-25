@@ -8,6 +8,7 @@
 #include "Physical.hpp"
 #include "Wall.hpp"
 #include "Bar.hpp"
+#include "TextBox.hpp"
 
 Physical* wall2[2];
 Door* toNextLevel1;
@@ -15,9 +16,16 @@ Player* player1;
 Actor* enemies1[5];
 DeadSoul* speaker1;
 Bar* ebars2[5];
+Bar* pHP2;
+TextBox* Status2;
+std::string st2[2];
 
 void LevelTwo::LoadScene()
 {
+    SaveState temp = LoadSave();
+    temp.currentLevel = LEVELONE;
+    CreateSave(temp);
+
     SetBG("SceneBG/stage_2.png", V2(1920, 1080));
     toNextLevel1 = new Door;
     toNextLevel1->Redirect(LEVELTHREE);
@@ -25,6 +33,14 @@ void LevelTwo::LoadScene()
 
     player1 = new Player;
     player1->SetPosition(100, 350);
+    pHP2 = new Bar(player1->GetHealthPtr(),
+                  temp.health,
+                  PURPLE,
+                  GetScreenWidthDeltad(),
+                  25);
+    V2 pBarOffset(0,GetScreenHeightDeltad()/2);
+    pHP2->SetPosition(GetScreenCenter() + pBarOffset);
+    AddUI(pHP2);
 
     enemies1[0] = new Goblin;
     enemies1[0]->SetPosition(850, 250);
@@ -39,7 +55,7 @@ void LevelTwo::LoadScene()
     for (int i = 0; i < 5; i++)
     {
         ebars2[i] = new Bar(enemies1[i]->GetHealthPtr(),
-                                    10,
+                                    20,
                                     GREEN,
                                     enemies1[i]->GetSize().x,
                                     5);
@@ -64,6 +80,15 @@ void LevelTwo::LoadScene()
     speaker1 = new DeadSoul(m, 6);
     speaker1->SetPosition(300, 350);
 
+    st2[0] = "Journals Collected";
+    st2[1] = std::to_string(temp.JournalCount);
+    Status2 = new TextBox(st2,2);
+    Status2->SetPosition(GetScreenCenter());
+    Status2->SetFontSize(100);
+    Status2->SetPadding(V2(100,100));
+    Status2->SetAlignment(TextBox::CENTER);
+    AddUI(Status2);
+
     AddPhysical(player1);
     AddPhysical(toNextLevel1);
     AddPhysical(wall2[0]);
@@ -77,8 +102,15 @@ void LevelTwo::LoadScene()
 
 void LevelTwo::SceneUpdate()
 {
+    Status2->SetVisibility(IsKeyDown(KEY_I));
     for (int i = 0; i < 5; i++)
     {
+        if (enemies1[i]->GetHealth() <= 0)
+        {
+            Kill(enemies1[i]);
+            RemoveUI(ebars2[i]);
+            continue;
+        }
         V2 barOffset(0,enemies1[i]->GetSize().y/2);
         ebars2[i]->SetPosition(enemies1[i]->GetPosition()+barOffset);
     }
@@ -91,6 +123,16 @@ void LevelTwo::SceneUpdate()
 
 void LevelTwo::Collision()
 {
+    // Player Press e to Collect Journal
+    if (CalculateCollisionsBetween(player1,speaker1) && IsKeyPressed(KEY_E))
+    {
+        player1->TickJournalCount();
+        Kill(speaker1);
+        RemoveUI(GetUIElementByName("SPEAKERBOX"));
+        st2[1] = std::to_string(player1->GetJournalCount());
+        Status2->SetTexts(st2,2);
+    }
+
     for (auto walls : wall2)
         if (CalculateCollisionsBetween(player1,walls))
             player1->Move(-player1->GetVelocity());
@@ -106,12 +148,6 @@ void LevelTwo::Collision()
     // Enemy Collisions
     for (auto e : enemyList1)
     {
-        // Tick Enemy AI and Kill if Health Depleted
-        if (e->GetHealth() <= 0)
-        {
-            Kill(e);
-            continue;
-        }
         Enemy* enemyconv = dynamic_cast<Enemy*>(e);
         enemyconv->Act();
         for (auto arrow : arrows)
@@ -120,12 +156,10 @@ void LevelTwo::Collision()
             if (CalculateCollisionBorder(arrow))
             {
                 Kill(arrow);
-                std::cout << "BORDER HIT" << std::endl;
             }
             // Kill Arrow and Hurt Enemy on Enemy Collision
             else if (CalculateCollisionsBetween(arrow, e))
             {
-                std::cout << "HIT" << std::endl;
                 e->Hurt(arrow->GetDamage());
                 Kill(arrow);
             }

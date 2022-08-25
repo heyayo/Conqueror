@@ -11,8 +11,8 @@
 
 Scene* currentScene;
 Scene* scenes[SCENEMAX];
-std::vector<SaveState> saves;
 PLAYERCLASS chosen = ARCHER;
+SaveState save;
 
 void GenerateScenes()
 {
@@ -61,31 +61,6 @@ void Close()
         delete scenes[i];
 }
 
-void LoadSave(Physical *en, const char *sn)
-{
-    SaveState temp;
-    temp.toSave = en->MakeCopy();
-    temp.saveName = sn;
-    saves.push_back(temp);
-}
-
-SaveState GetSaveByName(const char *name)
-{
-    for (auto i : saves)
-    {
-        if (i.saveName == name)
-            return i;
-    }
-    return SaveState{nullptr,"NULL"};
-}
-
-SaveState GetSaveByIndex(unsigned int index)
-{
-    if (index > saves.size())
-        return SaveState{nullptr,"NULL"};
-    return saves[index];
-}
-
 PLAYERCLASS GetPlayersClass()
 {
     return chosen;
@@ -94,4 +69,14 @@ PLAYERCLASS GetPlayersClass()
 void SetPlayersClass(PLAYERCLASS choose)
 {
     chosen = choose;
+}
+
+void CreateSave(SaveState newSave)
+{
+    save = newSave;
+}
+
+SaveState LoadSave()
+{
+    return save;
 }

@@ -52,8 +52,9 @@ void Entity::SetPosition(V2 newPos)
 }
 void Entity::SetParent(Entity *newParent) { parent = newParent; }
 void Entity::SetRotation(float angl) { angle = angl; }
-void Entity::SetName(std::string newName) { groupName = newName; }
-void Entity::SetID(unsigned int newID) { groupID = newID; }
+void Entity::SetName(const char *newName) { name = newName; }
+void Entity::SetGroupName(std::string newName) { groupName = newName; }
+void Entity::SetGroupID(unsigned int newID) { groupID = newID; }
 
 void Entity::Init(const char *imgSrc)
 {

@@ -57,8 +57,9 @@ public:
     void SetPosition(V2 newPos);
     void SetRotation(float angl);
     void SetParent(Entity* newParent);
-    void SetName(std::string newName);
-    void SetID(unsigned newID);
+    void SetName(const char* newName);
+    void SetGroupName(std::string newName);
+    void SetGroupID(unsigned newID);
 
     virtual Entity* MakeCopy();
 

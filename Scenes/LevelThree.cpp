@@ -7,15 +7,25 @@
 #include "Melee.hpp"
 #include "Physical.hpp"
 #include "Wall.hpp"
+#include "Bar.hpp"
+#include "TextBox.hpp"
 
 Physical* wall3[2];
 Door* toNextLevel3;
 Player* player3;
 Actor* enemies3[5];
+Bar* ebars3[5];
 DeadSoul* speaker3;
+Bar* pHP3;
+TextBox* Status3;
+std::string st3[2];
 
 void LevelThree::LoadScene()
 {
+    SaveState temp = LoadSave();
+    temp.currentLevel = LEVELONE;
+    CreateSave(temp);
+
     SetBG("SceneBG/stage_3.png", V2(1920, 1080));
     toNextLevel3 = new Door;
     toNextLevel3->Redirect(LEVELFOUR);
@@ -23,6 +33,14 @@ void LevelThree::LoadScene()
 
     player3 = new Player;
     player3->SetPosition(100, 350);
+    pHP3 = new Bar(player3->GetHealthPtr(),
+                  temp.health,
+                  PURPLE,
+                  GetScreenWidthDeltad(),
+                  25);
+    V2 pBarOffset(0,GetScreenHeightDeltad()/2);
+    pHP3->SetPosition(GetScreenCenter() + pBarOffset);
+    AddUI(pHP3);
 
     enemies3[0] = new Skeleton;
     enemies3[0]->SetPosition(1100, 250);
@@ -34,6 +52,15 @@ void LevelThree::LoadScene()
     enemies3[3]->SetPosition(1130, 200);
     enemies3[4] = new Skeleton;
     enemies3[4]->SetPosition(1120, 300);
+    for (int i = 0; i < 5; i++)
+    {
+        ebars3[i] = new Bar(enemies3[i]->GetHealthPtr(),
+                            20,
+                            GREEN,
+                            enemies3[i]->GetSize().x,
+                            5);
+        AddUI(ebars3[i]);
+    }
 
     wall3[0] = new Wall;
     wall3[0]->SetCollisionSize(V2(650, 1000));
@@ -53,6 +80,15 @@ void LevelThree::LoadScene()
     speaker3 = new DeadSoul(m, 6);
     speaker3->SetPosition(300, 350);
 
+    st3[0] = "Journals Collected";
+    st3[1] = std::to_string(temp.JournalCount);
+    Status3 = new TextBox(st3,2);
+    Status3->SetPosition(GetScreenCenter());
+    Status3->SetFontSize(100);
+    Status3->SetPadding(V2(100,100));
+    Status3->SetAlignment(TextBox::CENTER);
+    AddUI(Status3);
+
     AddPhysical(player3);
     AddPhysical(toNextLevel3);
     AddPhysical(wall3[0]);
@@ -66,12 +102,35 @@ void LevelThree::LoadScene()
 
 void LevelThree::SceneUpdate()
 {
+    Status3->SetVisibility(IsKeyDown(KEY_I));
+    for (int i = 0; i < 5; i++)
+    {
+        if (enemies3[i]->GetHealth() <= 0)
+        {
+            Kill(enemies3[i]);
+            RemoveUI(ebars3[i]);
+            continue;
+        }
+        V2 barOffset(0,enemies3[i]->GetSize().y/2);
+        ebars3[i]->SetPosition(enemies3[i]->GetPosition()+barOffset);
+    }
+
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
 }
 
 void LevelThree::Collision()
 {
+    // Player Press e to Collect Journal
+    if (CalculateCollisionsBetween(player3,speaker3) && IsKeyPressed(KEY_E))
+    {
+        player3->TickJournalCount();
+        Kill(speaker3);
+        RemoveUI(GetUIElementByName("SPEAKERBOX"));
+        st3[1] = std::to_string(player3->GetJournalCount());
+        Status3->SetTexts(st3,2);
+    }
+
     for (auto walls : wall3)
         if (CalculateCollisionsBetween(player3, walls))
             player3->Move(-player3->GetVelocity());
@@ -87,12 +146,8 @@ void LevelThree::Collision()
     // Enemy Collisions
     for (auto e : enemyList1)
     {
-        // Tick Enemy AI and Kill if Health Depleted
-        if (e->GetHealth() <= 0)
-        {
-            Kill(e);
+        if (e == nullptr)
             continue;
-        }
         Enemy* enemyconv = dynamic_cast<Enemy*>(e);
         enemyconv->Act();
         for (auto arrow : arrows)
@@ -101,12 +156,10 @@ void LevelThree::Collision()
             if (CalculateCollisionBorder(arrow))
             {
                 Kill(arrow);
-                std::cout << "BORDER HIT" << std::endl;
             }
             // Kill Arrow and Hurt Enemy on Enemy Collision
             else if (CalculateCollisionsBetween(arrow, e))
             {
-                std::cout << "HIT" << std::endl;
                 e->Hurt(arrow->GetDamage());
                 Kill(arrow);
             }
@@ -137,7 +190,6 @@ void LevelThree::Collision()
             if (CalculateCollisionsBetween(walle, e))
             {
                 e->Move(-e->GetVelocity());
-                std::cout << "test";
             }
         }
     }

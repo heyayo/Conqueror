@@ -3,7 +3,7 @@
 #include "Game.hpp"
 Dragon::Dragon()
 {
-	health = 20;
+	health = 100;
 	damage = 40;
 	movspd = 2;
 	atkspd = 10;

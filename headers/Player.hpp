@@ -8,12 +8,17 @@ class Player : public Actor
 {
 private:
     unsigned JournalCount = 0;
+    float speed = 1;
 
 public:
     Player();
     Player(float hp, float dmg, unsigned JC);
     ~Player();
 
+    void TickJournalCount();
+
+    unsigned GetJournalCount();
+    float GetSpeed();
 
     void Update() override;
     void Start() override;
