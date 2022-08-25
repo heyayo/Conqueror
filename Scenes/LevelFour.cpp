@@ -162,11 +162,20 @@ void LevelFour::Collision()
                 Kill(arrow);
             }
             // Kill Arrow and Hurt Enemy on Enemy Collision
-            if (CalculateCollisionsBetween(arrow, e))
+            else if (CalculateCollisionsBetween(arrow, e))
             {
                 e->Hurt(arrow->GetDamage());
                 Kill(arrow);
             }
+            else {
+                for (auto walle : wall4)
+                {
+                    if (CalculateCollisionsBetween(walle, arrow))
+                        Kill(arrow);
+                    std::cout << "WALL HIT" << std::endl;
+                }
+            }
+
         }
         // Collision with Other Enemies
         for (auto eo : enemyList1)

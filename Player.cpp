@@ -70,7 +70,7 @@ void Player::InputHandler()
             {
                 Melee* temp = new Melee(damage);
                 temp->SetParent(this);
-                temp->Init(GREEN,GetSize());
+                temp->Init(Color{255,0,0,30},GetSize());
                 temp->SetRotation(angle);
                 temp->maxCooldown = 10;
                 temp->cooldown = 0;

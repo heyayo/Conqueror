@@ -153,17 +153,23 @@ void LevelOne::Collision()
                 Kill(arrow);
             }
             // Kill Arrow and Hurt Enemy on Enemy Collision
-            if (CalculateCollisionsBetween(arrow, e))
+            else if (CalculateCollisionsBetween(arrow, e))
             {
                 e->Hurt(arrow->GetDamage());
                 Kill(arrow);
+            }
+            else {
+                for (auto walle : wall1)
+                {
+                    if (CalculateCollisionsBetween(walle, arrow))
+                        Kill(arrow);
+                    std::cout << "WALL HIT" << std::endl;
+                }
             }
         }
         // Collision with Other Enemies
         for (auto eo : enemyList1)
         {
-            if (eo == nullptr)
-                continue;
             if (eo == e) // If we are colliding with ourselves, stop doing that
                 continue;
             // If colliding with another enemy, stop enemy
@@ -188,13 +194,13 @@ void LevelOne::Collision()
         Melee* temp = static_cast<Melee*>(mel);
         if (temp->cooldown >= temp->maxCooldown)
             Kill(mel);
-        for (auto e : enemyList1)
-        {
-            if (e == nullptr)
-                continue;
-            if (CalculateCollisionsBetween(e,mel))
+        else {
+            for (auto e : enemyList1)
             {
-                e->Hurt(temp->GetDamage());
+                if (CalculateCollisionsBetween(e, mel))
+                {
+                    e->Hurt(temp->GetDamage());
+                }
             }
         }
     }

@@ -158,10 +158,18 @@ void LevelTwo::Collision()
                 Kill(arrow);
             }
             // Kill Arrow and Hurt Enemy on Enemy Collision
-            if (CalculateCollisionsBetween(arrow, e))
+            else if (CalculateCollisionsBetween(arrow, e))
             {
                 e->Hurt(arrow->GetDamage());
                 Kill(arrow);
+            }
+            else {
+                for (auto walle : wall2)
+                {
+                    if (CalculateCollisionsBetween(walle, arrow))
+                        Kill(arrow);
+                    std::cout << "WALL HIT" << std::endl;
+                }
             }
         }
         // Collision with Other Enemies
@@ -191,11 +199,13 @@ void LevelTwo::Collision()
         Melee* temp = static_cast<Melee*>(mel);
         if (temp->cooldown >= temp->maxCooldown)
             Kill(mel);
-        for (auto e : enemyList1)
-        {
-            if (CalculateCollisionsBetween(e,mel))
+        else {
+            for (auto e : enemyList1)
             {
-                e->Hurt(temp->GetDamage());
+                if (CalculateCollisionsBetween(e, mel))
+                {
+                    e->Hurt(temp->GetDamage());
+                }
             }
         }
     }
