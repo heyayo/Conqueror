@@ -4,7 +4,7 @@ Skeleton::Skeleton()
 {
 	health = 120;
 	damage = 8;
-	movspd = 3;
+	movspd = 6;
 	atkspd = 20;
 	Init("sprites/skele move.png", V2(128, 128));
 	name = "ENEMY";

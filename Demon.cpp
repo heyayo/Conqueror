@@ -5,7 +5,7 @@ Demon::Demon()
 {
 	health = 200;
 	damage = 5;
-	movspd = 2;
+	movspd = 3;
 	atkspd = 10;
 	Init("sprites/demon move.png", V2(128, 128));
 	name = "ENEMY";

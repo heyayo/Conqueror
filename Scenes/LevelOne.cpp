@@ -181,13 +181,10 @@ void LevelOne::Collision()
                 }
             }
         }
-        // Collision with Other Enemies
+        // Collision with Player
         for (auto eo : enemyList1)
         {
-            if (eo == e) // If we are colliding with ourselves, stop doing that
-                continue;
-            // If colliding with another enemy, stop enemy
-            if (CalculateCollisionsBetween(e,eo) || CalculateCollisionsBetween(e, player))
+            if (CalculateCollisionsBetween(e, player))
             {
                 e->Move(-e->GetVelocity());
             }

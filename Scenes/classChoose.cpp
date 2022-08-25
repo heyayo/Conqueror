@@ -69,17 +69,17 @@ void classChoose::Collision()
                 case ARCHER:
                     newSave.health = 160;
                     newSave.damage = 12;
-                    newSave.speed = 5;
+                    newSave.speed = 8;
                     break;
                 case WARRIOR:
                     newSave.health = 200;
                     newSave.damage = 20;
-                    newSave.speed = 3;
+                    newSave.speed = 5;
                     break;
                 case WIZARD:
                     newSave.health = 120;
                     newSave.damage = 20;
-                    newSave.speed = 4;
+                    newSave.speed = 6;
                     break;
                 case ASSASSIN:
                     newSave.health = 70;

@@ -3,8 +3,8 @@
 #include "Game.hpp"
 Dragon::Dragon()
 {
-	health = 1000;
-	damage = 60;
+	health = 1500;
+	damage = 20;
 	movspd = 2;
 	atkspd = 1;
 	Init("sprites/dragon move.png", V2(256, 384));

@@ -4,7 +4,7 @@ Slime::Slime()
 {
 	health = 80;
 	damage = 3;
-	movspd = 1;
+	movspd = 4;
 	atkspd = 60;
 	Init("sprites/slime move.png", V2(128, 128));
 	x = 1000;
