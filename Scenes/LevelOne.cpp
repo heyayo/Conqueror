@@ -7,6 +7,7 @@
 #include "Wall.hpp"
 #include "Melee.hpp"
 #include "Bar.hpp"
+#include <string>
 
 Physical* wall1[2];
 Door* toNextLevel;

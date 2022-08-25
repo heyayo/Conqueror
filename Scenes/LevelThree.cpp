@@ -9,6 +9,7 @@
 #include "Wall.hpp"
 #include "Bar.hpp"
 #include "TextBox.hpp"
+#include <string>
 
 Physical* wall3[2];
 Door* toNextLevel3;
