@@ -58,7 +58,7 @@ void LevelTwo::LoadScene()
     for (int i = 0; i < 5; i++)
     {
         ebars2[i] = new Bar(enemies1[i]->GetHealthPtr(),
-                                    20,
+                                    120,
                                     GREEN,
                                     enemies1[i]->GetSize().x,
                                     5);
@@ -68,11 +68,11 @@ void LevelTwo::LoadScene()
     wall2[0] = new Wall;
     wall2[0]->SetCollisionSize(V2(650,1000));
     wall2[0]->SetPosition(840,780);
-    wall2[0]->Init(BLACK, V2(350, 580));
+    wall2[0]->Init({0,0,0,0}, V2(350, 580));
     wall2[1] = new Wall;
     wall2[1]->SetCollisionSize(V2(180, 240));
     wall2[1]->SetPosition(840, 120);
-    wall2[1]->Init(GREEN, V2(330, 220));
+    wall2[1]->Init({0,0,0,0}, V2(330, 220));
     std::string m[6];
     m[0] = "RIDE WIFE";
     m[1] = "LIFE GOOD";

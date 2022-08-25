@@ -26,8 +26,8 @@ void classChoose::SceneUpdate()
         case WIZARD:
             selectText = "WIZARD";
             break;
-        case HUGHJACKMAN:
-            selectText = "HUGHJACKMAN";
+        case ASSASSIN:
+            selectText = "ASSASSIN";
             break;
     }
     Selectors[0]->SetTexts(&selectText, 1);
@@ -67,24 +67,24 @@ void classChoose::Collision()
             switch (GetPlayersClass())
             {
                 case ARCHER:
-                    newSave.health = 100;
-                    newSave.damage = 1;
+                    newSave.health = 160;
+                    newSave.damage = 12;
                     newSave.speed = 5;
                     break;
                 case WARRIOR:
-                    newSave.health = 150;
-                    newSave.damage = 5;
-                    newSave.speed = 2;
+                    newSave.health = 200;
+                    newSave.damage = 20;
+                    newSave.speed = 3;
                     break;
                 case WIZARD:
-                    newSave.health = 80;
-                    newSave.damage = 3;
-                    newSave.speed = 5;
+                    newSave.health = 120;
+                    newSave.damage = 20;
+                    newSave.speed = 4;
                     break;
-                case HUGHJACKMAN:
-                    newSave.health = 250;
-                    newSave.damage = 100;
-                    newSave.speed = 5;
+                case ASSASSIN:
+                    newSave.health = 70;
+                    newSave.damage = 15;
+                    newSave.speed = 8;
                     break;
             }
             newSave.JournalCount = 0;
@@ -134,11 +134,11 @@ void classChoose::LoadScene()
     c[2]->SetCaption("WIZARD");
     c[2]->SetOrientation(PictureBox::DOWN);
 
-    c[3] = new PictureBox("sprites/hughjackman.png",V2(256,256));
+    c[3] = new PictureBox("sprites/assassin move.png",V2(256,256));
     c[3]->SetPosition(GetScreenCenter() + classOffset + classOffset);
     c[3]->SetFontSize(28);
     c[3]->SetSpacing(10);
-    c[3]->SetCaption("HUGH JACKMAN");
+    c[3]->SetCaption("THIEF");
     c[3]->SetOrientation(PictureBox::DOWN);
 
     Selectors[0] = new TextBox(&selectText,1);

@@ -45,7 +45,7 @@ void LevelFive::LoadScene()
     enemies5[0] = new Dragon;
     enemies5[0]->SetPosition(1300, 540);
     bossbar = new Bar(enemies5[0]->GetHealthPtr(),
-                      100,
+                      1000,
                       GOLD,
                       enemies5[0]->GetSize().x,
                       10);
@@ -54,12 +54,12 @@ void LevelFive::LoadScene()
     wall5[0] = new Wall;
     wall5[0]->SetCollisionSize(V2(550, 300));
     wall5[0]->SetPosition(220, 980);
-    wall5[0]->Init(RED, V2(460, 230));
+    wall5[0]->Init({0,0,0,0}, V2(460, 230));
 
     wall5[1] = new Wall;
     wall5[1]->SetCollisionSize(V2(550, 300));
     wall5[1]->SetPosition(220, 90);
-    wall5[1]->Init(GREEN, V2(460, 240));
+    wall5[1]->Init({0,0,0,0}, V2(460, 240));
 
     std::string m[6];
     m[0] = "RIDE WIFE";

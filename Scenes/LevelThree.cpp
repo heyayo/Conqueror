@@ -58,7 +58,7 @@ void LevelThree::LoadScene()
     for (int i = 0; i < 5; i++)
     {
         ebars3[i] = new Bar(enemies3[i]->GetHealthPtr(),
-                            20,
+                            120,
                             GREEN,
                             enemies3[i]->GetSize().x,
                             5);
@@ -68,11 +68,11 @@ void LevelThree::LoadScene()
     wall3[0] = new Wall;
     wall3[0]->SetCollisionSize(V2(650, 1000));
     wall3[0]->SetPosition(1070, 740);
-    wall3[0]->Init(RED, V2(240, 750));
+    wall3[0]->Init({0,0,0,0}, V2(240, 750));
     wall3[1] = new Wall;
     wall3[1]->SetCollisionSize(V2(180, 240));
     wall3[1]->SetPosition(400, 930);
-    wall3[1]->Init(GREEN, V2(1100, 220));
+    wall3[1]->Init({0,0,0,0}, V2(1100, 220));
     std::string m[6];
     m[0] = "RIDE WIFE";
     m[1] = "LIFE GOOD";

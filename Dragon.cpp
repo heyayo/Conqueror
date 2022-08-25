@@ -3,15 +3,16 @@
 #include "Game.hpp"
 Dragon::Dragon()
 {
-	health = 100;
+	health = 1000;
 	damage = 60;
 	movspd = 2;
-	atkspd = 30;
+	atkspd = 1;
 	Init("sprites/dragon move.png", V2(256, 384));
     AutoCollider();
 	name = "ENEMY";
 	groupName = "ENEMY";
 	groupID = 3;
+    atkrate = cooldown/atkspd;
 }
 
 Dragon::~Dragon()

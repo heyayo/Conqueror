@@ -34,7 +34,7 @@ enum PLAYERCLASS
     ARCHER,
     WARRIOR,
     WIZARD,
-    HUGHJACKMAN
+    ASSASSIN
 };
 
 Scene* GetCurrentScene();

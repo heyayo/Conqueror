@@ -3,10 +3,10 @@
 
 Demon::Demon()
 {
-	health = 20;
-	damage = 4;
+	health = 200;
+	damage = 5;
 	movspd = 2;
-	atkspd = 8;
+	atkspd = 10;
 	Init("sprites/demon move.png", V2(128, 128));
 	name = "ENEMY";
 	groupName = "ENEMY";

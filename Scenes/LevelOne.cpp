@@ -45,7 +45,7 @@ void LevelOne::LoadScene()
     for (int i = 0; i < 8; i++)
     {
         enemyHealthBar[i] = new Bar(enemies[i]->GetHealthPtr(),
-                                    10,
+                                    80,
                                     GREEN,
                                     enemies[i]->GetSize().x,
                                     5);
@@ -55,11 +55,11 @@ void LevelOne::LoadScene()
     wall1[0] = new Wall;
     wall1[0]->SetCollisionSize(V2(350, 1000));
     wall1[0]->SetPosition(250, 950);
-    wall1[0]->Init(RED, V2(550, 300));
+    wall1[0]->Init({0,0,0,0}, V2(550, 300));
     wall1[1] = new Wall;
     wall1[1]->SetCollisionSize(V2(180, 240));
     wall1[1]->SetPosition(250, 120);
-    wall1[1]->Init(GREEN, V2(550, 300));
+    wall1[1]->Init({0,0,0,0}, V2(550, 300));
 
     std::string m[6];
     m[0] = "Are these slimes really what the adventurer";
