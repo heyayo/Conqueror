@@ -8,6 +8,7 @@
 #include "Melee.hpp"
 #include "Bar.hpp"
 #include <string>
+#include "TextBox.hpp"
 
 Physical* wall1[2];
 Door* toNextLevel;
@@ -15,16 +16,19 @@ Actor* enemies[8];
 DeadSoul* speaker;
 Player* player;
 Bar* enemyHealthBar[8];
-<<<<<<< Updated upstream
-=======
 Bar* pHP;
 TextBox* Status;
 std::string st[8];
->>>>>>> Stashed changes
 
+bool enemiesAlive1 = true;
 void LevelOne::LoadScene()
 {
+    enemiesAlive1 = true;
+    SaveState temp = LoadSave();
+    temp.currentLevel = LEVELONE;
+    CreateSave(temp);
     SetBG("SceneBG/stage_1.png",V2(1920,1080));
+
     toNextLevel = new Door;
     toNextLevel->Redirect(LEVELMID1);
     toNextLevel->SetPosition(1000,500);
@@ -75,8 +79,7 @@ void LevelOne::LoadScene()
     speaker = new DeadSoul(m,6);
     speaker->SetPosition(300,350);
 
-<<<<<<< Updated upstream
-=======
+
     st[0] = "Journals Collected";
     st[1] = std::to_string(temp.JournalCount);
     st[2] = "Armour :";
@@ -92,7 +95,6 @@ void LevelOne::LoadScene()
     Status->SetAlignment(TextBox::CENTER);
     AddUI(Status);
 
->>>>>>> Stashed changes
     AddPhysical(player);
     AddPhysical(toNextLevel);
     AddPhysical(wall1[0]);
