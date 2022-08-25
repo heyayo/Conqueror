@@ -6,3 +6,4 @@ build
 .vs/*
 Prototype.pdb
 Prototype.*
+cmake-build-debug-mingw

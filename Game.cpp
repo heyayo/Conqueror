@@ -8,6 +8,7 @@
 #include "LevelFour.h"
 #include "LevelThree.h"
 #include "Levelmid1.hpp"
+#include "WinStage.hpp"
 
 Scene* currentScene;
 Scene* scenes[SCENEMAX];
@@ -25,6 +26,7 @@ void GenerateScenes()
     scenes[LEVELFIVE] = new LevelFive;
     scenes[LEVELFOUR] = new LevelFour;
     scenes[LEVELMID1] = new Levelmid1;
+    scenes[WINSCREEN] = new WinStage;
     currentScene = scenes[MAINMENU];
     currentScene->LoadScene();
 }

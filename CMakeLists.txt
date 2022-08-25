@@ -58,6 +58,7 @@ add_executable(Prototype
         Chest.cpp
         DefToken.cpp
         AtkToken.cpp
+        Scenes/WinStage.cpp
         )
 
 target_include_directories(Prototype PUBLIC headers)

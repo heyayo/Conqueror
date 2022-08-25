@@ -182,12 +182,9 @@ void LevelOne::Collision()
             }
         }
         // Collision with Player
-        for (auto eo : enemyList1)
+        if (CalculateCollisionsBetween(e, player))
         {
-            if (CalculateCollisionsBetween(e, player))
-            {
-                e->Move(-e->GetVelocity());
-            }
+            e->Move(-e->GetVelocity());
         }
 
         // Enemy and Wall Collision

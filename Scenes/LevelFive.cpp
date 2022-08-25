@@ -27,7 +27,7 @@ void LevelFive::LoadScene()
 
     SetBG("SceneBG/stage Final.png", V2(1920, 1080));
     toNextLevel5 = new Door;
-    toNextLevel5->Redirect(MAINMENU);
+    toNextLevel5->Redirect(WINSCREEN);
     toNextLevel5->SetPosition(1000, 500);
 
     player5 = new Player;
@@ -44,7 +44,7 @@ void LevelFive::LoadScene()
     enemies5[0] = new Dragon;
     enemies5[0]->SetPosition(1300, 540);
     bossbar = new Bar(enemies5[0]->GetHealthPtr(),
-                      1000,
+                      1500,
                       GOLD,
                       enemies5[0]->GetSize().x,
                       10);
