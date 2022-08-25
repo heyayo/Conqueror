@@ -1,4 +1,4 @@
-#include "LevelFour.h"
+#include "LevelFour.hpp"
 #include "Door.hpp"
 #include "Player.hpp"
 #include "Demon.h"
@@ -10,6 +10,7 @@
 #include "Bar.hpp"
 #include "TextBox.hpp"
 #include <string>
+
 Physical* wall4[2];
 Door* toNextLevel4;
 Player* player4;
@@ -72,15 +73,14 @@ void LevelFour::LoadScene()
     wall4[1]->SetCollisionSize(V2(150, 230));
     wall4[1]->SetPosition(480, 480);
     wall4[1]->Init({0,0,0,0}, V2(400, 150));
-    std::string m[6];
-    m[0] = "RIDE WIFE";
-    m[1] = "LIFE GOOD";
-    m[2] = "WIFE FIGHT BACK";
-    m[3] = "KILL WIFE";
-    m[4] = "WIFE GONE";
-    m[5] = "REGRET";
-    speaker4 = new DeadSoul(m, 6);
-    speaker4->SetPosition(300, 350);
+    std::string m[5];
+    m[0] = "The deepest part of the cave...";
+    m[1] = "It is so hot in here...who are those";
+    m[2] = "people with horns? And what";
+    m[3] = "is that charred thing that ";
+    m[4] = "they are dragging off with them?";
+    speaker4 = new DeadSoul(m, 5);
+    speaker4->SetPosition(1700, 850);
 
     st4[0] = "Journals Collected";
     st4[1] = std::to_string(temp.JournalCount);
@@ -179,13 +179,11 @@ void LevelFour::Collision()
             }
 
         }
+
         // Collision with Player
-        for (auto eo : enemyList1)
+        if (CalculateCollisionsBetween(e, player4))
         {
-            if (CalculateCollisionsBetween(e, player4))
-            {
-                e->Move(-e->GetVelocity());
-            }
+            e->Move(-e->GetVelocity());
         }
 
         // Enemy and Wall Collision

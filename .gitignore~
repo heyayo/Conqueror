@@ -1,0 +1,9 @@
+Prototype
+*.exe
+.vs
+build
+.vs
+.vs/*
+Prototype.pdb
+Prototype.*
+cmake-build-debug-mingw

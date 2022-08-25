@@ -1,4 +1,4 @@
-#include "LevelThree.h"
+#include "LevelThree.hpp"
 #include "Door.hpp"
 #include "Player.hpp"
 #include "Skeleton.hpp"
@@ -10,6 +10,7 @@
 #include "Bar.hpp"
 #include "TextBox.hpp"
 #include <string>
+
 Physical* wall3[2];
 Door* toNextLevel3;
 Player* player3;
@@ -72,15 +73,14 @@ void LevelThree::LoadScene()
     wall3[1]->SetCollisionSize(V2(180, 240));
     wall3[1]->SetPosition(400, 930);
     wall3[1]->Init({0,0,0,0}, V2(1100, 220));
-    std::string m[6];
-    m[0] = "RIDE WIFE";
-    m[1] = "LIFE GOOD";
-    m[2] = "WIFE FIGHT BACK";
-    m[3] = "KILL WIFE";
-    m[4] = "WIFE GONE";
-    m[5] = "REGRET";
-    speaker3 = new DeadSoul(m, 6);
-    speaker3->SetPosition(300, 350);
+    std::string m[5];
+    m[0] = "The dark miasma that is coursing";
+    m[1] = "through the underground dungeon ";
+    m[2] = "is causing me to go mad.";
+    m[3] = "I do not think I will be";
+    m[4] = "able to make it out alive�";
+    speaker3 = new DeadSoul(m, 5);
+    speaker3->SetPosition(1700, 850);
 
     st3[0] = "Journals Collected";
     st3[1] = std::to_string(temp.JournalCount);
@@ -178,13 +178,11 @@ void LevelThree::Collision()
                 }
             }
         }
+
         // Collision with Player
-        for (auto eo : enemyList1)
+        if (CalculateCollisionsBetween(e, player3))
         {
-            if (CalculateCollisionsBetween(e, player3))
-            {
-                e->Move(-e->GetVelocity());
-            }
+            e->Move(-e->GetVelocity());
         }
 
         // Enemy and Wall Collision

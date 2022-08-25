@@ -7,8 +7,8 @@
 #include "Wall.hpp"
 #include "Melee.hpp"
 #include "Bar.hpp"
-#include <string>
 #include "TextBox.hpp"
+#include <string>
 
 Physical* wall1[2];
 Door* toNextLevel;
@@ -85,7 +85,7 @@ void LevelOne::LoadScene()
     m[2] = " they can scare me through numbers alone?";
     m[3] = " I will show them what I am capable of!";
     speaker = new DeadSoul(m,4);
-    speaker->SetPosition(300,350);
+    speaker->SetPosition(1700,250);
 
     st[0] = "Journals Collected";
     st[1] = std::to_string(temp.JournalCount);
@@ -181,6 +181,7 @@ void LevelOne::Collision()
                 }
             }
         }
+
         // Collision with Player
         if (CalculateCollisionsBetween(e, player))
         {

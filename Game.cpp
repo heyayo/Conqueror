@@ -5,8 +5,8 @@
 #include "LevelTwo.hpp"
 #include "LevelFive.hpp"
 #include "classChoose.hpp"
-#include "LevelFour.h"
-#include "LevelThree.h"
+#include "LevelFour.hpp"
+#include "LevelThree.hpp"
 #include "Levelmid1.hpp"
 #include "WinStage.hpp"
 

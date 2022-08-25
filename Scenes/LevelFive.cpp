@@ -9,12 +9,12 @@
 #include "Bar.hpp"
 #include "TextBox.hpp"
 #include <string>
+
 Physical* wall5[2];
 Door* toNextLevel5;
 Player* player5;
 Actor* enemies5[1];
 Bar* bossbar;
-DeadSoul* speaker5;
 Bar* pHP5;
 TextBox* Status5;
 std::string st5[2];
@@ -22,13 +22,14 @@ std::string st5[2];
 void LevelFive::LoadScene()
 {
     SaveState temp = LoadSave();
-    temp.currentLevel = LEVELFIVE;
+    temp.currentLevel = LEVELONE;
     CreateSave(temp);
 
     SetBG("SceneBG/stage Final.png", V2(1920, 1080));
     toNextLevel5 = new Door;
     toNextLevel5->Redirect(WINSCREEN);
-    toNextLevel5->SetPosition(1000, 500);
+    toNextLevel5->SetPosition(1300, 540 );
+    toNextLevel5->Init("sprites/charm.png", V2(32,32));
 
     player5 = new Player;
     player5->SetPosition(100, 350);
@@ -60,16 +61,6 @@ void LevelFive::LoadScene()
     wall5[1]->SetPosition(220, 90);
     wall5[1]->Init({0,0,0,0}, V2(460, 240));
 
-    std::string m[6];
-    m[0] = "RIDE WIFE";
-    m[1] = "LIFE GOOD";
-    m[2] = "WIFE FIGHT BACK";
-    m[3] = "KILL WIFE";
-    m[4] = "WIFE GONE";
-    m[5] = "REGRET";
-    speaker5 = new DeadSoul(m,6);
-    speaker5->SetPosition(300, 350);
-
     st5[0] = "Journals Collected";
     st5[1] = std::to_string(temp.JournalCount);
     Status5 = new TextBox(st5,2);
@@ -86,7 +77,6 @@ void LevelFive::LoadScene()
     {
         AddPhysical(i);
     }
-    AddPhysical(speaker5);
 }
 
 bool bossAlive = true;
@@ -110,16 +100,6 @@ void LevelFive::SceneUpdate()
 
 void LevelFive::Collision()
 {
-    // Player Press e to Collect Journal
-    if (CalculateCollisionsBetween(player5,speaker5) && IsKeyPressed(KEY_E))
-    {
-        player5->TickJournalCount();
-        Kill(speaker5);
-        RemoveUI(GetUIElementByName("SPEAKERBOX"));
-        st5[1] = std::to_string(player5->GetJournalCount());
-        Status5->SetTexts(st5,2);
-    }
-
     for (auto walls : wall5)
         if (CalculateCollisionsBetween(player5,walls))
             player5->Move(-player5->GetVelocity());
@@ -175,14 +155,13 @@ void LevelFive::Collision()
                 Kill(EnemyFireball);
             }
         }
+
         // Collision with Player
-        for (auto eo : enemyList1)
+        if (CalculateCollisionsBetween(e, player5))
         {
-            if (CalculateCollisionsBetween(e, player5))
-            {
-                e->Move(-e->GetVelocity());
-            }
+            e->Move(-e->GetVelocity());
         }
+
         // Enemy and Wall Collision
         for (auto walle : wall5)
         {

@@ -36,8 +36,8 @@ void WinStage::LoadScene()
     jCounter->SetAlignment(TextBox::CENTER);
 
     std::string fate;
-    if (pSave.JournalCount >= 5)
-        fate = "You've Conquered The Dungeon";
+    if (pSave.JournalCount >= 4)
+        fate = "And Conquered The Dungeon";
     else
         fate = "But the Dungeon has Conquered You";
     ender = new TextBox(&fate,1);
