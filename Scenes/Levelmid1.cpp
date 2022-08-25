@@ -6,18 +6,37 @@
 #include "Wall.hpp"
 #include "Melee.hpp"
 #include "HPcrystal.hpp"
+#include <string>
+#include "Bar.hpp"
+#include "TextBox.hpp"
 
 Physical* wallmid1[2];
 Door* toNextLevelmid1;
 Player* playermid1;
 DeadSoul* speakermid1;
 HPcrystal* HPcrystal1;
-
+TextBox* Statusmid1;
+std::string stm1[2];
 void Levelmid1::LoadScene()
 {
+    SaveState temp = LoadSave();
+
     SetBG("SceneBG/stage middle.png", V2(1920, 1080));
     toNextLevelmid1 = new Door;
-    toNextLevelmid1->Redirect(LEVELTWO);
+    switch (temp.currentLevel) {
+    case LEVELONE :
+        toNextLevelmid1->Redirect(LEVELTWO);
+        break;
+    case LEVELTWO:
+        toNextLevelmid1->Redirect(LEVELTHREE);
+        break;
+    case LEVELTHREE:
+        toNextLevelmid1->Redirect(LEVELFOUR);
+        break;
+    case LEVELFOUR:
+        toNextLevelmid1->Redirect(LEVELFIVE);
+        break;
+    }
     toNextLevelmid1->SetPosition(1500, 500);
 
     playermid1 = new Player;
@@ -35,15 +54,14 @@ void Levelmid1::LoadScene()
     wallmid1[1]->SetPosition(250, 120);
     wallmid1[1]->Init(GREEN, V2(550, 300));
 
-    std::string m[6];
-    m[0] = "RIDE WIFE";
-    m[1] = "LIFE GOOD";
-    m[2] = "WIFE FIGHT BACK";
-    m[3] = "KILL WIFE";
-    m[4] = "WIFE GONE";
-    m[5] = "REGRET";
-    speakermid1 = new DeadSoul(m, 6);
-    speakermid1->SetPosition(1000, 350);
+    stm1[0] = "Journals Collected";
+    stm1[1] = std::to_string(temp.JournalCount);
+    Statusmid1 = new TextBox(stm1,2);
+    Statusmid1->SetPosition(GetScreenCenter());
+    Statusmid1->SetFontSize(100);
+    Statusmid1->SetPadding(V2(100, 100));
+    Statusmid1->SetAlignment(TextBox::CENTER);
+    AddUI(Statusmid1);
 
     AddPhysical(playermid1);
     AddPhysical(toNextLevelmid1);
@@ -54,6 +72,7 @@ void Levelmid1::LoadScene()
 
 void Levelmid1::SceneUpdate()
 {
+    Statusmid1->SetVisibility(IsKeyDown(KEY_I));
     // DEBUG OPTION, MOUSE LEFT PRINTS OUT LOCATION IN SPACE
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {

@@ -8,7 +8,7 @@
 #include "Wall.hpp"
 #include "Bar.hpp"
 #include "TextBox.hpp"
-
+#include <string>
 Physical* wall5[2];
 Door* toNextLevel5;
 Player* player5;

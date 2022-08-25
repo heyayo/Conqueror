@@ -1,7 +1,7 @@
 #include "MainMenu.hpp"
 #include "TextBox.hpp"
 #include "Game.hpp"
-
+#include <string>
 TextBox* Title;
 TextBox* PButton;
 
