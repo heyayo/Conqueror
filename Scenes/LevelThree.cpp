@@ -103,6 +103,10 @@ void LevelThree::LoadScene()
 
 void LevelThree::SceneUpdate()
 {
+    if (player3->GetHealth() <= 0)
+    {
+        LoadSceneByEnum(LEVELTHREE);
+    }
     Status3->SetVisibility(IsKeyDown(KEY_I));
     for (int i = 0; i < 5; i++)
     {

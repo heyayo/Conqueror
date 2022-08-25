@@ -82,7 +82,11 @@ void LevelOne::LoadScene()
 
 void LevelOne::SceneUpdate()
 {
-    std::cout << GetPlayersClass() << std::endl;
+    if (player->GetHealth() <= 0)
+    {
+        LoadSceneByEnum(LEVELONE);
+    }
+    Status->SetVisibility(IsKeyDown(KEY_I));
     for (int i = 0; i < 8; i++)
     {
         V2 barOffset(0,enemies[i]->GetSize().y/2);
