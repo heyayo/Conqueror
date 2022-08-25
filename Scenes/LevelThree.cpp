@@ -29,7 +29,7 @@ void LevelThree::LoadScene()
     enemies3[1] = new Skeleton;
     enemies3[1]->SetPosition(100, 350);
     enemies3[2] = new Skeleton;
-    enemies3[2]->SetPosition(1150, 600);
+    enemies3[2]->SetPosition(1300, 400);
     enemies3[3] = new Skeleton;
     enemies3[3]->SetPosition(1130, 200);
     enemies3[4] = new Skeleton;

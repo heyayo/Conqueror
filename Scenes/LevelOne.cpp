@@ -10,10 +10,10 @@
 
 Physical* wall1[2];
 Door* toNextLevel;
-Actor* enemies[3];
+Actor* enemies[8];
 DeadSoul* speaker;
 Player* player;
-Bar* enemyHealthBar[3];
+Bar* enemyHealthBar[8];
 
 void LevelOne::LoadScene()
 {
@@ -24,13 +24,24 @@ void LevelOne::LoadScene()
 
     player = new Player;
     player->SetPosition(200,200);
+
     enemies[0] = new Slime;
     enemies[0]->SetPosition(600,150);
     enemies[1] = new Slime;
     enemies[1]->SetPosition(1150,150);
     enemies[2] = new Slime;
     enemies[2]->SetPosition(800,650);
-    for (int i = 0; i < 3; i++)
+    enemies[3] = new Slime;
+    enemies[3]->SetPosition(800, 500);
+    enemies[4] = new Slime;
+    enemies[4]->SetPosition(500, 500);
+    enemies[5] = new Slime;
+    enemies[5]->SetPosition(400, 800);
+    enemies[6] = new Slime;
+    enemies[6]->SetPosition(600, 900);
+    enemies[7] = new Slime;
+    enemies[7]->SetPosition(1200, 900);
+    for (int i = 0; i < 8; i++)
     {
         enemyHealthBar[i] = new Bar(enemies[i]->GetHealthPtr(),
                                     10,
@@ -71,7 +82,7 @@ void LevelOne::LoadScene()
 void LevelOne::SceneUpdate()
 {
     std::cout << GetPlayersClass() << std::endl;
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 8; i++)
     {
         V2 barOffset(0,enemies[i]->GetSize().y/2);
         enemyHealthBar[i]->SetPosition(enemies[i]->GetPosition()+barOffset);
