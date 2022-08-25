@@ -88,6 +88,14 @@ void Levelmid1::Collision()
             Kill(arrow);
             std::cout << "BORDER HIT" << std::endl;
         }
+        else {
+            for (auto walle : wallmid1)
+            {
+                if (CalculateCollisionsBetween(walle, arrow))
+                    Kill(arrow);
+                std::cout << "WALL HIT" << std::endl;
+            }
+        }
     }
     std::vector<Physical*> melee = GetPhysicsByGroup("MELEE");
     for (auto mel : melee)
