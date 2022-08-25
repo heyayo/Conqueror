@@ -8,8 +8,9 @@ class Player : public Actor
 {
 private:
     unsigned JournalCount = 0;
-    float speed = 1;
+    float speed;
     float armour;
+
 public:
     Player();
     Player(float hp, float dmg, unsigned JC);

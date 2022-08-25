@@ -21,8 +21,10 @@ Bar* pHP3;
 TextBox* Status3;
 std::string st3[2];
 
+bool enemiesAlive3 = true;
 void LevelThree::LoadScene()
 {
+    enemiesAlive3 = true;
     SaveState temp = LoadSave();
     temp.currentLevel = LEVELONE;
     CreateSave(temp);
@@ -91,7 +93,6 @@ void LevelThree::LoadScene()
     AddUI(Status3);
 
     AddPhysical(player3);
-    AddPhysical(toNextLevel3);
     AddPhysical(wall3[0]);
     AddPhysical(wall3[1]);
     for (auto i : enemies3)
@@ -103,6 +104,11 @@ void LevelThree::LoadScene()
 
 void LevelThree::SceneUpdate()
 {
+    if (GetActorsByGroup("ENEMY").size() == 0 && enemiesAlive3)
+    {
+        enemiesAlive3 = false;
+        AddPhysical(toNextLevel3);
+    }
     if (player3->GetHealth() <= 0)
     {
         LoadSceneByEnum(LEVELTHREE);
@@ -119,9 +125,6 @@ void LevelThree::SceneUpdate()
         V2 barOffset(0,enemies3[i]->GetSize().y/2);
         ebars3[i]->SetPosition(enemies3[i]->GetPosition()+barOffset);
     }
-
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-        std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
 }
 
 void LevelThree::Collision()
@@ -173,7 +176,6 @@ void LevelThree::Collision()
                 {
                     if (CalculateCollisionsBetween(walle, arrow))
                         Kill(arrow);
-                    std::cout << "WALL HIT" << std::endl;
                 }
             }
         }
