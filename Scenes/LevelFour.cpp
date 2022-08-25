@@ -21,8 +21,10 @@ Bar* pHP4;
 TextBox* Status4;
 std::string st4[2];
 
+bool enemiesAlive4 = true;
 void LevelFour::LoadScene()
 {
+    enemiesAlive4 = true;
     SaveState temp = LoadSave();
     temp.currentLevel = LEVELONE;
     CreateSave(temp);
@@ -91,19 +93,22 @@ void LevelFour::LoadScene()
     AddUI(Status4);
 
     AddPhysical(player4);
-    AddPhysical(toNextLevel4);
     AddPhysical(wall4[0]);
     AddPhysical(wall4[1]);
     for (auto i : enemies4)
     {
         AddPhysical(i);
-        std::cout << i->GetPosition() << std::endl;
     }
     AddPhysical(speaker4);
 }
 
 void LevelFour::SceneUpdate()
 {
+    if (GetActorsByGroup("ENEMY").size() == 0 && enemiesAlive4)
+    {
+        enemiesAlive4 = false;
+        AddPhysical(toNextLevel4);
+    }
     if (player4->GetHealth() <= 0)
     {
         LoadSceneByEnum(LEVELFOUR);
@@ -120,12 +125,6 @@ void LevelFour::SceneUpdate()
         V2 barOffset(0,enemies4[i]->GetSize().y/2);
         ebars4[i]->SetPosition(enemies4[i]->GetPosition()+barOffset);
     }
-
-    // DEBUG OPTION, MOUSE LEFT PRINTS OUT LOCATION IN SPACE
-    /*if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-    {
-        std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
-    }*/
 }
 
 void LevelFour::Collision()
@@ -177,7 +176,6 @@ void LevelFour::Collision()
                 {
                     if (CalculateCollisionsBetween(walle, arrow))
                         Kill(arrow);
-                    std::cout << "WALL HIT" << std::endl;
                 }
             }
 
@@ -211,13 +209,13 @@ void LevelFour::Collision()
         Melee* temp = static_cast<Melee*>(mel);
         if (temp->cooldown >= temp->maxCooldown)
             Kill(mel);
-        for (auto e : enemyList1)
-        {
-            if (e == nullptr)
-                continue;
-            if (CalculateCollisionsBetween(e, mel))
+        else {
+            for (auto e : enemyList1)
             {
-                e->Hurt(temp->GetDamage());
+                if (CalculateCollisionsBetween(e, mel))
+                {
+                    e->Hurt(temp->GetDamage());
+                }
             }
         }
     }

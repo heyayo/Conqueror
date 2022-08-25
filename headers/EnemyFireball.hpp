@@ -5,7 +5,7 @@
 
 class EnemyFireball : public Actor
 {
-    float speed = 5;
+    float speed = 15;
 public:
     EnemyFireball(float dmg);
 

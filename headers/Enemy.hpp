@@ -15,13 +15,6 @@ protected:
 
 public:
 	Enemy();
-	~Enemy();
-	int getX();
-	int getY();
-	int setX();
-	int setY();
-	void move();
-	void attackchar();
     void SetCooldown(int cool);
 
     virtual void Act();

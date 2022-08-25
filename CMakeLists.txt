@@ -55,6 +55,9 @@ add_executable(Prototype
         HPcrystal.cpp
         Scenes/Levelmid1.cpp
         Atkgem.cpp
+        Chest.cpp
+        DefToken.cpp
+        AtkToken.cpp
         )
 
 target_include_directories(Prototype PUBLIC headers)
