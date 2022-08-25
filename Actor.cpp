@@ -1,5 +1,9 @@
 #include "Actor.hpp"
 
+void Actor::Heal(const float& dmg)
+{
+    health += dmg;
+}
 void Actor::Hurt(const float& dmg)
 {
     health -= dmg;

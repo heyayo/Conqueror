@@ -15,6 +15,12 @@ Actor* enemies[8];
 DeadSoul* speaker;
 Player* player;
 Bar* enemyHealthBar[8];
+<<<<<<< Updated upstream
+=======
+Bar* pHP;
+TextBox* Status;
+std::string st[8];
+>>>>>>> Stashed changes
 
 void LevelOne::LoadScene()
 {
@@ -69,6 +75,24 @@ void LevelOne::LoadScene()
     speaker = new DeadSoul(m,6);
     speaker->SetPosition(300,350);
 
+<<<<<<< Updated upstream
+=======
+    st[0] = "Journals Collected";
+    st[1] = std::to_string(temp.JournalCount);
+    st[2] = "Armour :";
+    st[3] = std::to_string(temp.armour);
+    st[4] = "HP :";
+    st[5] = std::to_string(temp.health);
+    st[6] = "DMG :";
+    st[7] = std::to_string(temp.damage);
+    Status = new TextBox(st,8);
+    Status->SetPosition(GetScreenCenter());
+    Status->SetFontSize(30);
+    Status->SetPadding(V2(300,300));
+    Status->SetAlignment(TextBox::CENTER);
+    AddUI(Status);
+
+>>>>>>> Stashed changes
     AddPhysical(player);
     AddPhysical(toNextLevel);
     AddPhysical(wall1[0]);

@@ -14,6 +14,7 @@ public:
     Actor();
     Actor(float hp, float dmg);
 
+    virtual void Heal(const float& dmg);
     virtual void Hurt(const float& dmg);
 
     float GetHealth() const;

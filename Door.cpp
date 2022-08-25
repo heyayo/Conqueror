@@ -17,7 +17,7 @@ void Door::Update()
 {
     if (GetCurrentScene()->CalculateCollisionsBetween(this, PlayerPtr))
     {
-        SaveState update = LoadSave();
+       SaveState update = LoadSave();
         update.health = PlayerPtr->GetHealth();
         update.damage = PlayerPtr->GetDamage();
         update.speed = PlayerPtr->GetSpeed();

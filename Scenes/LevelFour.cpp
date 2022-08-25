@@ -19,7 +19,7 @@ Bar* ebars4[5];
 DeadSoul* speaker4;
 Bar* pHP4;
 TextBox* Status4;
-std::string st4[2];
+std::string st4[8];
 
 bool enemiesAlive4 = true;
 void LevelFour::LoadScene()
@@ -85,10 +85,16 @@ void LevelFour::LoadScene()
 
     st4[0] = "Journals Collected";
     st4[1] = std::to_string(temp.JournalCount);
-    Status4 = new TextBox(st4,2);
+    st4[2] = "Armour :";
+    st4[3] = std::to_string(temp.armour);
+    st4[4] = "HP :";
+    st4[5] = std::to_string(temp.health);
+    st4[6] = "DMG :";
+    st4[7] = std::to_string(temp.damage);
+    Status4 = new TextBox(st4,8);
     Status4->SetPosition(GetScreenCenter());
-    Status4->SetFontSize(100);
-    Status4->SetPadding(V2(100,100));
+    Status4->SetFontSize(30);
+    Status4->SetPadding(V2(300,300));
     Status4->SetAlignment(TextBox::CENTER);
     AddUI(Status4);
 

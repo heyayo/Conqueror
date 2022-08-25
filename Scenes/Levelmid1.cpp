@@ -26,8 +26,12 @@ AtkToken* AtkToken1;
 DefToken* DefToken1;
 Chest* Chest1;
 TextBox* Statusmid1;
-std::string stm1[2];
+std::string stm1[8];
 bool chestopen = false;
+bool gem1open = false;
+bool gem2open = false;
+bool gem3open = false;
+bool gem4open = false;
 
 int random(int x, int y) {
     //generate uniformly distributed numbers
@@ -43,6 +47,10 @@ void Levelmid1::LoadScene()
 {
     SaveState temp = LoadSave();
     chestopen = false;
+    gem1open = false;
+    gem2open = false;
+    gem3open = false;
+    gem4open = false;
     SetBG("SceneBG/stage middle.png", V2(1920, 1080));
     toNextLevelmid1 = new Door;
     switch (temp.currentLevel) {
@@ -102,10 +110,16 @@ void Levelmid1::LoadScene()
 
     stm1[0] = "Journals Collected";
     stm1[1] = std::to_string(temp.JournalCount);
-    Statusmid1 = new TextBox(stm1,2);
+    stm1[2] = "Armour :";
+    stm1[3] = std::to_string(temp.armour);
+    stm1[4] = "HP :";
+    stm1[5] = std::to_string(temp.health);
+    stm1[6] = "DMG :";
+    stm1[7] = std::to_string(temp.damage);
+    Statusmid1 = new TextBox(stm1,8);
     Statusmid1->SetPosition(GetScreenCenter());
-    Statusmid1->SetFontSize(100);
-    Statusmid1->SetPadding(V2(100, 100));
+    Statusmid1->SetFontSize(30);
+    Statusmid1->SetPadding(V2(300, 300));
     Statusmid1->SetAlignment(TextBox::CENTER);
     AddUI(Statusmid1);
 
@@ -186,7 +200,10 @@ void Levelmid1::Collision()
         if (CalculateCollisionsBetween(playermid1, Atkgem1[0]))
         {
             Kill(Atkgem1[0]);
-            temp.speed += 0.5;
+            if (gem1open == false) {
+                gem1open = true;
+                playermid1->boostspeed(0.5);
+            }
         }
     }
     if (Atkgem1[1] != nullptr)
@@ -194,7 +211,10 @@ void Levelmid1::Collision()
         if (CalculateCollisionsBetween(playermid1, Atkgem1[1]))
         {
             Kill(Atkgem1[1]);
-            temp.speed += 0.5;
+            if (gem2open == false) {
+                gem2open = true;
+                playermid1->boostspeed(0.5);
+            }
         }
     }
     if (Atkgem1[2] != nullptr)
@@ -202,7 +222,10 @@ void Levelmid1::Collision()
         if (CalculateCollisionsBetween(playermid1, Atkgem1[2]))
         {
             Kill(Atkgem1[2]);
-            temp.speed += 0.5;
+            if (gem3open == false) {
+                gem3open = true;
+                playermid1->boostspeed(0.5);
+            }
         }
     }
 
@@ -211,7 +234,10 @@ void Levelmid1::Collision()
         if (CalculateCollisionsBetween(playermid1, HPcrystal1[0]))
         {
             Kill(HPcrystal1[0]);
-            temp.health += 50;
+            if (gem1open == false) {
+                gem1open = true;
+                playermid1->Heal(50);
+            }
         }
     }
     if (HPcrystal1[1] != nullptr)
@@ -219,7 +245,10 @@ void Levelmid1::Collision()
         if (CalculateCollisionsBetween(playermid1, HPcrystal1[1]))
         {
             Kill(HPcrystal1[1]);
-            temp.health += 50;
+            if (gem2open == false) {
+                gem2open = true;
+                playermid1->Heal(50);
+            }
         }
     }
     if (HPcrystal1[2] != nullptr)
@@ -227,7 +256,10 @@ void Levelmid1::Collision()
         if (CalculateCollisionsBetween(playermid1, HPcrystal1[2]))
         {
             Kill(HPcrystal1[2]);
-            temp.health += 50;
+            if (gem3open == false) {
+                gem3open = true;
+                playermid1->Heal(50);
+            }
         }
     }
 
@@ -236,7 +268,10 @@ void Levelmid1::Collision()
         if (CalculateCollisionsBetween(playermid1, AtkToken1))
         {
             Kill(AtkToken1);
-            temp.damage += (temp.damage / 3);
+            if (gem4open == false) {
+                gem4open = true;
+                playermid1->boostdmg();
+            }
         }
     }
     if (DefToken1 != nullptr)
@@ -244,7 +279,10 @@ void Levelmid1::Collision()
         if (CalculateCollisionsBetween(playermid1, DefToken1))
         {
             Kill(DefToken1);
-            temp.armour += 3;
+            if (gem4open == false) {
+                gem4open = true;
+                playermid1->boostdef(3);
+            }
         }
     }
 
@@ -286,11 +324,10 @@ void Levelmid1::Collision()
             Kill(mel);
         for (auto e : enemyList1)
         {
-            if (CalculateCollisionsBetween(e, mel))
             {
+            if (CalculateCollisionsBetween(e, mel))
                 e->Hurt(temp->GetDamage());
             }
         }
     }
-    
 }
