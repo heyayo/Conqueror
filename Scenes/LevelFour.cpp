@@ -206,13 +206,13 @@ void LevelFour::Collision()
         Melee* temp = static_cast<Melee*>(mel);
         if (temp->cooldown >= temp->maxCooldown)
             Kill(mel);
-        for (auto e : enemyList1)
-        {
-            if (e == nullptr)
-                continue;
-            if (CalculateCollisionsBetween(e, mel))
+        else {
+            for (auto e : enemyList1)
             {
-                e->Hurt(temp->GetDamage());
+                if (CalculateCollisionsBetween(e, mel))
+                {
+                    e->Hurt(temp->GetDamage());
+                }
             }
         }
     }

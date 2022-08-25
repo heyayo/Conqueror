@@ -24,6 +24,7 @@ struct SaveState
     float health;
     float damage;
     float speed;
+    float armour;
     unsigned JournalCount;
     SCENES currentLevel;
 };

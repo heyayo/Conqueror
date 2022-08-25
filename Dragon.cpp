@@ -4,7 +4,7 @@
 Dragon::Dragon()
 {
 	health = 100;
-	damage = 40;
+	damage = 60;
 	movspd = 2;
 	atkspd = 10;
 	Init("sprites/dragon move.png", V2(256, 384));

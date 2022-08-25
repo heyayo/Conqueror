@@ -5,9 +5,9 @@ Healthpot::Healthpot()
 
 	damage = -40;
 	Init("sprites/healthpot.png", V2(128, 192));
-	name = "ENEMY";
-	groupName = "ENEMY";
-	groupID = 3;
+	name = "BUFF";
+	groupName = "BUFF";
+	groupID = 9;
 }
 
 Healthpot::~Healthpot()
