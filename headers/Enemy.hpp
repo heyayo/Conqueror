@@ -7,8 +7,9 @@ class Enemy : public Actor
 {
 protected:
     bool canAttack = true;
-    int cooldown = 180;
+    const int cooldown = 60;
     int currentCooldown = 0;
+    float atkrate;
 	int movspd;
 	int atkspd;
 
