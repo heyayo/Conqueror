@@ -147,7 +147,7 @@ void LevelOne::Collision()
         Kill(speaker);
         RemoveUI(GetUIElementByName("SPEAKERBOX"));
         st[1] = std::to_string(player->GetJournalCount());
-        Status->SetTexts(st,2);
+        Status->SetTexts(st,8);
     }
 
     for (auto walls : wall1)
