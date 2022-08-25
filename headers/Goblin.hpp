@@ -5,7 +5,6 @@
 
 class Goblin : public Enemy
 {
-    V2 velocity;
 
 public:
     Goblin();

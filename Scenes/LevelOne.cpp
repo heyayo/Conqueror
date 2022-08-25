@@ -7,6 +7,7 @@
 #include "Wall.hpp"
 #include "Melee.hpp"
 #include "Bar.hpp"
+#include "TextBox.hpp"
 
 Physical* wall1[2];
 Door* toNextLevel;
@@ -14,9 +15,16 @@ Actor* enemies[3];
 DeadSoul* speaker;
 Player* player;
 Bar* enemyHealthBar[3];
+Bar* pHP;
+TextBox* Status;
+std::string st[2];
 
 void LevelOne::LoadScene()
 {
+    SaveState temp = LoadSave();
+    temp.currentLevel = LEVELONE;
+    CreateSave(temp);
+
     SetBG("SceneBG/stage_1.png",V2(1920,1080));
     toNextLevel = new Door;
     toNextLevel->Redirect(LEVELMID1);
@@ -24,6 +32,15 @@ void LevelOne::LoadScene()
 
     player = new Player;
     player->SetPosition(200,200);
+    pHP = new Bar(player->GetHealthPtr(),
+                  temp.health,
+                  PURPLE,
+                  GetScreenWidthDeltad(),
+                  25);
+    V2 pBarOffset(0,GetScreenHeightDeltad()/2);
+    pHP->SetPosition(GetScreenCenter() + pBarOffset);
+    AddUI(pHP);
+
     enemies[0] = new Slime;
     enemies[0]->SetPosition(600,150);
     enemies[1] = new Slime;
@@ -49,12 +66,12 @@ void LevelOne::LoadScene()
     wall1[1]->SetPosition(250, 120);
     wall1[1]->Init(GREEN, V2(550, 300));
 
-    std::string m[6];
+    std::string m[4];
     m[0] = "Are these slimes really what the adventurer";
     m[1] = " died to? Do they really think that ";
     m[2] = " they can scare me through numbers alone?";
     m[3] = " I will show them what I am capable of!";
-    speaker = new DeadSoul(m,6);
+    speaker = new DeadSoul(m,4);
     speaker->SetPosition(300,350);
 
     AddPhysical(player);
@@ -66,13 +83,28 @@ void LevelOne::LoadScene()
         AddPhysical(i);
     }
     AddPhysical(speaker);
+
+    st[0] = "Journals Collected";
+    st[1] = std::to_string(temp.JournalCount);
+    Status = new TextBox(st,2);
+    Status->SetPosition(GetScreenCenter());
+    Status->SetFontSize(100);
+    Status->SetPadding(V2(100,100));
+    Status->SetAlignment(TextBox::CENTER);
+    AddUI(Status);
 }
 
 void LevelOne::SceneUpdate()
 {
-    std::cout << GetPlayersClass() << std::endl;
+    Status->SetVisibility(IsKeyDown(KEY_I));
     for (int i = 0; i < 3; i++)
     {
+        if (enemies[i]->GetHealth() <= 0)
+        {
+            Kill(enemies[i]);
+            RemoveUI(enemyHealthBar[i]);
+            continue;
+        }
         V2 barOffset(0,enemies[i]->GetSize().y/2);
         enemyHealthBar[i]->SetPosition(enemies[i]->GetPosition()+barOffset);
     }
@@ -86,6 +118,16 @@ void LevelOne::SceneUpdate()
 
 void LevelOne::Collision()
 {
+    // Player Press e to Collect Journal
+    if (CalculateCollisionsBetween(player,speaker) && IsKeyPressed(KEY_E))
+    {
+        player->TickJournalCount();
+        Kill(speaker);
+        RemoveUI(GetUIElementByName("SPEAKERBOX"));
+        st[1] = std::to_string(player->GetJournalCount());
+        Status->SetTexts(st,2);
+    }
+
     for (auto walls : wall1)
         if (CalculateCollisionsBetween(player, walls))
             player->Move(-player->GetVelocity());
@@ -101,12 +143,6 @@ void LevelOne::Collision()
     // Enemy Collisions
     for (auto e : enemyList1)
     {
-        // Tick Enemy AI and Kill if Health Depleted
-        if (e->GetHealth() <= 0)
-        {
-            Kill(e);
-            continue;
-        }
         Enemy* enemyconv = dynamic_cast<Enemy*>(e);
         enemyconv->Act();
         for (auto arrow : arrows)
@@ -126,6 +162,8 @@ void LevelOne::Collision()
         // Collision with Other Enemies
         for (auto eo : enemyList1)
         {
+            if (eo == nullptr)
+                continue;
             if (eo == e) // If we are colliding with ourselves, stop doing that
                 continue;
             // If colliding with another enemy, stop enemy
@@ -152,6 +190,8 @@ void LevelOne::Collision()
             Kill(mel);
         for (auto e : enemyList1)
         {
+            if (e == nullptr)
+                continue;
             if (CalculateCollisionsBetween(e,mel))
             {
                 e->Hurt(temp->GetDamage());

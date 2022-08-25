@@ -7,7 +7,7 @@ Demon::Demon()
 	damage = 4;
 	movspd = 2;
 	atkspd = 10;
-	Init("sprites/Demon move.png", V2(128, 128));
+	Init("sprites/demon move.png", V2(128, 128));
 	name = "ENEMY";
 	groupName = "ENEMY";
 	groupID = 3;

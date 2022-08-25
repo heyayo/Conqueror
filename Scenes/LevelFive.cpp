@@ -1,23 +1,30 @@
 #include "LevelFive.hpp"
 #include "Door.hpp"
 #include "Player.hpp"
-#include "LevelFive.hpp"
-#include "Door.hpp"
-#include "Player.hpp"
 #include "Dragon.hpp"
 #include "Maths.hpp"
 #include "DeadSoul.hpp"
 #include "Melee.hpp"
 #include "Wall.hpp"
+#include "Bar.hpp"
+#include "TextBox.hpp"
 
 Physical* wall5[2];
 Door* toNextLevel5;
 Player* player5;
 Actor* enemies5[1];
+Bar* bossbar;
 DeadSoul* speaker5;
+Bar* pHP5;
+TextBox* Status5;
+std::string st5[2];
 
 void LevelFive::LoadScene()
 {
+    SaveState temp = LoadSave();
+    temp.currentLevel = LEVELONE;
+    CreateSave(temp);
+
     SetBG("SceneBG/stage Final.png", V2(1920, 1080));
     toNextLevel5 = new Door;
     toNextLevel5->Redirect(MAINMENU);
@@ -25,29 +32,33 @@ void LevelFive::LoadScene()
 
     player5 = new Player;
     player5->SetPosition(100, 350);
+    pHP5 = new Bar(player5->GetHealthPtr(),
+                  temp.health,
+                  PURPLE,
+                  GetScreenWidthDeltad(),
+                  25);
+    V2 pBarOffset(0,GetScreenHeightDeltad()/2);
+    pHP5->SetPosition(GetScreenCenter() + pBarOffset);
+    AddUI(pHP5);
 
     enemies5[0] = new Dragon;
     enemies5[0]->SetPosition(1300, 540);
- 
+    bossbar = new Bar(enemies5[0]->GetHealthPtr(),
+                      100,
+                      GOLD,
+                      enemies5[0]->GetSize().x,
+                      10);
+    AddUI(bossbar);
 
     wall5[0] = new Wall;
-
     wall5[0]->SetCollisionSize(V2(550, 300));
     wall5[0]->SetPosition(220, 980);
     wall5[0]->Init(RED, V2(460, 230));
+
     wall5[1] = new Wall;
     wall5[1]->SetCollisionSize(V2(550, 300));
     wall5[1]->SetPosition(220, 90);
     wall5[1]->Init(GREEN, V2(460, 240));
-
-
-    wall5[0]->SetCollisionSize(V2(350, 1000));  
-    wall5[0]->SetPosition(250, 950);
-    wall5[0]->Init(RED, V2(550, 300));
-    wall5[1] = new Wall;
-    wall5[1]->SetCollisionSize(V2(180, 240));
-    wall5[1]->SetPosition(250, 120);
-    wall5[1]->Init(GREEN, V2(550, 300));
 
     std::string m[6];
     m[0] = "RIDE WIFE";
@@ -59,26 +70,55 @@ void LevelFive::LoadScene()
     speaker5 = new DeadSoul(m,6);
     speaker5->SetPosition(300, 350);
 
+    st5[0] = "Journals Collected";
+    st5[1] = std::to_string(temp.JournalCount);
+    Status5 = new TextBox(st5,2);
+    Status5->SetPosition(GetScreenCenter());
+    Status5->SetFontSize(100);
+    Status5->SetPadding(V2(100,100));
+    Status5->SetAlignment(TextBox::CENTER);
+    AddUI(Status5);
+
     AddPhysical(player5);
-    AddPhysical(toNextLevel5);
     AddPhysical(wall5[0]);
     AddPhysical(wall5[1]);
     for (auto i : enemies5)
     {
         AddPhysical(i);
-        std::cout << i->GetPosition() << std::endl;
     }
     AddPhysical(speaker5);
 }
 
+bool bossAlive = true;
 void LevelFive::SceneUpdate()
 {
+    Status5->SetVisibility(IsKeyDown(KEY_I));
+    if (enemies5[0]->GetHealth() <= 0 && bossAlive)
+    {
+        Kill(enemies5[0]);
+        RemoveUI(bossbar);
+        AddPhysical(toNextLevel5);
+        bossAlive = false;
+    }
+    V2 barOffset(0,enemies5[0]->GetSize().y/2);
+    bossbar->SetPosition(enemies5[0]->GetPosition()+barOffset);
+
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
 }
 
 void LevelFive::Collision()
 {
+    // Player Press e to Collect Journal
+    if (CalculateCollisionsBetween(player5,speaker5) && IsKeyPressed(KEY_E))
+    {
+        player5->TickJournalCount();
+        Kill(speaker5);
+        RemoveUI(GetUIElementByName("SPEAKERBOX"));
+        st5[1] = std::to_string(player5->GetJournalCount());
+        Status5->SetTexts(st5,2);
+    }
+
     for (auto walls : wall5)
         if (CalculateCollisionsBetween(player5,walls))
             player5->Move(-player5->GetVelocity());
@@ -95,12 +135,6 @@ void LevelFive::Collision()
     // Enemy Collisions
     for (auto e : enemyList1)
     {
-        // Tick Enemy AI and Kill if Health Depleted
-        if (e->GetHealth() <= 0)
-        {
-            Kill(e);
-            continue;
-        }
         Dragon* enemyconv = dynamic_cast<Dragon*>(e);
         enemyconv->Act();
         enemyconv->LookAt(player5);
@@ -110,12 +144,10 @@ void LevelFive::Collision()
             if (CalculateCollisionBorder(arrow))
             {
                 Kill(arrow);
-                std::cout << "BORDER HIT" << std::endl;
             }
             // Kill Arrow and Hurt Enemy on Enemy Collision
             if (CalculateCollisionsBetween(arrow, e))
             {
-                std::cout << "HIT" << std::endl;
                 e->Hurt(arrow->GetDamage());
                 Kill(arrow);
             }

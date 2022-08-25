@@ -139,12 +139,31 @@ Physical *Scene::GetPhysicsByName(const char *name)
 
 bool Scene::Kill(Entity *object)
 {
+    if (object == nullptr)
+        false;
     for (int i = 0; i < Entities.size(); i++)
     {
         if (Entities[i] == object)
         {
             delete object;
+            object = nullptr;
             Entities.erase(Entities.begin()+i);
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Scene::RemoveUI(UIElement *ui)
+{
+    if (ui == nullptr)
+        return false;
+    for (int i = 0; i < UICollection.size(); i++)
+    {
+        if (UICollection[i] == ui)
+        {
+            delete ui;
+            UICollection.erase(UICollection.begin()+i);
             return true;
         }
     }
@@ -216,4 +235,13 @@ Actor *Scene::GetActorByName(const char *name)
     }
     return nullptr;
 }
+
+UIElement *Scene::GetUIElementByName(const char *name)
+{
+    for (auto ui : UICollection)
+        if (ui->GetName() == name)
+            return ui;
+    return nullptr;
+}
+
 

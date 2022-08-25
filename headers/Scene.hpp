@@ -49,7 +49,9 @@ public:
     std::vector<Physical *> GetPhysicsByGroup(const char* name);
     std::vector<Actor*> GetActorsByGroup(const char* name);
 
+    bool RemoveUI(UIElement* ui);
     void AddUI(UIElement* add);
+    UIElement* GetUIElementByName(const char* name);
 
     virtual void LoadScene() = 0;
     virtual void SceneUpdate() = 0;

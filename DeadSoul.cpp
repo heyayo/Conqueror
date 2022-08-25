@@ -22,6 +22,7 @@ void DeadSoul::Start()
     messageBox->SetFontSize(150);
     messageBox->SetBoxTexture("sprites/scroll.png");
     GetCurrentScene()->AddUI(messageBox);
+    messageBox->SetName("SPEAKERBOX");
     playerptr = GetCurrentScene()->GetPhysicsByName("PLAYER");
 }
 

@@ -2,7 +2,6 @@
 #define PROTOTYPE_GAME_HPP
 
 #include "Scene.hpp"
-#include "SaveState.hpp"
 
 // ADD SCENE NAMES BELOW
 enum SCENES
@@ -20,6 +19,15 @@ enum SCENES
 };
 // ADD SCENE NAMES ABOVE
 
+struct SaveState
+{
+    float health;
+    float damage;
+    float speed;
+    unsigned JournalCount;
+    SCENES currentLevel;
+};
+
 enum PLAYERCLASS
 {
     ARCHER,
@@ -36,9 +44,8 @@ void RunScene();
 void Close();
 void GenerateScenes();
 
-void LoadSave(Physical* en, const char* sn);
-SaveState GetSaveByName(const char* name);
-SaveState GetSaveByIndex(unsigned index);
+void CreateSave(SaveState newSave);
+SaveState LoadSave();
 
 PLAYERCLASS GetPlayersClass();
 void SetPlayersClass(PLAYERCLASS choose);
