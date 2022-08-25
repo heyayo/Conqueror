@@ -93,6 +93,10 @@ void LevelFive::LoadScene()
 bool bossAlive = true;
 void LevelFive::SceneUpdate()
 {
+    if (player5->GetHealth() <= 0)
+    {
+        LoadSceneByEnum(LEVELFIVE);
+    }
     Status5->SetVisibility(IsKeyDown(KEY_I));
     if (enemies5[0]->GetHealth() <= 0 && bossAlive)
     {

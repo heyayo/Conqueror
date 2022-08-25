@@ -103,6 +103,10 @@ void LevelTwo::LoadScene()
 
 void LevelTwo::SceneUpdate()
 {
+    if (player1->GetHealth() <= 0)
+    {
+        LoadSceneByEnum(LEVELTWO);
+    }
     Status2->SetVisibility(IsKeyDown(KEY_I));
     for (int i = 0; i < 5; i++)
     {

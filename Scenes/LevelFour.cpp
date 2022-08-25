@@ -104,6 +104,10 @@ void LevelFour::LoadScene()
 
 void LevelFour::SceneUpdate()
 {
+    if (player4->GetHealth() <= 0)
+    {
+        LoadSceneByEnum(LEVELFOUR);
+    }
     Status4->SetVisibility(IsKeyDown(KEY_I));
     for (int i = 0; i < 5; i++)
     {
