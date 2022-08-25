@@ -113,11 +113,20 @@ void LevelFive::Collision()
                 std::cout << "BORDER HIT" << std::endl;
             }
             // Kill Arrow and Hurt Enemy on Enemy Collision
-            if (CalculateCollisionsBetween(arrow, e))
+            else if (CalculateCollisionsBetween(arrow, e))
             {
                 std::cout << "HIT" << std::endl;
                 e->Hurt(arrow->GetDamage());
                 Kill(arrow);
+            }
+            else {
+                for (auto walle : wall5)
+                {
+                    if (CalculateCollisionsBetween(walle, arrow))
+                        Kill(arrow);
+                        std::cout << "WALL HIT" << std::endl;
+                }
+
             }
         }
         for (auto EnemyFireball : EnemyFireballs)
@@ -161,11 +170,13 @@ void LevelFive::Collision()
         Melee* temp = static_cast<Melee*>(mel);
         if (temp->cooldown >= temp->maxCooldown)
             Kill(mel);
-        for (auto e : enemyList1)
-        {
-            if (CalculateCollisionsBetween(e,mel))
+        else {
+            for (auto e : enemyList1)
             {
-                e->Hurt(temp->GetDamage());
+                if (CalculateCollisionsBetween(e, mel))
+                {
+                    e->Hurt(temp->GetDamage());
+                }
             }
         }
     }
