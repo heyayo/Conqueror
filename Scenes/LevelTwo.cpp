@@ -23,7 +23,7 @@ std::string st2[2];
 void LevelTwo::LoadScene()
 {
     SaveState temp = LoadSave();
-    temp.currentLevel = LEVELONE;
+    temp.currentLevel = LEVELTWO;
     CreateSave(temp);
 
     SetBG("SceneBG/stage_2.png", V2(1920, 1080));
