@@ -20,8 +20,10 @@ Bar* pHP2;
 TextBox* Status2;
 std::string st2[2];
 
+bool enemiesAlive2 = true;
 void LevelTwo::LoadScene()
 {
+    enemiesAlive2 = true;
     SaveState temp = LoadSave();
     temp.currentLevel = LEVELTWO;
     CreateSave(temp);
@@ -90,7 +92,6 @@ void LevelTwo::LoadScene()
     AddUI(Status2);
 
     AddPhysical(player1);
-    AddPhysical(toNextLevel1);
     AddPhysical(wall2[0]);
     AddPhysical(wall2[1]);
     for (auto i : enemies1)
@@ -102,6 +103,11 @@ void LevelTwo::LoadScene()
 
 void LevelTwo::SceneUpdate()
 {
+    if (GetActorsByGroup("ENEMY").size() == 0 && enemiesAlive2)
+    {
+        enemiesAlive2 = false;
+        AddPhysical(toNextLevel1);
+    }
     if (player1->GetHealth() <= 0)
     {
         LoadSceneByEnum(LEVELTWO);
@@ -118,11 +124,6 @@ void LevelTwo::SceneUpdate()
         V2 barOffset(0,enemies1[i]->GetSize().y/2);
         ebars2[i]->SetPosition(enemies1[i]->GetPosition()+barOffset);
     }
-    // DEBUG OPTION, MOUSE LEFT PRINTS OUT LOCATION IN SPACE
-    /*if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-    {
-        std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
-    }*/
 }
 
 void LevelTwo::Collision()
@@ -172,7 +173,6 @@ void LevelTwo::Collision()
                 {
                     if (CalculateCollisionsBetween(walle, arrow))
                         Kill(arrow);
-                    std::cout << "WALL HIT" << std::endl;
                 }
             }
         }

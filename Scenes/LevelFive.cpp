@@ -106,9 +106,6 @@ void LevelFive::SceneUpdate()
     }
     V2 barOffset(0,enemies5[0]->GetSize().y/2);
     bossbar->SetPosition(enemies5[0]->GetPosition()+barOffset);
-
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-        std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
 }
 
 void LevelFive::Collision()
@@ -160,7 +157,6 @@ void LevelFive::Collision()
                 {
                     if (CalculateCollisionsBetween(walle, arrow))
                         Kill(arrow);
-                        std::cout << "WALL HIT" << std::endl;
                 }
 
             }
@@ -171,12 +167,10 @@ void LevelFive::Collision()
             if (CalculateCollisionBorder(EnemyFireball))
             {
                 Kill(EnemyFireball);
-                std::cout << "BORDER HIT" << std::endl;
             }
             // Kill EnemyFireball and Hurt Enemy on Enemy Collision
             else if (CalculateCollisionsBetween(EnemyFireball, player5))
             {
-                std::cout << "HIT" << std::endl;
                 player5->Hurt(EnemyFireball->GetDamage());
                 Kill(EnemyFireball);
             }

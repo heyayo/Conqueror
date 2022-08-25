@@ -11,38 +11,6 @@ Enemy::Enemy()
     atkrate = cooldown/atkspd;
 }
 
-Enemy::~Enemy()
-{
-}
-
-int Enemy::getX()
-{
-	return 0;
-}
-
-int Enemy::getY()
-{
-	return 0;
-}
-
-void Enemy::move()
-{
-}
-
-void Enemy::attackchar()
-{
-}
-
-int Enemy::setX()
-{
-    return 0;
-}
-
-int Enemy::setY()
-{
-    return 0;
-}
-
 Actor* ptrtoplayer;
 void Enemy::Act()
 {

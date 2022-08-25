@@ -8,7 +8,6 @@ Player::Player()
     name = "PLAYER";
     groupName = "PLAYERS";
     groupID = 0;
-    health = 100;
 }
 
 void Player::Start()
@@ -25,7 +24,7 @@ void Player::Start()
             Init("sprites/wizard move.png", V2(96,96));
             break;
         case HUGHJACKMAN:
-            Init("sprites/hughjackman.png", V2(256,256));
+            Init("sprites/hughjackman.png", V2(128,128));
             break;
     }
     SaveState temp = LoadSave();
@@ -36,8 +35,8 @@ void Player::Start()
     x = 200;
     y = 500;
     angle = 0;
-    SetCollisionSize(64);
     velocity = V2();
+    AutoCollider();
 }
 
 // Put Player Code Here
@@ -50,8 +49,8 @@ void Player::Update()
 // Handle Input Here
 void Player::InputHandler()
 {
-    velocity.x = (IsKeyDown(KEY_D) - IsKeyDown(KEY_A)) * 5;
-    velocity.y = (IsKeyDown(KEY_S) - IsKeyDown(KEY_W)) * 5;
+    velocity.x = (IsKeyDown(KEY_D) - IsKeyDown(KEY_A)) * speed;
+    velocity.y = (IsKeyDown(KEY_S) - IsKeyDown(KEY_W)) * speed;
     LookAtMouse();
 
     switch(GetPlayersClass())

@@ -19,8 +19,10 @@ Bar* pHP;
 TextBox* Status;
 std::string st[2];
 
+bool enemiesAlive = true;
 void LevelOne::LoadScene()
 {
+    enemiesAlive = true;
     SaveState temp = LoadSave();
     temp.currentLevel = LEVELONE;
     CreateSave(temp);
@@ -94,7 +96,6 @@ void LevelOne::LoadScene()
     AddUI(Status);
 
     AddPhysical(player);
-    AddPhysical(toNextLevel);
     AddPhysical(wall1[0]);
     AddPhysical(wall1[1]);
     for (auto i : enemies)
@@ -106,6 +107,11 @@ void LevelOne::LoadScene()
 
 void LevelOne::SceneUpdate()
 {
+    if (GetActorsByGroup("ENEMY").size() == 0 && enemiesAlive)
+    {
+        enemiesAlive = false;
+        AddPhysical(toNextLevel);
+    }
     if (player->GetHealth() <= 0)
     {
         LoadSceneByEnum(LEVELONE);
@@ -121,12 +127,6 @@ void LevelOne::SceneUpdate()
         }
         V2 barOffset(0,enemies[i]->GetSize().y/2);
         enemyHealthBar[i]->SetPosition(enemies[i]->GetPosition()+barOffset);
-    }
-
-    // DEBUG OPTION, MOUSE LEFT PRINTS OUT LOCATION IN SPACE
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-    {
-        std::cout << Maths::ConvertToV2(GetMousePosition()) << std::endl;
     }
 }
 
@@ -177,7 +177,6 @@ void LevelOne::Collision()
                 {
                     if (CalculateCollisionsBetween(walle, arrow))
                         Kill(arrow);
-                    std::cout << "WALL HIT" << std::endl;
                 }
             }
         }

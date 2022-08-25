@@ -6,8 +6,9 @@ Dragon::Dragon()
 	health = 100;
 	damage = 40;
 	movspd = 2;
-	atkspd = 5;
+	atkspd = 30;
 	Init("sprites/dragon move.png", V2(256, 384));
+    AutoCollider();
 	name = "ENEMY";
 	groupName = "ENEMY";
 	groupID = 3;
