@@ -71,15 +71,14 @@ void LevelFour::LoadScene()
     wall4[1]->SetCollisionSize(V2(150, 230));
     wall4[1]->SetPosition(480, 480);
     wall4[1]->Init(GREEN, V2(400, 150));
-    std::string m[6];
-    m[0] = "RIDE WIFE";
-    m[1] = "LIFE GOOD";
-    m[2] = "WIFE FIGHT BACK";
-    m[3] = "KILL WIFE";
-    m[4] = "WIFE GONE";
-    m[5] = "REGRET";
-    speaker4 = new DeadSoul(m, 6);
-    speaker4->SetPosition(300, 350);
+    std::string m[5];
+    m[0] = "The deepest part of the cave...";
+    m[1] = "It is so hot in here...who are those";
+    m[2] = "people with horns? And what";
+    m[3] = "is that charred thing that ";
+    m[4] = "they are dragging off with them?";
+    speaker4 = new DeadSoul(m, 5);
+    speaker4->SetPosition(1700, 850);
 
     st4[0] = "Journals Collected";
     st4[1] = std::to_string(temp.JournalCount);

@@ -71,15 +71,12 @@ void LevelTwo::LoadScene()
     wall2[1]->SetCollisionSize(V2(180, 240));
     wall2[1]->SetPosition(840, 120);
     wall2[1]->Init(GREEN, V2(330, 220));
-    std::string m[6];
-    m[0] = "RIDE WIFE";
-    m[1] = "LIFE GOOD";
-    m[2] = "WIFE FIGHT BACK";
-    m[3] = "KILL WIFE";
-    m[4] = "WIFE GONE";
-    m[5] = "REGRET";
-    speaker1 = new DeadSoul(m, 6);
-    speaker1->SetPosition(300, 350);
+    std::string m[3];
+    m[0] = "Those goblins look quite";
+    m[1] = "stupid and small, I suppose";
+    m[2] = "this floor will be easy.";
+    speaker1 = new DeadSoul(m, 3);
+    speaker1->SetPosition(1700, 250);
 
     st2[0] = "Journals Collected";
     st2[1] = std::to_string(temp.JournalCount);

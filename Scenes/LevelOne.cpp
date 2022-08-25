@@ -7,6 +7,7 @@
 #include "Wall.hpp"
 #include "Melee.hpp"
 #include "Bar.hpp"
+#include "TextBox.hpp"
 #include <string>
 
 Physical* wall1[2];
@@ -15,6 +16,7 @@ Actor* enemies[8];
 DeadSoul* speaker;
 Player* player;
 Bar* enemyHealthBar[8];
+TextBox* Status;
 
 void LevelOne::LoadScene()
 {
@@ -67,7 +69,7 @@ void LevelOne::LoadScene()
     m[2] = " they can scare me through numbers alone?";
     m[3] = " I will show them what I am capable of!";
     speaker = new DeadSoul(m,6);
-    speaker->SetPosition(300,350);
+    speaker->SetPosition(1700,250);
 
     AddPhysical(player);
     AddPhysical(toNextLevel);
@@ -86,7 +88,7 @@ void LevelOne::SceneUpdate()
     {
         LoadSceneByEnum(LEVELONE);
     }
-    Status->SetVisibility(IsKeyDown(KEY_I));
+    //Status->SetVisibility(IsKeyDown(KEY_I));
     for (int i = 0; i < 8; i++)
     {
         V2 barOffset(0,enemies[i]->GetSize().y/2);

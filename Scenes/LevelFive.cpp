@@ -61,15 +61,14 @@ void LevelFive::LoadScene()
     wall5[1]->SetPosition(220, 90);
     wall5[1]->Init(GREEN, V2(460, 240));
 
-    std::string m[6];
-    m[0] = "RIDE WIFE";
-    m[1] = "LIFE GOOD";
-    m[2] = "WIFE FIGHT BACK";
-    m[3] = "KILL WIFE";
-    m[4] = "WIFE GONE";
-    m[5] = "REGRET";
-    speaker5 = new DeadSoul(m,6);
-    speaker5->SetPosition(300, 350);
+    std::string m[5];
+    m[0] = "The deepest part of the cave...";
+    m[1] = "It is so hot in here...who are those";
+    m[2] = "people with horns? And what";
+    m[3] = "is that charred thing that ";
+    m[4] = "they are dragging off with them?";
+    speaker5 = new DeadSoul(m,5);
+    speaker5->SetPosition(1700, 950);
 
     st5[0] = "Journals Collected";
     st5[1] = std::to_string(temp.JournalCount);
