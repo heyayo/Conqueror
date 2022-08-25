@@ -10,6 +10,7 @@
 #include "Bar.hpp"
 #include "TextBox.hpp"
 #include <string>
+
 Physical* wall4[2];
 Door* toNextLevel4;
 Player* player4;
@@ -23,12 +24,12 @@ std::string st4[2];
 void LevelFour::LoadScene()
 {
     SaveState temp = LoadSave();
-    temp.currentLevel = LEVELFOUR;
+    temp.currentLevel = LEVELONE;
     CreateSave(temp);
 
     SetBG("SceneBG/stage_4.png", V2(1920, 1080));
     toNextLevel4 = new Door;
-    toNextLevel4->Redirect(LEVELMID1);
+    toNextLevel4->Redirect(LEVELFIVE);
     toNextLevel4->SetPosition(1200, 500);
 
     player4 = new Player;
