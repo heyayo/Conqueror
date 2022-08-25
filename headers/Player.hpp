@@ -15,6 +15,9 @@ public:
     Player();
     Player(float hp, float dmg, unsigned JC);
     void Hurt(const float& dmg);
+    void boostspeed(const float& val);
+    void boostdef(const float& val);
+    void boostdmg(void);
     void TickJournalCount();
 
     unsigned GetJournalCount();

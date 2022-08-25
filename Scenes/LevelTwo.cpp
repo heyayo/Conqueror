@@ -19,7 +19,7 @@ DeadSoul* speaker1;
 Bar* ebars2[5];
 Bar* pHP2;
 TextBox* Status2;
-std::string st2[2];
+std::string st2[8];
 
 bool enemiesAlive2 = true;
 void LevelTwo::LoadScene()
@@ -82,10 +82,16 @@ void LevelTwo::LoadScene()
 
     st2[0] = "Journals Collected";
     st2[1] = std::to_string(temp.JournalCount);
-    Status2 = new TextBox(st2,2);
+    st2[2] = "Armour :";
+    st2[3] = std::to_string(temp.armour);
+    st2[4] = "HP :";
+    st2[5] = std::to_string(temp.health);
+    st2[6] = "DMG :";
+    st2[7] = std::to_string(temp.damage);
+    Status2 = new TextBox(st2,8);
     Status2->SetPosition(GetScreenCenter());
-    Status2->SetFontSize(100);
-    Status2->SetPadding(V2(100,100));
+    Status2->SetFontSize(30);
+    Status2->SetPadding(V2(300,300));
     Status2->SetAlignment(TextBox::CENTER);
     AddUI(Status2);
 

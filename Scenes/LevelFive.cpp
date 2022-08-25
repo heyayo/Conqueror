@@ -17,7 +17,7 @@ Actor* enemies5[1];
 Bar* bossbar;
 Bar* pHP5;
 TextBox* Status5;
-std::string st5[2];
+std::string st5[8];
 
 void LevelFive::LoadScene()
 {
@@ -63,10 +63,16 @@ void LevelFive::LoadScene()
 
     st5[0] = "Journals Collected";
     st5[1] = std::to_string(temp.JournalCount);
-    Status5 = new TextBox(st5,2);
+    st5[2] = "Armour :";
+    st5[3] = std::to_string(temp.armour);
+    st5[4] = "HP :";
+    st5[5] = std::to_string(temp.health);
+    st5[6] = "DMG :";
+    st5[7] = std::to_string(temp.damage);
+    Status5 = new TextBox(st5,8);
     Status5->SetPosition(GetScreenCenter());
-    Status5->SetFontSize(100);
-    Status5->SetPadding(V2(100,100));
+    Status5->SetFontSize(30);
+    Status5->SetPadding(V2(300,300));
     Status5->SetAlignment(TextBox::CENTER);
     AddUI(Status5);
 

@@ -10,6 +10,8 @@ class Dragon : public Enemy
 public:
     Dragon();
     ~Dragon();
+    int cooldown = 0;
+    int cooldown1 = 90;
 
     void Update() override;
     void Start() override;

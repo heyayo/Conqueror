@@ -19,7 +19,7 @@ Bar* ebars3[5];
 DeadSoul* speaker3;
 Bar* pHP3;
 TextBox* Status3;
-std::string st3[2];
+std::string st3[8];
 
 bool enemiesAlive3 = true;
 void LevelThree::LoadScene()
@@ -84,10 +84,16 @@ void LevelThree::LoadScene()
 
     st3[0] = "Journals Collected";
     st3[1] = std::to_string(temp.JournalCount);
-    Status3 = new TextBox(st3,2);
+    st3[2] = "Armour :";
+    st3[3] = std::to_string(temp.armour);
+    st3[4] = "HP :";
+    st3[5] = std::to_string(temp.health);
+    st3[6] = "DMG :";
+    st3[7] = std::to_string(temp.damage);
+    Status3 = new TextBox(st3,8);
     Status3->SetPosition(GetScreenCenter());
-    Status3->SetFontSize(100);
-    Status3->SetPadding(V2(100,100));
+    Status3->SetFontSize(30);
+    Status3->SetPadding(V2(300,300));
     Status3->SetAlignment(TextBox::CENTER);
     AddUI(Status3);
 
@@ -212,4 +218,5 @@ void LevelThree::Collision()
             }
         }
     }
+    
 }

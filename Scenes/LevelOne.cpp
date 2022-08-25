@@ -18,7 +18,7 @@ Player* player;
 Bar* enemyHealthBar[8];
 Bar* pHP;
 TextBox* Status;
-std::string st[2];
+std::string st[8];
 
 bool enemiesAlive = true;
 void LevelOne::LoadScene()
@@ -29,6 +29,7 @@ void LevelOne::LoadScene()
     CreateSave(temp);
 
     SetBG("SceneBG/stage_1.png",V2(1920,1080));
+
     toNextLevel = new Door;
     toNextLevel->Redirect(LEVELMID1);
     toNextLevel->SetPosition(1000,500);
@@ -89,10 +90,16 @@ void LevelOne::LoadScene()
 
     st[0] = "Journals Collected";
     st[1] = std::to_string(temp.JournalCount);
-    Status = new TextBox(st,2);
+    st[2] = "Armour :";
+    st[3] = std::to_string(temp.armour);
+    st[4] = "HP :";
+    st[5] = std::to_string(temp.health);
+    st[6] = "DMG :";
+    st[7] = std::to_string(temp.damage);
+    Status = new TextBox(st,8);
     Status->SetPosition(GetScreenCenter());
-    Status->SetFontSize(100);
-    Status->SetPadding(V2(100,100));
+    Status->SetFontSize(30);
+    Status->SetPadding(V2(300,300));
     Status->SetAlignment(TextBox::CENTER);
     AddUI(Status);
 

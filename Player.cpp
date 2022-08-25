@@ -109,6 +109,20 @@ void Player::Hurt(const float& dmg)
     health -= finaldamage;
 }
 
+void Player::boostspeed(const float& val)
+{
+    speed += val;
+}
+void Player::boostdmg(void)
+{
+    damage += (damage / 3);
+}
+void Player::boostdef(const float& val)
+{
+    armour += val;
+}
+
+
 Player::Player(float hp, float dmg, unsigned JC)
 : Actor(hp,dmg), JournalCount(JC)
 {
