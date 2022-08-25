@@ -69,7 +69,7 @@ void Player::InputHandler()
             }
             break;
         case WARRIOR:
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
             {
                 Melee* temp = new Melee(damage);
                 temp->SetParent(this);

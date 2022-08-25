@@ -54,7 +54,7 @@ add_executable(Prototype
         Bar.cpp
         HPcrystal.cpp
         Scenes/Levelmid1.cpp
-         )
+        Atkgem.cpp)
 
 target_include_directories(Prototype PUBLIC headers)
 target_include_directories(Prototype PUBLIC Scenes)
