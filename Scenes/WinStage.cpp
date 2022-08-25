@@ -1,6 +1,7 @@
 #include "WinStage.hpp"
 #include "TextBox.hpp"
 #include "Game.hpp"
+#include <string>
 
 TextBox* wAccouncer;
 TextBox* jCounter;
